@@ -1,0 +1,21 @@
+@import '~styles/utils/grid'
+@import '~styles/variables'
+
+.social-icons
+  display: flex
+  flex-wrap: wrap
+  &-icon
+    transition: 0.3s
+    &:not(:last-child)
+      margin-right: 50px
+    &:hover
+      svg path
+        fill: $accent-color
+    svg
+      width: 20px
+      height: 20px
+      transition: 0.3s
+      display: block
+      path
+        fill: white
+        transition: 0.2s

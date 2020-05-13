@@ -1,0 +1,29 @@
+@import '~styles/utils/grid'
+
+.reviews-list
+  position: relative
+  z-index: 1
+  &:hover
+    .reviews-list-slider-control
+      opacity: 1
+  &-slider-control
+    position: absolute
+    display: flex
+    justify-content: space-between
+    top: 50%
+    transform: translateY(-50%)
+    left: -8.5%
+    width: 117%
+    z-index: -1
+    opacity: 0
+    transition: 0.3s
+  .slick-list
+    margin: 0 -15px
+  .slick-track
+    display: flex
+    flex-wrap: wrap
+  .slick-slide
+    padding: 0 15px
+    height: auto
+    > div
+      height: 100%

@@ -1,0 +1,51 @@
+@import "~styles/utils/mixins"
+@import "~styles/variables"
+
+.navigation
+  background-color: $navigation-bg
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  display: flex
+  justify-content: space-between
+  z-index: 200
+  height: auto
+
+  // Menu
+  &-menu
+    display: flex
+    align-items: center
+  &-logo
+    width: 40px
+    height: auto
+    margin: 0 20px
+    background: #ccc
+  &-list
+    overflow: hidden
+    display: flex
+    &-link
+      position: relative
+      display: inline-block
+      padding: 23px 10px
+      font-size: rem(14px)
+      line-height: 1
+      font-weight: 500
+      color: $text-muted
+      transition: 0.3s
+      letter-spacing: 0.02rem
+      &:after
+        position: absolute
+        content: ''
+        bottom: 0
+        left: 0
+        width: 100%
+        background-color: $accent-color
+        height: 5px
+        transform: translateY(110%)
+        transition: .3s
+      &:hover,
+      &.active
+        color: $text-light
+        &:after
+          transform: translateY(0)

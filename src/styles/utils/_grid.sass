@@ -1,0 +1,31 @@
+@import "../variables"
+
+// Defaults
+$gutter-one-side: ($gutter / 2)
+$col-width      : (100% / $columns)
+
+// Row
+@mixin row()
+  display: flex
+  flex-wrap: wrap
+  margin-left: -$gutter-one-side
+  margin-right: -$gutter-one-side
+
+// Col with paddings
+@mixin col($col: 0, $offset-col: false)
+  @if $col > 0
+    width: #{$col-width * $col}
+  @if $offset-col
+    margin-left: #{$col-width * $offset-col}
+  padding-left: $gutter-one-side
+  padding-right: $gutter-one-side
+
+// Col with margins
+@mixin col-mx($col: 0, $offset-col: false)
+  @if $col > 0
+    width: calc(#{$col-width * $col} - #{$gutter})
+  @if $offset-col
+    margin-left: calc(#{$col-width * $offset-col} + #{$gutter-one-side})
+  @else
+    margin-left: $gutter-one-side
+  margin-right: $gutter-one-side

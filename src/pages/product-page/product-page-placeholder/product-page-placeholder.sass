@@ -1,0 +1,46 @@
+@import '~styles/variables'
+@import '~styles/utils/grid'
+@import '~styles/common/animations.sass'
+
+.product-placeholder
+  padding: 120px 0 40px
+  animation: 1.7s pulse linear infinite
+  &-breadcrumbs
+    display: block
+    width: 20%
+    background-color: $primary-color
+    height: 20px
+    margin-bottom: 40px
+  &-header
+    height: 600px
+    background-color: $primary-color
+    margin-bottom: 40px
+  &-buy-product
+    background-color: $primary-color
+    height: 53px
+    display: flex
+    justify-content: space-between
+    align-items: center
+    margin-bottom: 80px
+    &-title
+      height: 25px
+      width: 20%
+      background-color: lighten($primary-color, 3%)
+    &-button
+      height: 100%
+      width: 20%
+      background-color: lighten($primary-color, 3%)
+  &-description
+    +row()
+    margin-bottom: 80px
+    &-title
+      +col(3)
+      span
+        background-color: $primary-color
+        height: 20px
+        width: 40%
+        display: block
+    &-content
+      background-color: $primary-color
+      +col(9)
+      height: 360px

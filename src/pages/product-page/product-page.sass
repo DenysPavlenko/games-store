@@ -1,0 +1,42 @@
+@import '~styles/utils/grid'
+
+.product
+  padding: 120px 0 40px
+  &-header
+    margin-bottom: 40px
+  &-buy
+    margin-bottom: 80px
+
+  &-description
+    +row()
+    margin-bottom: 80px
+    &-title
+      +col(3)
+    &-content
+      +col(9)
+
+  &-table
+    +row()
+    &-item
+      +col(4)
+      margin-bottom: 30px
+  &-columns
+    +row()
+  &-column
+    +col(6)
+  &-tab
+    +col(12)
+    margin-bottom: 20px
+  &-ratings
+    display: flex
+    flex-wrap: wrap
+    margin-bottom: 40px
+  &-rating
+    text-align: center
+    &:not(:last-child)
+      margin-right: 60px
+  &-socials
+    display: flex
+    justify-content: center
+    padding: 60px 0
+    background-color: $primary-color

@@ -1,0 +1,46 @@
+@import "~styles/variables"
+@import "~styles/utils/mixins"
+
+.button
+  display: inline-block
+  padding: 14px 40px 13px
+  font-size: 1rem
+  line-height: 1
+  font-weight: 500
+  letter-spacing: 0.02rem
+  color: $text-light
+  background-color: $button-bg
+  transition: 0.3s
+  cursor: pointer
+  user-select: none
+  &:hover
+    background-color: lighten($button-bg, 10%)
+
+  &-lg
+    padding: 20px 40px 19px
+    min-width: 180px
+
+  &-bordered
+    border: 1px solid $muted-color-alt
+    padding: 10px 20px 9px
+    background-color: transparent
+    color: $text-light
+    &:hover
+      border: 1px solid $light-color
+      background-color: transparent
+      color: $text-light
+
+  &-arrow
+    padding: 0
+    background-color: unset
+    display: inline-flex
+    color: $muted-color
+    &-icon
+      width: 13px
+      margin-left: 8px
+      transition: transform 0.3s
+    &:hover
+      background-color: unset
+      color: $text-light
+      .button-arrow-icon
+        transform: translateX(5px)

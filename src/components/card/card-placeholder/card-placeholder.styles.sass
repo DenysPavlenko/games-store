@@ -1,0 +1,34 @@
+@import '~styles/variables'
+@import '~styles/utils/grid'
+@import '~styles/common/animations.sass'
+
+.card-placeholder
+  position: relative
+  width: calc( 20% - 30px )
+  margin: 0 15px
+  margin-bottom: 60px
+  height: 350px
+  animation: 1.7s pulse linear infinite
+
+  &-image
+    width: 100%
+    height: 100%
+    background-color: $primary-color
+
+  &-info
+    position: absolute
+    width: 100%
+    background-color: $dark-color
+    bottom: 0
+    left: 0
+    text-align: left
+    padding: 14px 0 16px
+    &-name,
+    &-total
+      height: 10px
+      background-color: $primary-color
+    &-total
+      width: 40%
+    &-name
+      width: 70%
+      margin-bottom: 1rem
