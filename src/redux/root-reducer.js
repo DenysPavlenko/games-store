@@ -5,6 +5,7 @@ import categoriesReducer from './categories/categories.reducer';
 import categoryReducer from './category/category.reducer';
 import categoryDetailsReducer from './category-details/category-details.reducer';
 import gameReducer from './game/game.reducer';
+import cartReducer from './cart/cart.reducer';
 
 const rootReducer = combineReducers({
   games: gamesReducer,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   category: categoryReducer,
   categoryDetails: categoryDetailsReducer,
   game: gameReducer,
+  cart: cartReducer,
 });
 
 export default rootReducer;

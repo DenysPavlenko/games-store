@@ -1,4 +1,4 @@
-import GameTypes from './game.types';
+import GameActionTypes from './game.types';
 
 const INITIAL_STATE = {
   loading: true,
@@ -8,19 +8,19 @@ const INITIAL_STATE = {
 
 const gamesReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case GameTypes.FETCH_GAME_REQUEST:
+    case GameActionTypes.FETCH_GAME_REQUEST:
       return {
         loading: true,
         error: null,
         data: null,
       }
-    case GameTypes.FETCH_GAME_SUCCESS:
+    case GameActionTypes.FETCH_GAME_SUCCESS:
       return {
         loading: false,
         error: null,
         data: action.payload,
       }
-    case GameTypes.FETCH_GAME_FAILURE:
+    case GameActionTypes.FETCH_GAME_FAILURE:
       return {
         loading: false,
         error: true,

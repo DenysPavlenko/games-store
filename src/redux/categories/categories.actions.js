@@ -1,29 +1,23 @@
-import CategoriesTypes from './categories.types';
+import CategoriesActionTypes from './categories.types';
 // Services
 import GamesService from 'services/games-serviece';
 // Games service
 const gamesService = new GamesService();
 
-const categoriesRequested = (categories) => {
-  return {
-    type: CategoriesTypes.FETCH_CATEGORIES_REQUEST,
-    payload: categories
-  };
-};
-const categoriesLoaded = (data) => {
-  return {
-    type: CategoriesTypes.FETCH_CATEGORIES_SUCCESS,
-    payload: data
-  };
-};
-const categoriesError = (categories) => {
-  return {
-    type: CategoriesTypes.FETCH_CATEGORIES_FAILURE,
-    payload: categories
-  };
-};
+const categoriesRequested = categories => ({
+  type: CategoriesActionTypes.FETCH_CATEGORIES_REQUEST,
+  payload: categories
+});
+const categoriesLoaded = data => ({
+  type: CategoriesActionTypes.FETCH_CATEGORIES_SUCCESS,
+  payload: data
+});
+const categoriesError = categories => ({
+  type: CategoriesActionTypes.FETCH_CATEGORIES_FAILURE,
+  payload: categories
+});
 
-export const fetchCategoriesData = (categories) => (dispatch) => {
+export const fetchCategoriesData = categories => dispatch => {
   let service;
   if (categories === 'genres') {
     service = gamesService.getAllGenres;
@@ -36,5 +30,5 @@ export const fetchCategoriesData = (categories) => (dispatch) => {
   dispatch(categoriesRequested(categories));
   service()
     .then((data) => { dispatch(categoriesLoaded({ categories, data })) })
-    .catch((error) => { dispatch(categoriesError(categories)) })
+    .catch(() => { dispatch(categoriesError(categories)) })
 }

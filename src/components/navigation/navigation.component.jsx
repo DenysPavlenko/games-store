@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link, NavLink, withRouter } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom';
 // Components
-import Button from 'components/button/button.component'
+import Button from 'components/button/button.component';
+import CartIcon from 'components/cart-icon/cart-icon.component';
 // Styles
 import "./navigation.styles.sass";
 // Assets
@@ -14,7 +15,7 @@ const nav = [
   { name: 'Platforms', rootName: '/categories/platforms' },
 ]
 
-const Navigation = ({ history, match }) => {
+const Navigation = () => {
   return (
     <div className="navigation">
       <div className="navigation-menu">
@@ -29,9 +30,12 @@ const Navigation = ({ history, match }) => {
           ))}
         </ul>
       </div>
-      <Button className="navigation-button">Sign In</Button>
+      <div className="navigation-user">
+        <CartIcon />
+        <Button className="navigation-button">Sign In</Button>
+      </div>
     </div>
   );
 };
 
-export default withRouter(Navigation);
+export default Navigation;

@@ -1,7 +1,7 @@
-const GamesTypes = {
+const GamesActionTypes = {
 	FETCH_GAMES_REQUEST  : 'FETCH_GAMES_REQUEST',
 	FETCH_GAMES_SUCCESS  : 'FETCH_GAMES_SUCCESS',
 	FETCH_GAMES_FAILURE  : 'FETCH_GAMES_FAILURE',
 }
 
-export default GamesTypes;
+export default GamesActionTypes;

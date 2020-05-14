@@ -62,9 +62,9 @@ const mapStateToProps = (state, { match }) => {
     data: state.categories[match.params.categoriesRout],
   }
 }
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    fetchCategoriesData: (categories) => dispatch(fetchCategoriesData(categories)),
+    fetchCategoriesData: categories => dispatch(fetchCategoriesData(categories)),
   }
 }
 

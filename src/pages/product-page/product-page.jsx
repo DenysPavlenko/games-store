@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 // Redux actions
 import { fetchGameDetails } from 'redux/game/game.actions';
+import { addItemToCart } from 'redux/cart/cart.actions';
 // Components
 import ProductPagePlaceholder from './product-page-placeholder/product-page-placeholder';
 import ErrorIndicator from 'components/error-indicator/error-indicator.component';
@@ -48,23 +49,23 @@ class ProductPage extends React.Component {
   }
 
   render() {
-    const { game: { error, loading, data } } = this.props;
+    const { game: { error, loading, data }, addItemToCart } = this.props;
     const { reviews, socials } = this.state;
 
     if (error) return (<div className="product"><ErrorIndicator /></div>)
     if (loading) return (<ProductPagePlaceholder />)
 
-    const { previews, rout, name, price, description, developers, publishers, platforms, genres, released, rating, ratings } = data;
+    const { id, image, previews, name, price, description, developers, publishers, platforms, genres, released, rating, ratings } = data;
 
     return (
       <div className="product">
-        <Breadcrumbs routes={[rout]} />
+        <Breadcrumbs routes={[name]} />
 
         <Container>
 
           <ProductHeader className="product-header" previews={previews} />
 
-          <BuyProduct price={price} name={name} className="product-buy" />
+          <BuyProduct price={price} name={name} className="product-buy" onCartClick={() => addItemToCart({ id, image, name, price })} />
 
           <div className="product-description">
             <div className="product-description-title">
@@ -129,14 +130,15 @@ const ProductTableItem = ({ title, property }) => (
   </div>
 )
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     game: state.game
   }
 }
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    fetchGameDetails: (gameId) => dispatch(fetchGameDetails(gameId))
+    fetchGameDetails: (gameId) => dispatch(fetchGameDetails(gameId)),
+    addItemToCart: (item) => dispatch(addItemToCart(item))
   }
 }
 

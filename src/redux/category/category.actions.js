@@ -1,27 +1,21 @@
-import CategoryTypes from './category.types';
+import CategoryActionTypes from './category.types';
 // Services
 import GamesService from 'services/games-serviece';
 // Games service
 const gamesService = new GamesService();
 
-const categoryRequested = () => {
-  return {
-    type: CategoryTypes.FETCH_CATEGORY_REQUEST
-  };
-};
-const categoryLoaded = (data) => {
-  return {
-    type: CategoryTypes.FETCH_CATEGORY_SUCCESS,
-    payload: data
-  };
-};
-const categoryError = () => {
-  return {
-    type: CategoryTypes.FETCH_CATEGORY_FAILURE
-  };
-};
+const categoryRequested = () => ({
+  type: CategoryActionTypes.FETCH_CATEGORY_REQUEST
+});
+const categoryLoaded = data => ({
+  type: CategoryActionTypes.FETCH_CATEGORY_SUCCESS,
+  payload: data
+});
+const categoryError = () => ({
+  type: CategoryActionTypes.FETCH_CATEGORY_FAILURE
+});
 
-export const fetchCategoryData = (categories, category) => (dispatch) => {
+export const fetchCategoryData = (categories, category) => dispatch => {
   let service;
   if (categories === 'genres') {
     service = gamesService.getAllGenres;

@@ -55,13 +55,13 @@ class CategoryPage extends React.Component {
   }
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     category: state.category,
     categoryDetails: state.categoryDetails,
   };
 }
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     fetchCategoryData: (categories, category) => dispatch(fetchCategoryData(categories, category)),
     fetchCategoryDetailsData: (categoryType, category) => dispatch(fetchCategoryDetailsData(categoryType, category)),

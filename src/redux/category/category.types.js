@@ -1,7 +1,7 @@
-const CategoryTypes = {
+const CategoryActionTypes = {
 	FETCH_CATEGORY_REQUEST  : 'FETCH_CATEGORY_REQUEST',
 	FETCH_CATEGORY_SUCCESS  : 'FETCH_CATEGORY_SUCCESS',
 	FETCH_CATEGORY_FAILURE  : 'FETCH_CATEGORY_FAILURE',
 }
 
-export default CategoryTypes;
+export default CategoryActionTypes;

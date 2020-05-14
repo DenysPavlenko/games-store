@@ -47,7 +47,7 @@ export default class GamesService {
     return this._transformCategoryDetails(res);
   }
 
-  _transformCategory = (category) => {
+  _transformCategory = category => {
     return {
       id: category.id,
       rout: category.slug,
@@ -57,7 +57,7 @@ export default class GamesService {
       games: category.games,
     }
   }
-  _transformGame = (game) => {
+  _transformGame = game => {
     return {
       id: game.id,
       rout: game.slug,
@@ -69,10 +69,10 @@ export default class GamesService {
       platforms: game.platforms,
     }
   }
-  _transformGameDetails = (game) => {
+  _transformGameDetails = game => {
     return {
       id: game.id,
-      price: game.suggestions_count,
+      price: parseInt(game.suggestions_count / 2),
       rout: game.slug,
       name: game.name,
       genres: game.genres.map(genre => genre.name),
@@ -87,7 +87,7 @@ export default class GamesService {
       previews: [game.background_image, game.clip && game.clip.clips.full, game.background_image_additional].filter(el => el !== null),
     }
   }
-  _transformCategoryDetails = (category) => {
+  _transformCategoryDetails = category => {
     const description = category.description !== '' ? category.description : 'Pencil cunning like a fox robot moustache hello, we’re cockneys charlie chaplin, charlie chaplin super mario hello, we’re cockneys devilish cad robot moustache casual style rugged hair trimmer des lynam pencil cunning like a fox felis doctor watson.'
     return {
       id: category.id,

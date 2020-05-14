@@ -8,7 +8,7 @@ import './buy-product.styles.sass'
 // Assets
 import { ReactComponent as CartIcon } from 'assets/images/icons/cart.svg';
 
-const BuyProduct = ({ price, name, className }) => {
+const BuyProduct = ({ price, name, className, onCartClick }) => {
   const classes = classNames({
     'buy-product': true,
     [className]: className
@@ -22,7 +22,7 @@ const BuyProduct = ({ price, name, className }) => {
         <Typography component="h5" className="mb-0 text-muted buy-product-price">USD {price}</Typography>
         <div className="buy-product-button-group">
           <Button btnLarge>Buy now</Button>
-          <Button className="buy-product-cart"><CartIcon /></Button>
+          <Button onClick={onCartClick} className="buy-product-cart"><CartIcon /></Button>
         </div>
       </div>
     </div>

@@ -9,22 +9,8 @@ import ProductPage from 'pages/product-page/product-page';
 import ScrollToTop from "components/scroll-to-top/scroll-to-top.component";
 import Navigation from "components/navigation/navigation.component";
 import Footer from "components/footer/footer.component";
+import Cart from "components/cart/cart.component";
 import './app.sass'
-
-
-// fetch("https://rawg-video-games-database.p.rapidapi.com/platforms", {
-//   "method": "GET",
-//   "headers": {
-//     "x-rapidapi-host": "rawg-video-games-database.p.rapidapi.com",
-//     "x-rapidapi-key": "9598c96e8dmshbf06c0e2380b5cbp102cc7jsnb817c41fdec8"
-//   }
-// })
-//   .then(response => {
-//     return response.json()
-//   })
-//   .then(response => {
-//     console.log(response.results);
-//   })
 
 
 const App = () => {
@@ -32,6 +18,7 @@ const App = () => {
     <div className="app">
       <Router>
         <Navigation />
+        <Cart />
 
         <ScrollToTop>
           <Switch>

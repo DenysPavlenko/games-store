@@ -1,4 +1,4 @@
-import GamesTypes from './games.types';
+import GamesActionTypes from './games.types';
 
 const INITIAL_STATE = {
   collection: [],
@@ -8,19 +8,19 @@ const INITIAL_STATE = {
 
 const gamesReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case GamesTypes.FETCH_GAMES_REQUEST:
+    case GamesActionTypes.FETCH_GAMES_REQUEST:
       return {
         collection: [],
         loading: true,
         error: null,
       }
-    case GamesTypes.FETCH_GAMES_SUCCESS:
+    case GamesActionTypes.FETCH_GAMES_SUCCESS:
       return {
         collection: action.payload,
         loading: false,
         error: null,
       }
-    case GamesTypes.FETCH_GAMES_FAILURE:
+    case GamesActionTypes.FETCH_GAMES_FAILURE:
       return {
         collection: [],
         loading: false,
