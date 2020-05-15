@@ -47,10 +47,19 @@ class ProductPage extends React.Component {
   componentDidMount() {
     const { fetchGameDetails, match: { params }, cart: { cartItems } } = this.props;
     fetchGameDetails(params.gameId);
-    const existingItem = cartItems.some(cartItem => cartItem.id === +params.gameId);
-    if (existingItem) {
-      this.setState({ inCart: existingItem });
+    this.productInCart(cartItems, +params.gameId);
+  }
+  componentDidUpdate(prevProps) {
+    const { cartItems: oldCartItems } = prevProps.cart;
+    const { cart: { cartItems }, match: { params } } = this.props;
+    if (oldCartItems !== cartItems) {
+      this.productInCart(cartItems, +params.gameId);
     }
+  }
+
+  productInCart = (cartItems, gameId) => {
+    const existingItem = cartItems.some(cartItem => cartItem.id === gameId);
+    this.setState({ inCart: existingItem });
   }
 
   render() {
@@ -70,10 +79,7 @@ class ProductPage extends React.Component {
 
           <ProductHeader className="product-header" previews={previews} />
 
-          <BuyProduct inCart={inCart} price={price} name={name} className="product-buy" onCartClick={() => {
-            this.setState({ inCart: true });
-            addItemToCart({ id, image, name, price });
-          }} />
+          <BuyProduct inCart={inCart} price={price} name={name} className="product-buy" onCartClick={() => addItemToCart({ id, image, name, price })} />
 
           <div className="product-description">
             <div className="product-description-title">

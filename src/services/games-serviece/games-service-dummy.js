@@ -63,8 +63,8 @@ export default class GamesServiceDummy {
   }
   _transformGameDetails = game => {
     return {
-      id: Math.floor(Math.random() * 10000),
-      price: parseInt(game.suggestions_count / 2),
+      id: 3498,
+      price: parseInt(game.suggestions_count / 10),
       rout: game.slug,
       name: game.name,
       genres: game.genres.map(genre => genre.name),

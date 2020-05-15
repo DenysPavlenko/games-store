@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 // Redux actions
 import { hideCart, addItemToCart, removeItemFromCart, clearItemFromCart } from 'redux/cart/cart.actions';
 // Components
+import Modal from 'components/modal/modal.component';
 import Typography from 'components/typography/typography.component';
 import Button from 'components/button/button.component';
 import CartItem from 'components/cart-item/cart-item.component';
@@ -10,21 +11,18 @@ import CartItem from 'components/cart-item/cart-item.component';
 import './cart.styles.sass'
 // Assets
 import { ReactComponent as CartIcon } from 'assets/images/icons/cart.svg';
-import { ReactComponent as CloseIcon } from 'assets/images/icons/close.svg';
 
 const Cart = ({ cart: { hidden, cartItems }, hideCart, ...otherProps }) => {
   return (
-    <div className={`cart ${hidden ? 'cart-hidden' : ''}`}>
-      <div onClick={hideCart} className="cart-overlay"></div>
-      <div className="cart-wrapper">
-        <div onClick={hideCart} className="cart-close"><CloseIcon /></div>
+    <Modal closeModal={hideCart} hidden={hidden}>
+      <div className="cart">
         {cartItems.length === 0 ?
           <CartEmpty />
           :
           <CartContent cartItems={cartItems} hideCart={hideCart} {...otherProps} />
         }
       </div>
-    </div >
+    </Modal>
   );
 };
 
@@ -36,6 +34,7 @@ const CartEmpty = () => (
 )
 
 const CartContent = ({ cartItems, hideCart, addItemToCart, removeItemFromCart, clearItemFromCart }) => {
+  const totalCount = cartItems.reduce((acc, cartItem) => acc + cartItem.quantity * cartItem.price, 0)
   return (
     <>
       <Typography component="span" variant="h1" className="cart-heading text-dark">Your Cart</Typography>
@@ -48,8 +47,8 @@ const CartContent = ({ cartItems, hideCart, addItemToCart, removeItemFromCart, c
         </div>
         <div className="cart-footer-right">
           <div className="cart-footer-right-title">
-            <Typography component="span" variant="h2" className="text-dark mb-0">Total</Typography>
-            <Typography component="span" variant="h2" className="text-dark mb-0">$500</Typography>
+            <Typography component="span" variant="h2" className="text-dark mb-0">Total:</Typography>
+            <Typography component="span" variant="h2" className="text-dark mb-0">${totalCount}</Typography>
           </div>
           <Button btnLarge>Go to checkout</Button>
         </div>

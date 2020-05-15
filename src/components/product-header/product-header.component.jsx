@@ -16,13 +16,15 @@ class ProductHeader extends React.Component {
     const { previews } = this.props;
     const { videoIndex } = this.state;
     const currentVideoIndex = previews.findIndex(preview => (/\.(mp4|ogg)$/i).test(preview));
-    this.handleVideo(videoIndex === currentVideoIndex)
-    this.setState({ videoIndex: currentVideoIndex })
+    this.handleVideo(videoIndex === currentVideoIndex);
+    this.setState({ videoIndex: currentVideoIndex });
   }
 
-  handleVideo = (isActive) => {
+  handleVideo = isActive => {
     const video = document.querySelector('.product-header-video video');
-    isActive ? video.play() : video.pause();
+    if (video) {
+      isActive ? video.play() : video.pause();
+    }
   }
 
   render() {

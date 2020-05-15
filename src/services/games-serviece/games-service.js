@@ -72,7 +72,7 @@ export default class GamesService {
   _transformGameDetails = game => {
     return {
       id: game.id,
-      price: parseInt(game.suggestions_count / 2),
+      price: parseInt(game.suggestions_count / 10),
       rout: game.slug,
       name: game.name,
       genres: game.genres.map(genre => genre.name),
