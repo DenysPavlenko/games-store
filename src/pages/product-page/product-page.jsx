@@ -40,17 +40,22 @@ class ProductPage extends React.Component {
       { Icon: Facebook, link: 'http://example.com' },
       { Icon: Instagram, link: 'http://example.com' },
       { Icon: Youtube, link: 'http://example.com' },
-    ]
+    ],
+    inCart: false
   }
 
   componentDidMount() {
-    const { fetchGameDetails, match: { params } } = this.props;
+    const { fetchGameDetails, match: { params }, cart: { cartItems } } = this.props;
     fetchGameDetails(params.gameId);
+    const existingItem = cartItems.some(cartItem => cartItem.id === +params.gameId);
+    if (existingItem) {
+      this.setState({ inCart: existingItem });
+    }
   }
 
   render() {
     const { game: { error, loading, data }, addItemToCart } = this.props;
-    const { reviews, socials } = this.state;
+    const { reviews, socials, inCart } = this.state;
 
     if (error) return (<div className="product"><ErrorIndicator /></div>)
     if (loading) return (<ProductPagePlaceholder />)
@@ -65,7 +70,10 @@ class ProductPage extends React.Component {
 
           <ProductHeader className="product-header" previews={previews} />
 
-          <BuyProduct price={price} name={name} className="product-buy" onCartClick={() => addItemToCart({ id, image, name, price })} />
+          <BuyProduct inCart={inCart} price={price} name={name} className="product-buy" onCartClick={() => {
+            this.setState({ inCart: true });
+            addItemToCart({ id, image, name, price });
+          }} />
 
           <div className="product-description">
             <div className="product-description-title">
@@ -132,7 +140,8 @@ const ProductTableItem = ({ title, property }) => (
 
 const mapStateToProps = state => {
   return {
-    game: state.game
+    game: state.game,
+    cart: state.cart,
   }
 }
 const mapDispatchToProps = dispatch => {

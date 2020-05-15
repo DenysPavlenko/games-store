@@ -1,4 +1,6 @@
 import { combineReducers } from 'redux';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 // Reducers
 import gamesReducer from './games/games.reducer';
 import categoriesReducer from './categories/categories.reducer';
@@ -6,6 +8,12 @@ import categoryReducer from './category/category.reducer';
 import categoryDetailsReducer from './category-details/category-details.reducer';
 import gameReducer from './game/game.reducer';
 import cartReducer from './cart/cart.reducer';
+
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['cart']
+};
 
 const rootReducer = combineReducers({
   games: gamesReducer,
@@ -16,4 +24,4 @@ const rootReducer = combineReducers({
   cart: cartReducer,
 });
 
-export default rootReducer;
+export default persistReducer(persistConfig, rootReducer);

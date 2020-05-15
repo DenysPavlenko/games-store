@@ -1,6 +1,9 @@
 .product-header
   position: relative
   z-index: 1
+  &:hover
+    .product-header-slider-control
+      opacity: 1
   &-slider-control
     position: absolute
     display: flex
@@ -10,6 +13,8 @@
     left: -6%
     width: 112%
     z-index: -1
+    transition: 0.2s
+    opacity: 0
   &-image
     width: 100%
     height: 600px
