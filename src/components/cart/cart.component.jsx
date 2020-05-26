@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// Redux actions
+// Redux
 import { hideCart, addItemToCart, removeItemFromCart, clearItemFromCart } from 'redux/cart/cart.actions';
+import { selectCartItems, selectCartHidden, selectCartTotalCount } from 'redux/cart/cart.selectors';
 // Components
 import Modal from 'components/modal/modal.component';
 import Typography from 'components/typography/typography.component';
@@ -12,9 +13,9 @@ import './cart.styles.sass'
 // Assets
 import { ReactComponent as CartIcon } from 'assets/images/icons/cart.svg';
 
-const Cart = ({ cart: { hidden, cartItems }, hideCart, ...otherProps }) => {
+const Cart = ({ cartHidden, cartItems, hideCart, ...otherProps }) => {
   return (
-    <Modal closeModal={hideCart} hidden={hidden}>
+    <Modal closeModal={hideCart} hidden={cartHidden}>
       <div className="cart">
         {cartItems.length === 0 ?
           <CartEmpty />
@@ -33,8 +34,7 @@ const CartEmpty = () => (
   </div>
 )
 
-const CartContent = ({ cartItems, hideCart, addItemToCart, removeItemFromCart, clearItemFromCart }) => {
-  const totalCount = cartItems.reduce((acc, cartItem) => acc + cartItem.quantity * cartItem.price, 0)
+const CartContent = ({ cartItems, hideCart, addItemToCart, removeItemFromCart, clearItemFromCart, totalCount }) => {
   return (
     <>
       <Typography component="span" variant="h1" className="cart-heading text-dark">Your Cart</Typography>
@@ -59,7 +59,9 @@ const CartContent = ({ cartItems, hideCart, addItemToCart, removeItemFromCart, c
 
 const mapStateToProps = state => {
   return {
-    cart: state.cart
+    cartHidden: selectCartHidden(state),
+    cartItems: selectCartItems(state),
+    totalCount: selectCartTotalCount(state)
   }
 }
 const mapDispatchToProps = dispatch => {
