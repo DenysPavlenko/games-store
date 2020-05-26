@@ -1,8 +1,11 @@
-import { connect } from 'react-redux';
 import React from 'react';
-// Redux actions
+import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux';
+// Redux
 import { fetchCategoryData } from 'redux/category/category.actions';
 import { fetchCategoryDetailsData } from 'redux/category-details/category-details.actions';
+import { selectCategoryData } from 'redux/category/category.selectors';
+import { selectCategoryDetailsData } from 'redux/category-details/category-details.selectors';
 // Components
 import Container from 'components/container/container.component';
 import CategoryPreview from 'components/category-preview/category-preview.component';
@@ -55,12 +58,10 @@ class CategoryPage extends React.Component {
   }
 };
 
-const mapStateToProps = state => {
-  return {
-    category: state.category,
-    categoryDetails: state.categoryDetails,
-  };
-}
+const mapStateToProps = createStructuredSelector({
+  category: selectCategoryData,
+  categoryDetails: selectCategoryDetailsData,
+});
 const mapDispatchToProps = dispatch => {
   return {
     fetchCategoryData: (categories, category) => dispatch(fetchCategoryData(categories, category)),

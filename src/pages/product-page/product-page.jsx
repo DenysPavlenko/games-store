@@ -1,8 +1,11 @@
 import React from 'react';
+import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
-// Redux actions
+// Redux
 import { fetchGameDetails } from 'redux/game/game.actions';
 import { addItemToCart } from 'redux/cart/cart.actions';
+import { gameSelectorsData } from 'redux/game/game.selectors';
+import { selectCartItems } from 'redux/cart/cart.selectors';
 // Components
 import ProductPagePlaceholder from './product-page-placeholder/product-page-placeholder';
 import ErrorIndicator from 'components/error-indicator/error-indicator.component';
@@ -45,14 +48,13 @@ class ProductPage extends React.Component {
   }
 
   componentDidMount() {
-    const { fetchGameDetails, match: { params }, cart: { cartItems } } = this.props;
+    const { fetchGameDetails, match: { params }, cartItems } = this.props;
     fetchGameDetails(params.gameId);
     this.productInCart(cartItems, +params.gameId);
   }
   componentDidUpdate(prevProps) {
-    const { cartItems: oldCartItems } = prevProps.cart;
-    const { cart: { cartItems }, match: { params } } = this.props;
-    if (oldCartItems !== cartItems) {
+    const { cartItems, match: { params } } = this.props;
+    if (prevProps.cartItems !== cartItems) {
       this.productInCart(cartItems, +params.gameId);
     }
   }
@@ -144,12 +146,10 @@ const ProductTableItem = ({ title, property }) => (
   </div>
 )
 
-const mapStateToProps = state => {
-  return {
-    game: state.game,
-    cart: state.cart,
-  }
-}
+const mapStateToProps = createStructuredSelector({
+  game: gameSelectorsData,
+  cartItems: selectCartItems
+});
 const mapDispatchToProps = dispatch => {
   return {
     fetchGameDetails: (gameId) => dispatch(fetchGameDetails(gameId)),

@@ -1,8 +1,10 @@
 import React from 'react';
+import { createStructuredSelector } from 'reselect';
 import { Link } from 'react-router-dom';
 // Redux
 import { connect } from 'react-redux';
 import { fetchGamesData } from '../../redux/games/games.actions';
+import { gamesSelectorsData } from '../../redux/games/games.selectors';
 // Components
 import ErrorIndicator from 'components/error-indicator/error-indicator.component';
 import Container from 'components/container/container.component'
@@ -75,11 +77,9 @@ class GamesPreview extends React.Component {
 }
 
 
-const mapStateToProps = (state) => {
-  return {
-    games: state.games,
-  }
-}
+const mapStateToProps = createStructuredSelector({
+  games: gamesSelectorsData
+});
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchGamesData: () => dispatch(fetchGamesData()),

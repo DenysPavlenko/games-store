@@ -1,7 +1,9 @@
-import { connect } from 'react-redux';
 import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 // Redux actions
 import { fetchCategoriesData } from '../../redux/categories/categories.actions';
+import { selectChosenCategoryData } from '../../redux/categories/categories.selectors';
 // Components
 import Container from 'components/container/container.component';
 import Typography from 'components/typography/typography.component';
@@ -57,11 +59,9 @@ class CategoriesPage extends React.Component {
   }
 };
 
-const mapStateToProps = (state, { match }) => {
-  return {
-    data: state.categories[match.params.categoriesRout],
-  }
-}
+const mapStateToProps = createStructuredSelector({
+  data: selectChosenCategoryData
+})
 const mapDispatchToProps = dispatch => {
   return {
     fetchCategoriesData: categories => dispatch(fetchCategoriesData(categories)),

@@ -8,12 +8,12 @@ import Button from 'components/button/button.component';
 // Styles
 import './directory-collection.styles.sass'
 
-const DirectoryCollection = ({ isLoading, hasError, title, collection, rootName, history, match }) => {
+const DirectoryCollection = ({ isLoading, hasError, title, collection, rootName, history }) => {
   return (
     <div className="directory-collection">
       <div className="directory-collection-heading">
         <Typography component="h3">By {title}</Typography>
-        <Button onClick={() => { history.push(`/categories${match.url}${rootName}`) }} btnBordered>View all</Button>
+        <Button onClick={() => { history.push(`/categories/${rootName}`) }} btnBordered>View all</Button>
       </div>
       <Cards isLoading={isLoading} hasError={hasError} placeholdersToShow={5}>
         {collection.slice(0, 5).map(({ id, rout, image, name, total }) => (
