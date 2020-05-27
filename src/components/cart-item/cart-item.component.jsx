@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import classNames from 'classnames'
 // Components
 import Typography from 'components/typography/typography.component';
 // Styles
@@ -7,10 +8,15 @@ import './cart-item.styles.sass'
 // Assets
 import { ReactComponent as TrashIcon } from 'assets/images/icons/trash.svg';
 
-const CartItem = ({ cartItem, hideCart, addItem, removeItem, clearItem }) => {
+const CartItem = ({ cartItem, hideCart, addItem, removeItem, clearItem, className, inverted }) => {
   const { id, image, name, price, quantity } = cartItem;
+  const classes = classNames({
+    'cart-item': true,
+    'cart-item-inverted': inverted,
+    [className]: className
+  });
   return (
-    <div className="cart-item">
+    <div className={classes}>
       <div className="cart-item-image">
         <Link to={`/product/${id}`} onClick={hideCart}>
           <figure style={{ backgroundImage: `url(${image})` }}></figure>

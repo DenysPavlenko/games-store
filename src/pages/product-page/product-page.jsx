@@ -1,6 +1,7 @@
 import React from 'react';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 // Redux
 import { fetchGameDetails } from 'redux/game/game.actions';
 import { addItemToCart } from 'redux/cart/cart.actions';
@@ -65,12 +66,11 @@ class ProductPage extends React.Component {
   }
 
   render() {
-    const { game: { error, loading, data }, addItemToCart } = this.props;
+    const { game: { error, loading, data }, addItemToCart, history } = this.props;
     const { reviews, socials, inCart } = this.state;
 
     if (error) return (<div className="product"><ErrorIndicator /></div>)
     if (loading) return (<ProductPagePlaceholder />)
-
     const { id, image, previews, name, price, description, developers, publishers, platforms, genres, released, rating, ratings } = data;
 
     return (
@@ -81,7 +81,7 @@ class ProductPage extends React.Component {
 
           <ProductHeader className="product-header" previews={previews} />
 
-          <BuyProduct inCart={inCart} price={price} name={name} className="product-buy" onCartClick={() => addItemToCart({ id, image, name, price })} />
+          <BuyProduct inCart={inCart} price={price} name={name} className="product-buy" onCartClick={() => addItemToCart({ id, image, name, price })} onButtonClick={() => { history.push('/checkout'); addItemToCart({ id, image, name, price }); }} />
 
           <div className="product-description">
             <div className="product-description-title">
@@ -157,4 +157,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductPage);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProductPage));

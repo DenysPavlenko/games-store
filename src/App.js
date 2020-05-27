@@ -5,6 +5,7 @@ import HomePage from 'pages/home-page/home-page'
 import CategoriesPage from 'pages/categories-page/categories-page'
 import CategoryPage from 'pages/category-page/category-page';
 import ProductPage from 'pages/product-page/product-page';
+import CheckoutPage from 'pages/checkout-page/checkout-page';
 // Components
 import ScrollToTop from "components/scroll-to-top/scroll-to-top.component";
 import Navigation from "components/navigation/navigation.component";
@@ -27,6 +28,7 @@ const App = () => {
             <Route path="/categories/:categoriesRout" exact component={CategoriesPage} />
             <Route path="/categories/:categoriesRout/:categoryRout" exact component={CategoryPage} />
             <Route path="/product/:gameId" exact component={ProductPage} />
+            <Route path="/checkout" exact component={CheckoutPage} />
 
             <Redirect to="/" />
           </Switch>

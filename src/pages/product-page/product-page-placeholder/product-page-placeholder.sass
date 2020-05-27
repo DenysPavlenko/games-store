@@ -32,9 +32,10 @@
       background-color: lighten($primary-color, 3%)
   &-description
     +row()
+    display: flex
     margin-bottom: 80px
     &-title
-      +col(3)
+      +col-mx(3)
       span
         background-color: $primary-color
         height: 20px
@@ -42,5 +43,5 @@
         display: block
     &-content
       background-color: $primary-color
-      +col(9)
+      +col-mx(9)
       height: 360px

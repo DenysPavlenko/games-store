@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 // Redux
@@ -35,7 +36,7 @@ const CartEmpty = () => (
   </div>
 )
 
-const CartContent = ({ cartItems, hideCart, addItemToCart, removeItemFromCart, clearItemFromCart, totalCount }) => {
+const CartContent = ({ cartItems, hideCart, addItemToCart, removeItemFromCart, clearItemFromCart, totalCount, history }) => {
   return (
     <>
       <Typography component="span" variant="h1" className="cart-heading text-dark">Your Cart</Typography>
@@ -51,7 +52,10 @@ const CartContent = ({ cartItems, hideCart, addItemToCart, removeItemFromCart, c
             <Typography component="span" variant="h2" className="text-dark mb-0">Total:</Typography>
             <Typography component="span" variant="h2" className="text-dark mb-0">${totalCount}</Typography>
           </div>
-          <Button btnLarge>Go to checkout</Button>
+          <Button btnLarge onClick={() => {
+            hideCart();
+            history.push('/checkout')
+          }}>Go to checkout</Button>
         </div>
       </div>
     </>
@@ -72,4 +76,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Cart));
