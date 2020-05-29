@@ -32,12 +32,18 @@ class Modal extends React.Component {
     }
   }
 
+  handleClose = (e) => {
+    const { closeModal } = this.props;
+    if(e.target.classList.contains('modal-wrapper')){
+      closeModal();
+    }
+  }
+
 
   render() {
     const { hidden, closeModal, children } = this.props;
     return (
-      <div className={`modal ${hidden ? 'modal-hidden' : ''}`}>
-        <div onClick={closeModal} className="modal-overlay"></div>
+      <div className={`modal ${hidden ? 'modal-hidden' : ''}`} onClick={this.handleClose}>
         <div className="modal-container">
           <div className="modal-wrapper">
             <div className="modal-block">
