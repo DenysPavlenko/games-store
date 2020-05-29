@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import { BrowserRouter as Router } from 'react-router-dom';
 // Store
 import { store, persistor } from './redux/store';
 // App
@@ -14,7 +15,9 @@ import './index.sass';
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate persistor={persistor}>
-      <App />
+      <Router >
+        <App />
+      </Router>
     </PersistGate>
   </Provider>
   , document.getElementById('root'));

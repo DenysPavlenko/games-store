@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 // Pages
 import HomePage from 'pages/home-page/home-page'
 import CategoriesPage from 'pages/categories-page/categories-page'
@@ -14,30 +14,27 @@ import Cart from "components/cart/cart.component";
 import './app.sass'
 
 
-const App = () => {
+const App = ({ location }) => {
   return (
     <div className="app">
-      <Router>
-        <Navigation />
-        <Cart />
+      <Navigation />
+      <Cart />
 
-        <ScrollToTop>
-          <Switch>
+      <ScrollToTop>
+        <Switch>
+          <Route path="/" exact component={HomePage} />
+          <Route path="/categories/:categoriesRout" exact component={CategoriesPage} />
+          <Route path="/categories/:categoriesRout/:categoryRout" exact component={CategoryPage} />
+          <Route path="/product/:gameId" exact component={ProductPage} />
+          <Route path="/checkout" exact component={CheckoutPage} />
+          <Redirect to="/" />
+        </Switch>
+      </ScrollToTop>
 
-            <Route path="/" exact component={HomePage} />
-            <Route path="/categories/:categoriesRout" exact component={CategoriesPage} />
-            <Route path="/categories/:categoriesRout/:categoryRout" exact component={CategoryPage} />
-            <Route path="/product/:gameId" exact component={ProductPage} />
-            <Route path="/checkout" exact component={CheckoutPage} />
+      {location.pathname !== '/checkout' && <Footer />}
 
-            <Redirect to="/" />
-          </Switch>
-        </ScrollToTop>
-
-        <Footer />
-      </Router>
     </div>
   );
 }
 
-export default App;
+export default withRouter(App);
