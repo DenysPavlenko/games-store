@@ -32,6 +32,7 @@ class Modal extends React.Component {
     }
   }
 
+
   render() {
     const { hidden, closeModal, children } = this.props;
     return (
@@ -39,8 +40,10 @@ class Modal extends React.Component {
         <div onClick={closeModal} className="modal-overlay"></div>
         <div className="modal-container">
           <div className="modal-wrapper">
-            <div onClick={closeModal} className="modal-close"><CloseIcon /></div>
-            {children}
+            <div className="modal-block">
+              <div onClick={closeModal} className="modal-close"><CloseIcon /></div>
+              {children}
+            </div>
           </div>
         </div>
       </div >
