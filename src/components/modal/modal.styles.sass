@@ -1,4 +1,5 @@
 @import ~styles/variables
+@import ~styles/utils/mixins
 @import ~styles/utils/grid
 
 .modal
@@ -26,7 +27,7 @@
     height: 100%
     left: 0
     top: 0
-    box-sizing: border-box
+    padding: 0 15px
     &:before
       content: ''
       display: inline-block
@@ -58,3 +59,9 @@
       display: block
       fill: $muted-color-alt
       transition: 0.2s
+
+
++media($breakpoint-xs)
+  .modal
+    &-block
+      padding: 30px 15px 80px
