@@ -2,6 +2,7 @@ import React from 'react';
 // Components
 import Typography from 'components/typography/typography.component'
 import Button from 'components/button/button.component'
+import StripePayment from 'components/stripe-payment/stripe-payment.component'
 // Styles
 import './checkout-table.styles.sass';
 
@@ -33,8 +34,10 @@ class CheckoutTable extends React.Component {
 
         <Typography component="p" className="checkout-table-policy text-light"></Typography>
 
-        <Button isDisabled={!checked} disabled={!checked}>Place order</Button>
-      </div>
+        <StripePayment price={total}>
+          <Button isDisabled={!checked} disabled={!checked}>Place order</Button>
+        </StripePayment>
+      </div >
     );
   }
 };

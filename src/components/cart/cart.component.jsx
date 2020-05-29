@@ -10,17 +10,16 @@ import Modal from 'components/modal/modal.component';
 import Typography from 'components/typography/typography.component';
 import Button from 'components/button/button.component';
 import CartItem from 'components/cart-item/cart-item.component';
+import CartEmpty from 'components/cart-empty/cart-empty.component';
 // Styles
 import './cart.styles.sass'
-// Assets
-import { ReactComponent as CartIcon } from 'assets/images/icons/cart.svg';
 
 const Cart = ({ cartHidden, cartItems, hideCart, ...otherProps }) => {
   return (
     <Modal closeModal={hideCart} hidden={cartHidden}>
       <div className="cart">
         {cartItems.length === 0 ?
-          <CartEmpty />
+          <CartEmpty centered/>
           :
           <CartContent cartItems={cartItems} hideCart={hideCart} {...otherProps} />
         }
@@ -28,13 +27,6 @@ const Cart = ({ cartHidden, cartItems, hideCart, ...otherProps }) => {
     </Modal>
   );
 };
-
-const CartEmpty = () => (
-  <div className="cart-empty">
-    <CartIcon />
-    <Typography component="span" variant="h2" className="text-dark mb-0">Your Cart is empty</Typography>
-  </div>
-)
 
 const CartContent = ({ cartItems, hideCart, addItemToCart, removeItemFromCart, clearItemFromCart, totalCount, history }) => {
   return (

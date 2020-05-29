@@ -8,6 +8,7 @@ import { selectCartItems, selectCartHidden, selectCartTotalCount } from 'redux/c
 import Container from 'components/container/container.component'
 import CartItem from 'components/cart-item/cart-item.component'
 import CheckoutTable from 'components/checkout-table/checkout-table.component'
+import CartEmpty from 'components/cart-empty/cart-empty.component';
 // Styles
 import './checkout-page.sass';
 
@@ -19,7 +20,7 @@ const CheckoutPage = ({ ...props }) => {
         {cartItems.length > 0 ?
           <CheckoutContent {...props} />
           :
-          <CheckoutEmpty />
+          <CartEmpty inverted/>
         }
       </Container>
     </div>
@@ -39,11 +40,7 @@ const CheckoutContent = ({ cartItems, hideCart, removeItemFromCart, addItemToCar
   </div>
 )
 
-const CheckoutEmpty = () => (
-  <div className="checkout-page-emty">
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio, nulla ex. Distinctio omnis cupiditate, tempore ipsum rem laudantium possimus a corporis excepturi molestiae expedita assumenda voluptatibus, libero, repellendus vitae commodi!
-  </div>
-)
+
 
 const mapStateToProps = createStructuredSelector({
   cartHidden: selectCartHidden,
