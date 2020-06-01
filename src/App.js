@@ -1,5 +1,9 @@
 import React from 'react';
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
+import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux';
+// Redux
+import { selectCartItems } from 'redux/cart/cart.selectors';
 // Pages
 import HomePage from 'pages/home-page/home-page'
 import CategoriesPage from 'pages/categories-page/categories-page'
@@ -13,8 +17,7 @@ import Footer from "components/footer/footer.component";
 import Cart from "components/cart/cart.component";
 import './app.sass'
 
-
-const App = ({ location }) => {
+const App = ({ location, cartItems }) => {
   return (
     <div className="app">
       <Navigation />
@@ -26,7 +29,7 @@ const App = ({ location }) => {
           <Route path="/categories/:categoriesRout" exact component={CategoriesPage} />
           <Route path="/categories/:categoriesRout/:categoryRout" exact component={CategoryPage} />
           <Route path="/product/:gameId" exact component={ProductPage} />
-          <Route path="/checkout" exact component={CheckoutPage} />
+          {cartItems.length > 0 && < Route path="/checkout" exact component={CheckoutPage} />}
           <Redirect to="/" />
         </Switch>
       </ScrollToTop>
@@ -37,4 +40,8 @@ const App = ({ location }) => {
   );
 }
 
-export default withRouter(App);
+const mapStateToProps = createStructuredSelector({
+  cartItems: selectCartItems
+});
+
+export default withRouter(connect(mapStateToProps)(App));

@@ -1,21 +1,14 @@
 @import '~styles/variables'
 
-
-.lds-dual-ring
-  display: inline-block
-  width: 45px
-  height: 45px
-.lds-dual-ring:after
-  content: " "
-  display: block
-  width: 40px
-  height: 40px
+.spinner
+  border: 3px solid $muted-color
   border-radius: 50%
-  border: 2px solid $accent-color
-  border-color: $accent-color transparent $accent-color transparent
-  animation: lds-dual-ring 1.2s linear infinite
+  border-top: 3px solid darken($muted-color, 30%)
+  width: 20px
+  height: 20px
+  animation: spin 1.5s linear infinite
 
-@keyframes lds-dual-ring
+@keyframes spin
   0%
     transform: rotate(0deg)
   100%

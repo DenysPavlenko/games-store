@@ -150,11 +150,10 @@ const mapStateToProps = createStructuredSelector({
   game: gameSelectorsData,
   cartItems: selectCartItems
 });
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchGameDetails: (gameId) => dispatch(fetchGameDetails(gameId)),
-    addItemToCart: (item) => dispatch(addItemToCart(item))
-  }
-}
+
+const mapDispatchToProps = dispatch => ({
+  fetchGameDetails: (gameId) => dispatch(fetchGameDetails(gameId)),
+  addItemToCart: (item) => dispatch(addItemToCart(item))
+});
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProductPage));

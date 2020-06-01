@@ -7,10 +7,9 @@ import Typography from 'components/typography/typography.component';
 // Assets
 import { ReactComponent as CartIcon } from 'assets/images/icons/cart.svg';
 
-const CartEmpty = ({ className, centered, inverted }) => {
+const CartEmpty = ({ className, inverted }) => {
   const classes = classNames({
     'cart-empty': true,
-    'cart-empty-centered': centered,
     'cart-empty-inverted': inverted,
     [className]: className,
   })

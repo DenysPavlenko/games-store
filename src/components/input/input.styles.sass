@@ -1,0 +1,16 @@
+@import '~styles/variables'
+
+input.input
+  width: 100%
+  background-color: transparent
+  border: 1px solid $input-border
+  color: $text-light
+  padding: 6px 15px
+  font-size: 1rem
+  line-height: 1rem
+  &::placeholder
+    color: $input-placeholder
+  &[type="checkbox"]
+    width: auto
+  &-invalid
+    border: 1px solid $danger-color

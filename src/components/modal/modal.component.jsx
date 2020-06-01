@@ -39,7 +39,6 @@ class Modal extends React.Component {
     }
   }
 
-
   render() {
     const { hidden, closeModal, children } = this.props;
     return (

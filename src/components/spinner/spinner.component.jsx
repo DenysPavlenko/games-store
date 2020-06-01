@@ -1,10 +1,16 @@
 import React from 'react';
+import classNames from 'classnames'
 // Styles
-import './spinner.styles.sass'
+import './spinner.styles.sass';
 
-const Spinner = () => {
+const Spinner = ({ className }) => {
+  const classes = classNames({
+    'spinner': true,
+    [className]: className
+  });
+
   return (
-    <div className="lds-dual-ring"></div>
+    <div className={classes}></div>
   );
 };
 

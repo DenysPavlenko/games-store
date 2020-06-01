@@ -8,6 +8,7 @@ const SocialIcons = ({ socials, className }) => {
     'social-icons': true,
     [className]: className
   });
+
   return (
     <div className={classes}>
       {socials.map(({ link, Icon }, idx) => (

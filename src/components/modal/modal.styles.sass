@@ -32,7 +32,7 @@
     background-color: $light-color
     max-width: 808px
     width: 100%
-    padding: 30px 30px 80px
+    padding: 30px
     margin: 20px auto
     border-radius: 10px
     z-index: 50
@@ -47,9 +47,12 @@
       display: block
       fill: $muted-color-alt
       transition: 0.2s
+    &:hover
+      svg
+       fill: $muted-color
 
 
 +media($breakpoint-xs)
   .modal
     &-block
-      padding: 30px 15px 80px
+      padding: 30px 15px

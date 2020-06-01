@@ -61,11 +61,10 @@ class CategoriesPage extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   data: selectChosenCategoryData
-})
-const mapDispatchToProps = dispatch => {
-  return {
+});
+
+const mapDispatchToProps = dispatch => ({
     fetchCategoriesData: categories => dispatch(fetchCategoriesData(categories)),
-  }
-}
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoriesPage);

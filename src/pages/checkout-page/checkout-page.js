@@ -20,7 +20,7 @@ const CheckoutPage = ({ ...props }) => {
         {cartItems.length > 0 ?
           <CheckoutContent {...props} />
           :
-          <CartEmpty inverted/>
+          <CartEmpty inverted />
         }
       </Container>
     </div>
@@ -41,19 +41,17 @@ const CheckoutContent = ({ cartItems, hideCart, removeItemFromCart, addItemToCar
 )
 
 
-
 const mapStateToProps = createStructuredSelector({
   cartHidden: selectCartHidden,
   cartItems: selectCartItems,
   totalCount: selectCartTotalCount
-})
-const mapDispatchToProps = dispatch => {
-  return {
-    hideCart: () => dispatch(hideCart()),
-    addItemToCart: (cartItem) => dispatch(addItemToCart(cartItem)),
-    removeItemFromCart: (cartItem) => dispatch(removeItemFromCart(cartItem)),
-    clearItemFromCart: (cartItem) => dispatch(clearItemFromCart(cartItem)),
-  }
-}
+});
+
+const mapDispatchToProps = dispatch => ({
+  hideCart: () => dispatch(hideCart()),
+  addItemToCart: (cartItem) => dispatch(addItemToCart(cartItem)),
+  removeItemFromCart: (cartItem) => dispatch(removeItemFromCart(cartItem)),
+  clearItemFromCart: (cartItem) => dispatch(clearItemFromCart(cartItem)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckoutPage);

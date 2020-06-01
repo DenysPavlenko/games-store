@@ -62,11 +62,10 @@ const mapStateToProps = createStructuredSelector({
   category: selectCategoryData,
   categoryDetails: selectCategoryDetailsData,
 });
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchCategoryData: (categories, category) => dispatch(fetchCategoryData(categories, category)),
-    fetchCategoryDetailsData: (categoryType, category) => dispatch(fetchCategoryDetailsData(categoryType, category)),
-  }
-}
+
+const mapDispatchToProps = dispatch => ({
+  fetchCategoryData: (categories, category) => dispatch(fetchCategoryData(categories, category)),
+  fetchCategoryDetailsData: (categoryType, category) => dispatch(fetchCategoryDetailsData(categoryType, category)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryPage);

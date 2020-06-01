@@ -80,10 +80,9 @@ class GamesPreview extends React.Component {
 const mapStateToProps = createStructuredSelector({
   games: gamesSelectorsData
 });
-const mapDispatchToProps = (dispatch) => {
-  return {
+
+const mapDispatchToProps = (dispatch) => ({
     fetchGamesData: () => dispatch(fetchGamesData()),
-  }
-}
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(GamesPreview);

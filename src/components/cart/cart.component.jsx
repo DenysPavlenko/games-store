@@ -58,14 +58,12 @@ const mapStateToProps = createStructuredSelector({
   cartHidden: selectCartHidden,
   cartItems: selectCartItems,
   totalCount: selectCartTotalCount
-})
-const mapDispatchToProps = dispatch => {
-  return {
+});
+const mapDispatchToProps = dispatch => ({
     hideCart: () => dispatch(hideCart()),
     addItemToCart: (cartItem) => dispatch(addItemToCart(cartItem)),
     removeItemFromCart: (cartItem) => dispatch(removeItemFromCart(cartItem)),
     clearItemFromCart: (cartItem) => dispatch(clearItemFromCart(cartItem)),
-  }
-}
+});
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Cart));

@@ -2,7 +2,9 @@
 @import "~styles/utils/mixins"
 
 .button
-  display: inline-block
+  display: inline-flex
+  align-items: center
+  justify-content: center
   padding: 14px 40px 13px
   font-size: 1rem
   line-height: 1
@@ -58,3 +60,14 @@
     opacity: 0.5
     &:hover
       background-color: $button-bg
+
+  &-loading
+    cursor: auto
+    opacity: 0.5
+    &:hover
+      background-color: $button-bg
+
+  &-spinner
+    position: relative
+    top: -1px
+    margin-left: 15px
