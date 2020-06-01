@@ -10,6 +10,8 @@ import { selectCartItems } from 'redux/cart/cart.selectors';
 import CheckoutForm from 'components/checkout-form/checkout-form.component';
 import Modal from 'components/modal/modal.component';
 import Typography from 'components/typography/typography.component';
+// Styles
+import './stripe-payment.styles.sass';
 
 const stripePromise = loadStripe("pk_test_hISzKXXyR5riFGZeaXvHWeQU00QUWFivUZ");
 
@@ -18,7 +20,7 @@ class StripePayment extends React.Component {
     showModal: false
   }
   isSuccess = () => {
-    this.setState({ showModal: true })
+    this.setState({ showModal: true });
   }
 
   closeModal = () => {
@@ -31,8 +33,11 @@ class StripePayment extends React.Component {
     return (
       <Elements stripe={stripePromise} >
         <CheckoutForm isSuccess={this.isSuccess} />
-        <Modal className="stripe-modal" hidden={!this.state.showModal} closeModal={this.closeModal}>
-          <Typography component="h3" variant="h2" className="text-dark text-center mb-0">Thank you – your order is confirmed</Typography>
+        <Modal hidden={!this.state.showModal} closeModal={this.closeModal}>
+          <div className="stripe-payment-modal-wrap">
+            <Typography component="h3" variant="h2" className="text-dark text-center">Thank you for your order!</Typography>
+            <Typography component="h6" className="text-dark text-center mb-0">We will send you a nitification within 5 days when it ships. <br />If you have any questions feel free to contact us</Typography>
+          </div>
         </Modal>
       </Elements>
     );

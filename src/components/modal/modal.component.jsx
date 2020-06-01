@@ -17,6 +17,9 @@ class Modal extends React.Component {
       this.toggleScroll(hidden);
     }
   }
+  componentWillUnmount() {
+    this.toggleScroll(true);
+  }
 
   toggleScroll = (hidden) => {
     const html = document.querySelector('html');
@@ -34,7 +37,7 @@ class Modal extends React.Component {
 
   handleClose = (e) => {
     const { closeModal } = this.props;
-    if(e.target.classList.contains('modal-wrapper')){
+    if (e.target.classList.contains('modal-wrapper')) {
       closeModal();
     }
   }

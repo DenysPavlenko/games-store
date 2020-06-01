@@ -23,9 +23,14 @@ const Button = ({ children, href, btnBordered, btnLarge, btnArrow, btnBorderedLg
 
   return (
     <Tag href={href} className={classes} {...otherProps} disabled={!href && isDisabled}>
-      {children}
-      {btnArrow ? <Arrow className="button-arrow-icon" /> : null}
-      {isLoading && <Spinner className="button-spinner" />}
+      {isLoading &&
+        <>
+          <Spinner className="button-spinner" />
+          <span>Please wait...</span>
+        </>
+      }
+      {!isLoading && children}
+      {!isLoading && btnArrow ? <Arrow className="button-arrow-icon" /> : null}
     </Tag>
   );
 };
