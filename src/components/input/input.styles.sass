@@ -18,8 +18,20 @@ input.input
     color: $text-dark
     &::placeholder
       color: $text-dark
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+      border: 1px solid $primary-color !important
+      -webkit-text-fill-color: $text-dark !important
+      -webkit-box-shadow: 0 0 0px 1000px $light-color inset !important
 
   &-invalid
     border: 1px solid $danger-color
 
-
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+    background-color: transparent
+    border: 1px solid $input-border
+    -webkit-text-fill-color: $text-light
+    -webkit-box-shadow: 0 0 0px 1000px $primary-color inset

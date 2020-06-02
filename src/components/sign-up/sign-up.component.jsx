@@ -75,7 +75,7 @@ class SignUp extends Component {
           <Typography component="h2" className="text-dark">I don't have an account</Typography>
           <Typography component="span" variant="p" className="text-dark mb-0">Sign up with your email and password</Typography>
         </div>
-        <form className="sign-up-form" onSubmit={this.handleSubmit}>
+        <form className="sign-up-form" onSubmit={this.handleSubmit} novalidate>
           <div className="sign-up-inputs">
             <Input isDark type="text" name="name" value={name} onChange={this.handleInput} invalid={nameInvalid} className="sign-up-input" placeholder="Your name" />
             <Input isDark type="email" name="email" value={email} onChange={this.handleInput} invalid={emailInvalid} className="sign-up-input" placeholder="Your email" />

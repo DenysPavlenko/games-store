@@ -70,7 +70,7 @@ class SignIn extends Component {
           <Typography component="h2" className="text-dark">I already have an account</Typography>
           <Typography component="span" variant="p" className="text-dark mb-0">Sign in with your email and password</Typography>
         </div>
-        <form className="sign-in-form" onSubmit={this.handleSubmit}>
+        <form className="sign-in-form" onSubmit={this.handleSubmit} novalidate>
           <div className="sign-in-inputs">
             <Input isDark type="email" name="email" value={email} onChange={this.handleInput} invalid={emailInvalid} className="sign-in-input" placeholder="Your email" />
             <Input isDark type="password" name="password" value={password} onChange={this.handleInput} invalid={passwordInvalid} className="sign-in-input" placeholder="Your password" />

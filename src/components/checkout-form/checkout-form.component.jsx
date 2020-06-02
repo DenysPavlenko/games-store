@@ -103,7 +103,7 @@ class CheckoutForm extends React.Component {
     };
 
     return (
-      <form className="checkout-form" onSubmit={this.handleSubmit}>
+      <form className="checkout-form" onSubmit={this.handleSubmit} novalidate>
         <Input type="text" name="name" value={name} onChange={this.handleInput} invalid={nameInvalid} className="checkout-form-input" placeholder="Name" />
         <Input type="email" name="email" value={email} onChange={this.handleInput} invalid={emailInvalid} className="checkout-form-input" placeholder="Email" />
         <Input type="text" name="address" value={address} onChange={this.handleInput} invalid={addressInvalid} className="checkout-form-input" placeholder="Address" />
