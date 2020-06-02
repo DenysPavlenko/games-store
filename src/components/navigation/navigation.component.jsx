@@ -7,6 +7,7 @@ import Button from 'components/button/button.component';
 import CartIcon from 'components/cart-icon/cart-icon.component';
 import Modal from 'components/modal/modal.component';
 import SignIn from 'components/sign-in/sign-in.component';
+import SignUp from 'components/sign-up/sign-up.component';
 import Typography from 'components/typography/typography.component';
 // Styles
 import "./navigation.styles.sass";
@@ -27,7 +28,14 @@ class Navigation extends React.Component {
   }
 
   toggleModal = () => {
-    this.setState(({ showModal }) => ({ showModal: !showModal }))
+    this.setState(({ showModal }) => ({
+      showModal: !showModal,
+      register: false
+    }))
+  }
+
+  switchForm = () => {
+    this.setState(({ register }) => ({ register: !register }))
   }
 
   componentDidUpdate(prevProps) {
@@ -40,7 +48,7 @@ class Navigation extends React.Component {
 
   render() {
     const { currentUser } = this.props;
-    const { showModal } = this.state;
+    const { showModal, register } = this.state;
     return (
       <div className="navigation">
         <div className="navigation-menu">
@@ -63,10 +71,22 @@ class Navigation extends React.Component {
             <Button className="navigation-button" onClick={this.toggleModal}>Sign In</Button>
           }
         </div>
-        <Modal hidden={!showModal} closeModal={() => this.setState({ showModal: false })}>
+        <Modal hidden={!showModal} closeModal={() => this.setState({ showModal: false })} small>
           <div className="navigation-modal-wrap">
-            <SignIn />
-            <Typography component="p" className="text-dark navigation-modal-switch" onClick={() => this.setState({ register: true })}>Or Register</Typography>
+            {!register ?
+              <SignIn />
+              :
+              <SignUp />
+            }
+            <div className="navigation-modal-switch">
+              <Typography component="span" variant="p" className="text-accent navigation-modal-switch-title mb-0" onClick={this.switchForm}>
+                {!register ?
+                  'Create a new account'
+                  :
+                  'Use an existing account'
+                }
+              </Typography>
+            </div>
           </div>
         </Modal>
       </div>

@@ -19,6 +19,10 @@
     pointer-events: none
     opacity: 0
     visibility: hidden
+  &.modal-small
+    .modal-block
+      max-width: 440px
+
   &-container
     position: absolute
     width: 100%
@@ -56,7 +60,6 @@
     &:hover
       svg
        fill: $muted-color
-
 
 +media($breakpoint-xs)
   .modal

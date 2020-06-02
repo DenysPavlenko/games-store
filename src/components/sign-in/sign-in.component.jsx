@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import validateInput from 'helpers/validate-input';
 // Firebase
-import { signInWithGoogle } from 'firebase/firebase.utils';
+import { auth, signInWithGoogle } from 'firebase/firebase.utils';
 // Components
 import Input from 'components/input/input.component';
 import Typography from 'components/typography/typography.component';
@@ -9,13 +9,19 @@ import Button from 'components/button/button.component';
 // Styles
 import './sign-in.styles.sass';
 
+const initialState = {
+  email: '',
+  password: '',
+  emailInvalid: false,
+  passwordInvalid: false,
+  formErrors: false,
+  isLoading: false,
+  authError: false
+}
+
 class SignIn extends Component {
   state = {
-    name: '',
-    email: '',
-    nameInvalid: false,
-    emailInvalid: false,
-    formErrors: false
+    ...initialState
   }
 
   handleInput = event => {
@@ -24,24 +30,40 @@ class SignIn extends Component {
     this.setState({
       [name]: value,
       [`${name}Invalid`]: formErrors && !validateInput(type, value),
-    })
+    });
   }
 
-  handleSubmit = event => {
+  handleSubmit = async event => {
     event.preventDefault();
-    const { name, email } = this.state;
+    const { email, password } = this.state;
     const validatedInputs = {
-      nameInvalid: !validateInput('text', name),
       emailInvalid: !validateInput('email', email),
-      formErrors: !validateInput('text', name) || !validateInput('email', email)
+      passwordInvalid: !validateInput('password', password),
+      formErrors: !validateInput('password', password) || !validateInput('email', email)
     }
     this.setState({
       ...validatedInputs
     });
+
+    if (validatedInputs.formErrors) { return; }
+    this.setState({ isLoading: true });
+
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      this.setState({
+        ...initialState
+      });
+    }
+    catch (error) {
+      this.setState({
+        authError: error.message,
+        isLoading: false
+      });
+    }
   };
 
   render() {
-    const { name, email, nameInvalid, emailInvalid } = this.state;
+    const { email, password, emailInvalid, passwordInvalid, isLoading, authError } = this.state;
     return (
       <div className="sign-in">
         <div className="sign-in-description">
@@ -50,12 +72,15 @@ class SignIn extends Component {
         </div>
         <form className="sign-in-form" onSubmit={this.handleSubmit}>
           <div className="sign-in-inputs">
-            <Input isDark type="text" name="name" value={name} onChange={this.handleInput} invalid={nameInvalid} className="sign-in-input" placeholder="Your name" />
             <Input isDark type="email" name="email" value={email} onChange={this.handleInput} invalid={emailInvalid} className="sign-in-input" placeholder="Your email" />
+            <Input isDark type="password" name="password" value={password} onChange={this.handleInput} invalid={passwordInvalid} className="sign-in-input" placeholder="Your password" />
           </div>
+          {authError &&
+            <Typography component="p" className="text-danger">{authError}</Typography>
+          }
           <div className="sign-in-buttons">
-            <Button type="submit" className="sign-in-button">Sign in</Button>
-            <Button type="button" className="sign-in-button" onClick={signInWithGoogle} isGoogleSignIn>Sign in with google</Button>
+            <Button type="submit" className="sign-in-button" isLoading={isLoading}>Sign in</Button>
+            <Button type="button" className="sign-in-button" onClick={signInWithGoogle} isGoogleSignIn>Google sign in</Button>
           </div>
         </form>
       </div>

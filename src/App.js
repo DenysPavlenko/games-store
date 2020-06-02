@@ -3,7 +3,7 @@ import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 // Firebase
-import { auth } from 'firebase/firebase.utils';
+import { auth, createUserProfileDocument } from 'firebase/firebase.utils';
 // Redux
 import { selectCartItems } from 'redux/cart/cart.selectors';
 // Pages
@@ -12,7 +12,6 @@ import CategoriesPage from 'pages/categories-page/categories-page'
 import CategoryPage from 'pages/category-page/category-page';
 import ProductPage from 'pages/product-page/product-page';
 import CheckoutPage from 'pages/checkout-page/checkout-page';
-// import SignFormsPage from 'pages/sign-forms-page/sign-forms-page';
 // Components
 import ScrollToTop from "components/scroll-to-top/scroll-to-top.component";
 import Navigation from "components/navigation/navigation.component";
@@ -28,9 +27,20 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      // console.log('user:', user);
-      this.setState({ currentUser: user });
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+        userRef.onSnapshot(snapShot => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          });
+        });
+      } else {
+        this.setState({ currentUser: userAuth });
+      }
     });
   }
 
@@ -49,7 +59,6 @@ class App extends React.Component {
         <ScrollToTop>
           <Switch>
             <Route path="/" exact component={HomePage} />
-            {/* <Route path="/signin" exact component={SignFormsPage} /> */}
             <Route path="/categories/:categoriesRout" exact component={CategoriesPage} />
             <Route path="/categories/:categoriesRout/:categoryRout" exact component={CategoryPage} />
             <Route path="/product/:gameId" exact component={ProductPage} />

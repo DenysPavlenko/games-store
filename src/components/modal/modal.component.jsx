@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 // Styles
 import './modal.styles.sass'
 // Assets
@@ -43,9 +44,15 @@ class Modal extends React.Component {
   }
 
   render() {
-    const { hidden, closeModal, children } = this.props;
+    const { hidden, closeModal, children, small, className } = this.props;
+    const classes = classNames({
+      'modal': true,
+      'modal-hidden': hidden,
+      'modal-small': small,
+      [className]: className
+    })
     return (
-      <div className={`modal ${hidden ? 'modal-hidden' : ''}`} onClick={this.handleClose}>
+      <div className={classes} onClick={this.handleClose}>
         <div className="modal-container">
           <div className="modal-wrapper">
             <div className="modal-block">
@@ -54,7 +61,7 @@ class Modal extends React.Component {
             </div>
           </div>
         </div>
-      </div >
+      </div>
     );
   }
 }
