@@ -18,10 +18,10 @@ class Modal extends React.Component {
     }
   }
   componentWillUnmount() {
-    this.toggleScroll(true);
+    this.toggleScroll();
   }
 
-  toggleScroll = (hidden) => {
+  toggleScroll = (hidden = true) => {
     const html = document.querySelector('html');
     const documentWidth = document.documentElement.clientWidth;
     const windowWidth = window.innerWidth;

@@ -10,9 +10,15 @@
   height: 100%
   z-index: 1000
   user-select: none
-  overflow: hidden scroll
+  overflow: hidden auto
+  pointer-events: all
+  opacity: 1
+  visibility: visible
+  transition: 0.2s
   &.modal-hidden
-    display: none
+    pointer-events: none
+    opacity: 0
+    visibility: hidden
   &-container
     position: absolute
     width: 100%
