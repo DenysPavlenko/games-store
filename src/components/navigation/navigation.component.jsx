@@ -1,8 +1,13 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+// Firebase
+import { auth } from 'firebase/firebase.utils';
 // Components
 import Button from 'components/button/button.component';
 import CartIcon from 'components/cart-icon/cart-icon.component';
+import Modal from 'components/modal/modal.component';
+import SignIn from 'components/sign-in/sign-in.component';
+import Typography from 'components/typography/typography.component';
 // Styles
 import "./navigation.styles.sass";
 // Assets
@@ -15,27 +20,58 @@ const nav = [
   { name: 'Platforms', rootName: '/categories/platforms' },
 ]
 
-const Navigation = () => {
-  return (
-    <div className="navigation">
-      <div className="navigation-menu">
-        <Link to="/">
-          <Logo className="navigation-logo" />
-        </Link>
-        <ul className="navigation-list">
-          {nav.map(({ name, rootName }, idx) => (
-            <li key={idx} className="navigation-list-item">
-              <NavLink to={rootName} exact={rootName === '/' && true} className="navigation-list-link">{name}</NavLink>
-            </li>
-          ))}
-        </ul>
+class Navigation extends React.Component {
+  state = {
+    showModal: false,
+    register: false,
+  }
+
+  toggleModal = () => {
+    this.setState(({ showModal }) => ({ showModal: !showModal }))
+  }
+
+  componentDidUpdate(prevProps) {
+    const { currentUser } = this.props;
+    const { showModal } = this.state;
+    if (prevProps.currentUser !== currentUser && showModal) {
+      this.toggleModal();
+    }
+  }
+
+  render() {
+    const { currentUser } = this.props;
+    const { showModal } = this.state;
+    return (
+      <div className="navigation">
+        <div className="navigation-menu">
+          <Link to="/">
+            <Logo className="navigation-logo" />
+          </Link>
+          <ul className="navigation-list">
+            {nav.map(({ name, rootName }, idx) => (
+              <li key={idx} className="navigation-list-item">
+                <NavLink to={rootName} exact={rootName === '/' && true} className="navigation-list-link">{name}</NavLink>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="navigation-user">
+          <CartIcon />
+          {currentUser ?
+            <Button className="navigation-button" onClick={() => auth.signOut()}>Sign Out</Button>
+            :
+            <Button className="navigation-button" onClick={this.toggleModal}>Sign In</Button>
+          }
+        </div>
+        <Modal hidden={!showModal} closeModal={() => this.setState({ showModal: false })}>
+          <div className="navigation-modal-wrap">
+            <SignIn />
+            <Typography component="p" className="text-dark navigation-modal-switch" onClick={() => this.setState({ register: true })}>Or Register</Typography>
+          </div>
+        </Modal>
       </div>
-      <div className="navigation-user">
-        <CartIcon />
-        <Button className="navigation-button">Sign In</Button>
-      </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default Navigation;

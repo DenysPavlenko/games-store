@@ -6,8 +6,9 @@ import Spinner from 'components/spinner/spinner.component';
 import './button.styles.sass'
 // Assets
 import { ReactComponent as Arrow } from 'assets/images/icons/arrow.svg';
+import { ReactComponent as GoogleIcon } from 'assets/images/icons/google.svg';
 
-const Button = ({ children, href, btnBordered, btnLarge, btnArrow, btnBorderedLg, isDisabled, className, isLoading, ...otherProps }) => {
+const Button = ({ children, href, btnBordered, btnLarge, btnArrow, btnBorderedLg, isDisabled, className, isLoading, isGoogleSignIn, ...otherProps }) => {
   const classes = classNames({
     'button': true,
     'button-bordered': btnBordered,
@@ -16,6 +17,7 @@ const Button = ({ children, href, btnBordered, btnLarge, btnArrow, btnBorderedLg
     'button-arrow': btnArrow,
     'button-disabled': isDisabled,
     'button-loading': isLoading,
+    'button-google-sign-in': isGoogleSignIn,
     [className]: className
   });
 
@@ -29,8 +31,16 @@ const Button = ({ children, href, btnBordered, btnLarge, btnArrow, btnBorderedLg
           <span>Please wait...</span>
         </>
       }
-      {!isLoading && children}
-      {!isLoading && btnArrow ? <Arrow className="button-arrow-icon" /> : null}
+      {!isLoading && !isGoogleSignIn && children}
+      {!isLoading && !isGoogleSignIn && btnArrow ? <Arrow className="button-arrow-icon" /> : null}
+      {isGoogleSignIn &&
+        <>
+          <div className="button-google-sign-in-icon-wrap">
+            <GoogleIcon className="button-google-sign-in-icon" />
+          </div>
+          <span className="button-google-sign-in-text">{children}</span>
+        </>
+      }
     </Tag>
   );
 };

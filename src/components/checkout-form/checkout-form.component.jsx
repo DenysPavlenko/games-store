@@ -1,6 +1,6 @@
 import React from 'react';
 // Helpers
-import validateInput from './validate-input';
+import validateInput from 'helpers/validate-input';
 // Components
 import { CardElement, ElementsConsumer } from '@stripe/react-stripe-js';
 import Input from 'components/input/input.component';

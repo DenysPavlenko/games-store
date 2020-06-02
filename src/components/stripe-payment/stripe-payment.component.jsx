@@ -30,10 +30,11 @@ class StripePayment extends React.Component {
   }
 
   render() {
+    const {showModal} = this.state;
     return (
       <Elements stripe={stripePromise} >
         <CheckoutForm isSuccess={this.isSuccess} />
-        <Modal hidden={!this.state.showModal} closeModal={this.closeModal}>
+        <Modal hidden={!showModal} closeModal={this.closeModal}>
           <div className="stripe-payment-modal-wrap">
             <Typography component="h3" variant="h2" className="text-dark text-center">Thank you for your order!</Typography>
             <Typography component="h6" className="text-dark text-center mb-0">We will send you a nitification within 5 days when it ships. <br />If you have any questions feel free to contact us</Typography>
