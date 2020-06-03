@@ -1,14 +1,14 @@
 import { createSelector } from 'reselect';
 
-const selectCategories = state => state.categories;
-const selectChosenCategory = (state, { match }) => state.categories[match.params.categoriesRout];
+const categoriesSelector = state => state.categories;
+const chosenCategorySelect = (state, { match }) => state.categories[match.params.categoriesRout];
 
-export const selectCategoriesData = createSelector(
-  [selectCategories],
+export const selectCategories = createSelector(
+  [categoriesSelector],
   categories => categories
 );
 
-export const selectChosenCategoryData = createSelector(
-  [selectChosenCategory],
+export const selectChosenCategory = createSelector(
+  [chosenCategorySelect],
   category => category
 );

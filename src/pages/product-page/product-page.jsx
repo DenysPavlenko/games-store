@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 // Redux
 import { fetchGameDetails } from 'redux/game/game.actions';
 import { addItemToCart } from 'redux/cart/cart.actions';
-import { gameSelectorsData } from 'redux/game/game.selectors';
+import { selectGame } from 'redux/game/game.selectors';
 import { selectCartItems } from 'redux/cart/cart.selectors';
 // Components
 import ProductPagePlaceholder from './product-page-placeholder/product-page-placeholder';
@@ -147,7 +147,7 @@ const ProductTableItem = ({ title, property }) => (
 )
 
 const mapStateToProps = createStructuredSelector({
-  game: gameSelectorsData,
+  game: selectGame,
   cartItems: selectCartItems
 });
 

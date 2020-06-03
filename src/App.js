@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { auth, createUserProfileDocument } from 'firebase/firebase.utils';
 // Redux
 import { selectCartItems } from 'redux/cart/cart.selectors';
+import { setCurrentUser } from 'redux/user/user.actions';
 // Pages
 import HomePage from 'pages/home-page/home-page'
 import CategoriesPage from 'pages/categories-page/categories-page'
@@ -20,26 +21,22 @@ import Cart from "components/cart/cart.component";
 import './app.sass'
 
 class App extends React.Component {
-  state = {
-    currentUser: null
-  }
 
   unsubscribeFromAuth = null;
 
   componentDidMount() {
+    const { setCurrentUser } = this.props;
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
         userRef.onSnapshot(snapShot => {
-          this.setState({
-            currentUser: {
-              id: snapShot.id,
-              ...snapShot.data()
-            }
+          setCurrentUser({
+            id: snapShot.id,
+            ...snapShot.data()
           });
         });
       } else {
-        this.setState({ currentUser: userAuth });
+        setCurrentUser(userAuth);
       }
     });
   }
@@ -50,10 +47,9 @@ class App extends React.Component {
 
   render() {
     const { location, cartItems } = this.props;
-    const { currentUser } = this.state;
     return (
       <div className="app">
-        <Navigation currentUser={currentUser} />
+        <Navigation />
         <Cart />
 
         <ScrollToTop>
@@ -78,4 +74,10 @@ const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems
 });
 
-export default withRouter(connect(mapStateToProps)(App));
+const mapDispatchToProps = dispatch => {
+  return {
+    setCurrentUser: user => dispatch(setCurrentUser(user))
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

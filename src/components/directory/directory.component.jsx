@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 // Redux
 import { fetchCategoriesData } from '../../redux/categories/categories.actions';
-import { selectCategoriesData } from '../../redux/categories/categories.selectors';
+import { selectCategories } from '../../redux/categories/categories.selectors';
 // Components
 import DirectoryCollection from 'components/directory-collection/directory-collection.component';
 import Container from 'components/container/container.component'
@@ -33,7 +33,7 @@ class Directory extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  categories: selectCategoriesData
+  categories: selectCategories
 });
 
 const mapDispatchToProps = dispatch => ({

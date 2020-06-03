@@ -1,5 +1,9 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+// Redux
+import { selectCurrentUser } from 'redux/user/user.selectors';
 // Firebase
 import { auth } from 'firebase/firebase.utils';
 // Components
@@ -94,4 +98,9 @@ class Navigation extends React.Component {
   }
 };
 
-export default Navigation;
+
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser
+});
+
+export default connect(mapStateToProps)(Navigation);
