@@ -3,9 +3,8 @@ import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 // Redux
-import { selectCurrentUser } from 'redux/user/user.selectors';
-// Firebase
-import { auth } from 'firebase/firebase.utils';
+import { selectUser } from 'redux/user/user.selectors';
+import { userSignOut } from 'redux/user/user.actions';
 // Components
 import Button from 'components/button/button.component';
 import CartIcon from 'components/cart-icon/cart-icon.component';
@@ -43,15 +42,15 @@ class Navigation extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { currentUser } = this.props;
+    const { user: { currentUser } } = this.props;
     const { showModal } = this.state;
-    if (prevProps.currentUser !== currentUser && showModal) {
+    if (prevProps.user.currentUser !== currentUser && showModal) {
       this.toggleModal();
     }
   }
 
   render() {
-    const { currentUser } = this.props;
+    const { user: { currentUser }, userSignOut } = this.props;
     const { showModal, register } = this.state;
     return (
       <div className="navigation">
@@ -70,7 +69,7 @@ class Navigation extends React.Component {
         <div className="navigation-user">
           <CartIcon />
           {currentUser ?
-            <Button className="navigation-button" onClick={() => auth.signOut()}>Sign Out</Button>
+            <Button className="navigation-button" onClick={userSignOut}>Sign Out</Button>
             :
             <Button className="navigation-button" onClick={this.toggleModal}>Sign In</Button>
           }
@@ -100,7 +99,11 @@ class Navigation extends React.Component {
 
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser
+  user: selectUser
 });
 
-export default connect(mapStateToProps)(Navigation);
+const mapDispatchToProps = dispatch => ({
+  userSignOut: () => dispatch(userSignOut())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

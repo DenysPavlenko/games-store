@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import validateInput from 'helpers/validate-input';
 // Firebase
-import { auth, createUserProfileDocument } from 'firebase/firebase.utils';
+import { auth, createUserProfileDocument } from 'services/firebase/firebase.utils';
 // Components
 import Input from 'components/input/input.component';
 import Typography from 'components/typography/typography.component';

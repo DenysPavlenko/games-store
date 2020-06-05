@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import validateInput from 'helpers/validate-input';
-// Firebase
-import { auth, signInWithGoogle } from 'firebase/firebase.utils';
+import { connect } from 'react-redux';
+// Redux
+import { signInWithGoogle, signInWithEmail } from 'redux/user/user.actions';
 // Components
 import Input from 'components/input/input.component';
 import Typography from 'components/typography/typography.component';
@@ -35,6 +36,7 @@ class SignIn extends Component {
 
   handleSubmit = async event => {
     event.preventDefault();
+    const { signInWithEmail } = this.props;
     const { email, password } = this.state;
     const validatedInputs = {
       emailInvalid: !validateInput('email', email),
@@ -48,22 +50,12 @@ class SignIn extends Component {
     if (validatedInputs.formErrors) { return; }
     this.setState({ isLoading: true });
 
-    try {
-      await auth.signInWithEmailAndPassword(email, password);
-      this.setState({
-        ...initialState
-      });
-    }
-    catch (error) {
-      this.setState({
-        authError: error.message,
-        isLoading: false
-      });
-    }
+    signInWithEmail(email, password);
   };
 
   render() {
     const { email, password, emailInvalid, passwordInvalid, isLoading, authError } = this.state;
+    const { signInWithGoogle } = this.props;
     return (
       <div className="sign-in">
         <div className="sign-in-description">
@@ -88,4 +80,9 @@ class SignIn extends Component {
   }
 }
 
-export default SignIn;
+const mapDispatchToProps = dispatch => ({
+  signInWithGoogle: () => dispatch(signInWithGoogle()),
+  signInWithEmail: (email, password) => dispatch(signInWithEmail({ email, password })),
+});
+
+export default connect(null, mapDispatchToProps)(SignIn);
