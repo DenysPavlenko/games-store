@@ -17,8 +17,7 @@ const initialState = {
   password: '',
   emailInvalid: false,
   passwordInvalid: false,
-  formErrors: false,
-  authError: false
+  formErrors: false
 }
 
 class SignIn extends Component {
@@ -53,8 +52,8 @@ class SignIn extends Component {
   };
 
   render() {
-    const { email, password, emailInvalid, passwordInvalid, authError } = this.state;
-    const { signInWithGoogle, user: { loading } } = this.props;
+    const { email, password, emailInvalid, passwordInvalid } = this.state;
+    const { signInWithGoogle, user: { loading, error } } = this.props;
     return (
       <div className="sign-in">
         <div className="sign-in-description">
@@ -66,8 +65,8 @@ class SignIn extends Component {
             <Input isDark type="email" name="email" value={email} onChange={this.handleInput} invalid={emailInvalid} className="sign-in-input" placeholder="Your email" />
             <Input isDark type="password" name="password" value={password} onChange={this.handleInput} invalid={passwordInvalid} className="sign-in-input" placeholder="Your password" />
           </div>
-          {authError &&
-            <Typography component="p" className="text-danger">{authError}</Typography>
+          {error &&
+            <Typography component="p" className="text-danger">{error}</Typography>
           }
           <div className="sign-in-buttons">
             <Button type="submit" className="sign-in-button" isLoading={loading}>Sign in</Button>

@@ -45,7 +45,7 @@ export const signInWithEmail = ({ email, password }) => async (dispatch) => {
     });
   }
   catch (error) {
-    dispatch(signInFailure(error));
+    dispatch(signInFailure(error.message));
   }
 }
 

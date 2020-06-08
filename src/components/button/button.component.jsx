@@ -24,7 +24,7 @@ const Button = ({ children, href, btnBordered, btnLarge, btnArrow, btnBorderedLg
   const Tag = href ? 'a' : 'button';
 
   return (
-    <Tag href={href} className={classes} {...otherProps} disabled={!href && isDisabled}>
+    <Tag href={href} className={classes} {...otherProps} disabled={!href && (isDisabled || isLoading)}>
       {isLoading &&
         <>
           <Spinner className="button-spinner" />

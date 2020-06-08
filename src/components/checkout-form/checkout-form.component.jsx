@@ -1,6 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 // Helpers
 import validateInput from 'helpers/validate-input';
+// Redux
+import { selectUser } from 'redux/user/user.selectors';
 // Components
 import { CardElement, ElementsConsumer } from '@stripe/react-stripe-js';
 import Input from 'components/input/input.component';
@@ -25,6 +29,30 @@ const initialState = {
 class CheckoutForm extends React.Component {
   state = {
     ...initialState,
+  }
+  componentDidMount() {
+    const { user: { currentUser } } = this.props;
+    if (currentUser) {
+      this.setState({
+        name: currentUser.displayName,
+        email: currentUser.email
+      });
+    }
+  }
+  componentDidUpdate(prevProps) {
+    const { user: { currentUser } } = this.props;
+    if (prevProps.user.currentUser !== currentUser && currentUser) {
+      this.setState({
+        name: currentUser.displayName,
+        email: currentUser.email
+      });
+    }
+    else if (prevProps.user.currentUser !== currentUser && !currentUser) {
+      this.setState({
+        name: '',
+        email: ''
+      });
+    }
   }
 
   handleSubmit = async event => {
@@ -124,10 +152,14 @@ class CheckoutForm extends React.Component {
   }
 }
 
-export default (props) => (
+const mapStateToProps = createStructuredSelector({
+  user: selectUser
+});
+
+export default connect(mapStateToProps)((props) => (
   <ElementsConsumer>
     {({ elements, stripe }) => (
       <CheckoutForm {...props} elements={elements} stripe={stripe} />
     )}
   </ElementsConsumer>
-);
+));
