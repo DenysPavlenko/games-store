@@ -2,6 +2,7 @@ import UserActionTypes from './user.types';
 // Firebase
 import { auth, googleProvider, createUserProfileDocument, getCurrentUser } from 'services/firebase/firebase.utils';
 
+// Sign In
 export const signInStart = () => ({
   type: UserActionTypes.SIGN_IN_START
 });
@@ -27,7 +28,7 @@ export const signInWithGoogle = () => async (dispatch) => {
     });
   }
   catch (error) {
-    dispatch(signInFailure(error));
+    dispatch(signInFailure(error.message));
   }
 }
 
@@ -48,6 +49,7 @@ export const signInWithEmail = ({ email, password }) => async (dispatch) => {
   }
 }
 
+// Check user session
 export const checkUserSession = () => async (dispatch) => {
   try {
     const userAuth = await getCurrentUser();
@@ -60,11 +62,42 @@ export const checkUserSession = () => async (dispatch) => {
       }));
     });
   } catch (error) {
-    dispatch(signInFailure(error));
+    dispatch(signInFailure(error.message));
   }
 }
 
 
+// Sign Up
+export const signUpStart = () => ({
+  type: UserActionTypes.SIGN_UP_START
+});
+export const signUpSuccess = user => ({
+  type: UserActionTypes.SIGN_UP_SUCCESS,
+  payload: user
+});
+export const signUpFailure = error => ({
+  type: UserActionTypes.SIGN_UP_FAILURE,
+  payload: error
+});
+export const signUpWithEmail = ({ name, email, password }) => async (dispatch) => {
+  try {
+    dispatch(signUpStart());
+    const { user } = await auth.createUserWithEmailAndPassword(email, password);
+    const userRef = await createUserProfileDocument(user, { displayName: name });
+    userRef.onSnapshot(snapShot => {
+      dispatch(signUpSuccess({
+        id: snapShot.id,
+        ...snapShot.data()
+      }));
+    });
+  }
+  catch (error) {
+    dispatch(signUpFailure(error.message));
+  }
+}
+
+
+// Sign out
 export const signOutStart = () => ({
   type: UserActionTypes.SIGN_OUT_START
 });
@@ -83,6 +116,6 @@ export const userSignOut = () => async (dispatch) => {
     dispatch(signOutSuccess());
   }
   catch (error) {
-    dispatch(signOutFailure(error));
+    dispatch(signOutFailure(error.message));
   }
 }

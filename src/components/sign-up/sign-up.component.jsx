@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import validateInput from 'helpers/validate-input';
-// Firebase
-import { auth, createUserProfileDocument } from 'services/firebase/firebase.utils';
+import { createStructuredSelector } from 'reselect';
+// Redux
+import { signUpWithEmail } from 'redux/user/user.actions';
+import { selectUser } from 'redux/user/user.selectors';
 // Components
 import Input from 'components/input/input.component';
 import Typography from 'components/typography/typography.component';
@@ -19,8 +22,6 @@ const initialState = {
   passwordInvalid: false,
   confirmPasswordInvalid: false,
   formErrors: false,
-  isLoading: false,
-  authError: false
 }
 
 class SignUp extends Component {
@@ -40,6 +41,7 @@ class SignUp extends Component {
   handleSubmit = async event => {
     event.preventDefault();
     const { name, email, password, confirmPassword } = this.state;
+    const { signUpWithEmail } = this.props;
     const validatedInputs = {
       nameInvalid: !validateInput('text', name),
       emailInvalid: !validateInput('email', email),
@@ -52,22 +54,12 @@ class SignUp extends Component {
     });
 
     if (validatedInputs.formErrors) { return; }
-    this.setState({ isLoading: true });
-
-    try {
-      const { user } = await auth.createUserWithEmailAndPassword(email, password);
-      await createUserProfileDocument(user, { displayName: name });
-    }
-    catch (error) {
-      this.setState({
-        authError: error.message,
-        isLoading: false
-      });
-    }
+    signUpWithEmail(name, email, password);
   };
 
   render() {
-    const { name, email, password, confirmPassword, nameInvalid, emailInvalid, passwordInvalid, confirmPasswordInvalid, formErrors, isLoading, authError } = this.state;
+    const { name, email, password, confirmPassword, nameInvalid, emailInvalid, passwordInvalid, confirmPasswordInvalid, formErrors } = this.state;
+    const { user: { loading, error } } = this.props;
     const passwordsDontMatch = (password !== confirmPassword && formErrors);
     return (
       <div className="sign-up">
@@ -85,14 +77,21 @@ class SignUp extends Component {
           {passwordsDontMatch &&
             <Typography component="p" className="text-danger">Passwords don't match</Typography>
           }
-          {authError &&
-            <Typography component="p" className="text-danger">{authError}</Typography>
+          {error &&
+            <Typography component="p" className="text-danger">{error}</Typography>
           }
-          <Button type="submit" className="sign-up-button" isLoading={isLoading}>Sign up</Button>
+          <Button type="submit" className="sign-up-button" isLoading={loading}>Sign up</Button>
         </form>
       </div>
     );
   }
 }
 
-export default SignUp;
+const mapStateToProps = createStructuredSelector({
+  user: selectUser
+});
+const mapDispatchToProps = dispatch => ({
+  signUpWithEmail: (name, email, password) => dispatch(signUpWithEmail({ name, email, password }))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
