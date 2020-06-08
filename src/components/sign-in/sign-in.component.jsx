@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import validateInput from 'helpers/validate-input';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 // Redux
 import { signInWithGoogle, signInWithEmail } from 'redux/user/user.actions';
+import { selectUser } from 'redux/user/user.selectors';
 // Components
 import Input from 'components/input/input.component';
 import Typography from 'components/typography/typography.component';
@@ -16,7 +18,6 @@ const initialState = {
   emailInvalid: false,
   passwordInvalid: false,
   formErrors: false,
-  isLoading: false,
   authError: false
 }
 
@@ -48,14 +49,12 @@ class SignIn extends Component {
     });
 
     if (validatedInputs.formErrors) { return; }
-    this.setState({ isLoading: true });
-
     signInWithEmail(email, password);
   };
 
   render() {
-    const { email, password, emailInvalid, passwordInvalid, isLoading, authError } = this.state;
-    const { signInWithGoogle } = this.props;
+    const { email, password, emailInvalid, passwordInvalid, authError } = this.state;
+    const { signInWithGoogle, user: { loading } } = this.props;
     return (
       <div className="sign-in">
         <div className="sign-in-description">
@@ -71,7 +70,7 @@ class SignIn extends Component {
             <Typography component="p" className="text-danger">{authError}</Typography>
           }
           <div className="sign-in-buttons">
-            <Button type="submit" className="sign-in-button" isLoading={isLoading}>Sign in</Button>
+            <Button type="submit" className="sign-in-button" isLoading={loading}>Sign in</Button>
             <Button type="button" className="sign-in-button" onClick={signInWithGoogle} isGoogleSignIn>Google sign in</Button>
           </div>
         </form>
@@ -80,9 +79,13 @@ class SignIn extends Component {
   }
 }
 
+const mapStateToProps = createStructuredSelector({
+  user: selectUser
+});
+
 const mapDispatchToProps = dispatch => ({
   signInWithGoogle: () => dispatch(signInWithGoogle()),
   signInWithEmail: (email, password) => dispatch(signInWithEmail({ email, password })),
 });
 
-export default connect(null, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

@@ -92,6 +92,6 @@ const mapStateToProps = createStructuredSelector({
 });
 const mapDispatchToProps = dispatch => ({
   signUpWithEmail: (name, email, password) => dispatch(signUpWithEmail({ name, email, password }))
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
