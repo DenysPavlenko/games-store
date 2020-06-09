@@ -1,14 +1,18 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import classNames from 'classnames';
+import { CSSTransition } from 'react-transition-group';
 // Styles
 import './modal.styles.sass'
 // Assets
 import { ReactComponent as CloseIcon } from 'assets/images/icons/close.svg';
 
 class Modal extends React.Component {
+  modalParent = document.createElement('div');
 
   componentDidMount() {
     const { hidden } = this.props;
+    document.body.appendChild(this.modalParent);
     this.toggleScroll(hidden)
   }
   componentDidUpdate(prevProps) {
@@ -20,6 +24,7 @@ class Modal extends React.Component {
   }
   componentWillUnmount() {
     this.toggleScroll();
+    document.body.removeChild(this.modalParent);
   }
 
   toggleScroll = (hidden = true) => {
@@ -47,21 +52,23 @@ class Modal extends React.Component {
     const { hidden, closeModal, children, small, className } = this.props;
     const classes = classNames({
       'modal': true,
-      'modal-hidden': hidden,
       'modal-small': small,
       [className]: className
     })
-    return (
-      <div className={classes} onClick={this.handleClose}>
-        <div className="modal-container">
-          <div className="modal-wrapper">
-            <div className="modal-block">
-              <div onClick={closeModal} className="modal-close"><CloseIcon /></div>
-              {children}
+    return ReactDOM.createPortal(
+      <CSSTransition in={!hidden} timeout={300} unmountOnExit classNames="modal-animation">
+        <div className={classes} onClick={this.handleClose}>
+          <div className="modal-container">
+            <div className="modal-wrapper">
+              <div className="modal-block">
+                <div onClick={closeModal} className="modal-close"><CloseIcon /></div>
+                {children}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </CSSTransition>,
+      this.modalParent
     );
   }
 }

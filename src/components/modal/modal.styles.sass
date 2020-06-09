@@ -11,14 +11,19 @@
   z-index: 1000
   user-select: none
   overflow: hidden auto
-  pointer-events: all
-  opacity: 1
-  visibility: visible
-  transition: 0.2s
-  &.modal-hidden
-    pointer-events: none
+
+  // Animations
+  &.modal-animation-enter
     opacity: 0
-    visibility: hidden
+  &.modal-animation-enter-active
+    opacity: 1
+    transition: opacity 0.3s
+  &.modal-animation-exit
+    opacity: 1
+  &.modal-animation-exit-active
+    opacity: 0
+    transition: opacity 0.3s
+
   &.modal-small
     .modal-block
       max-width: 440px
