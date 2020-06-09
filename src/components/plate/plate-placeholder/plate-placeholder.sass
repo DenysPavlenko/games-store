@@ -1,9 +1,11 @@
 @import '~styles/variables'
-@import '~styles/common/animations.sass'
+@import '~styles/common/animations'
+@import '~styles/utils/mixins'
 
 .plate-placeholder
   background-color: $primary-color
   display: flex
+  flex-wrap: wrap
   height: 400px
   animation: 1.7s pulse linear infinite
 
@@ -46,3 +48,27 @@
     margin-top: auto
     width: 23%
     height: 16px
+
+
++media($breakpoint-xl)
+  .plate-placeholder
+    &-right
+      padding: 30px
+
++media($breakpoint-lg)
+  .plate-placeholder
+    &-left,
+    &-right
+      width: 50%
+
++media($breakpoint-md)
+  .plate-placeholder
+    height: auto
+    &-left
+      width: 100%
+      height: 300px
+    &-right
+      width: 100%
+      padding: 15px
+    &-button
+      margin-top: 40px

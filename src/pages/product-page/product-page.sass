@@ -1,4 +1,6 @@
+@import '~styles/variables'
 @import '~styles/utils/grid'
+@import '~styles/utils/mixins'
 
 .product
   padding: 120px 0 40px
@@ -38,5 +40,62 @@
   &-socials
     display: flex
     justify-content: center
-    padding: 60px 0
+    padding: 60px 15px
     background-color: $primary-color
+
+
++media($breakpoint-lg)
+  .product
+    &-description
+      &-title
+        +col(12)
+        margin-bottom: 20px
+      &-content
+        +col(12)
+    &-rating
+      text-align: center
+      &:not(:last-child)
+        margin-right: 40px
+
++media($breakpoint-md)
+  .product
+    &-description
+      &-title
+        +col(12)
+        margin-bottom: 20px
+      &-content
+        +col(12)
+    &-table
+      &-item
+        +col(6)
+    &-ratings
+      justify-content: space-between
+    &-rating
+      &:not(:last-child)
+        margin-right: 0
+
++media($breakpoint-sm)
+  .product
+    &-description
+      &-title
+        +col(12)
+        margin-bottom: 20px
+      &-content
+        +col(12)
+    &-ratings
+      justify-content: center
+    &-rating
+      width: 33.333%
+      &:not(:last-child)
+        margin-bottom: 20px
+
++media($breakpoint-xs)
+  .product
+    &-description
+      &-title
+        +col(12)
+        margin-bottom: 20px
+      &-content
+        +col(12)
+    &-rating
+      width: 50%

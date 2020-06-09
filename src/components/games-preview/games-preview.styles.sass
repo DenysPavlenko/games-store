@@ -1,16 +1,10 @@
 @import '~styles/variables'
+@import '~styles/utils/mixins'
 
 .games-preview
   &-slider
     &-wrapper
       position: relative
-    &-control
-      position: absolute
-      display: flex
-      top: 20px
-      right: 0
-      width: calc(40% - 24px)
-      z-index: 2
     &-image
       min-height: 400px
       width: 100%
@@ -20,8 +14,36 @@
         position: center
         repeat: no-repeat
     &-info
+      position: relative
       margin-top: 40px
       &-button
         margin-top: auto
         position: relative
         z-index: 2
+    &-control
+      position: absolute
+      top: -20px
+      display: flex
+      left: 24px
+      z-index: 2
+
+
++media($breakpoint-xl)
+  .games-preview
+    &-slider
+      &-control
+        left: 15px
+
++media($breakpoint-md)
+  .games-preview
+    &-slider
+      &-info
+        margin-top: 0
+        margin-bottom: 20px
+        &-button
+          margin-top: 40px
+      &-control
+        position: relative
+        top: 0
+        left: -15px
+        margin-bottom: 20px

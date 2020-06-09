@@ -1,3 +1,6 @@
+@import '~styles/variables'
+@import '~styles/utils/mixins'
+
 .product-header
   position: relative
   z-index: 1
@@ -10,8 +13,8 @@
     justify-content: space-between
     top: 50%
     transform: translateY(-50%)
-    left: -6%
-    width: 112%
+    left: -70px
+    width: calc( 100% + 140px )
     z-index: -1
     transition: 0.2s
     opacity: 0
@@ -31,3 +34,32 @@
     video
       width: 100%
       height: 100%
+
+
++media($breakpoint-xl)
+  .product-header
+    &-image
+      height: 500px
+    &-video
+      height: 500px
+
++media($breakpoint-lg)
+  .product-header
+    &-slider-control
+      position: absolute
+      display: flex
+      justify-content: space-between
+      top: auto
+      left: auto
+      right: 15px
+      bottom: 0
+      width: 120px
+      z-index: 2
+      opacity: 1
+
++media($breakpoint-md)
+  .product-header
+    &-image
+      height: 400px
+    &-video
+      height: 400px

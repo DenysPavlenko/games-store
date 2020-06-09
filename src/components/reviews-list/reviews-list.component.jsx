@@ -19,6 +19,20 @@ class ReviewsList extends React.Component {
       autoplaySpeed: 5000,
       dots: false,
       fade: false,
+      responsive: [
+        {
+          breakpoint: 991,
+          settings: {
+            slidesToShow: 2,
+          }
+        },
+        {
+          breakpoint: 575,
+          settings: {
+            slidesToShow: 1,
+          }
+        }
+      ]
     };
 
     return (

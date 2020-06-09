@@ -1,4 +1,16 @@
+@import '~styles/utils/mixins'
+@import '~styles/variables'
+
 .plate-left
   position: relative
   width: 60%
   z-index: 1
+
+
++media($breakpoint-lg)
+  .plate-left
+    width: 50%
+
++media($breakpoint-md)
+  .plate-left
+    width: 100%

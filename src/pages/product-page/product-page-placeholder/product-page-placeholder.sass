@@ -1,6 +1,7 @@
 @import '~styles/variables'
 @import '~styles/utils/grid'
-@import '~styles/common/animations.sass'
+@import '~styles/utils/mixins'
+@import '~styles/common/animations'
 
 .product-placeholder
   padding: 123px 0 40px
@@ -45,3 +46,20 @@
       background-color: $primary-color
       +col-mx(9)
       height: 360px
+
+
++media($breakpoint-xl)
+  .product-placeholder
+    &-header
+      height: 500px
+
++media($breakpoint-lg)
+  .product-placeholder
+    &-description
+      &-title
+        +col-mx(12)
+        margin-bottom: 20px
+      &-content
+        background-color: $primary-color
+        +col-mx(12)
+        height: 360px

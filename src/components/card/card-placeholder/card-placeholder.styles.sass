@@ -1,6 +1,7 @@
 @import '~styles/variables'
 @import '~styles/utils/grid'
-@import '~styles/common/animations.sass'
+@import '~styles/utils/mixins'
+@import '~styles/common/animations'
 
 .card-placeholder
   position: relative
@@ -32,3 +33,17 @@
     &-name
       width: 70%
       margin-bottom: 1rem
+
+
++media($breakpoint-xl)
+  .card-placeholder
+    +col-mx(3)
++media($breakpoint-lg)
+  .card-placeholder
+    +col-mx(4)
++media($breakpoint-md)
+  .card-placeholder
+    +col-mx(6)
++media($breakpoint-xs)
+  .card-placeholder
+    +col-mx(12)

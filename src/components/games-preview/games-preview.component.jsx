@@ -43,10 +43,6 @@ class GamesPreview extends React.Component {
       <div className="games-preview">
         <Container>
           <div className="games-preview-slider-wrapper">
-            <div className="games-preview-slider-control" onMouseOver={() => this.slider.slickPause()} onMouseOut={() => this.slider.slickPlay()}>
-              <SliderArrow onClick={() => this.slider.slickPrev()} reversed />
-              <SliderArrow onClick={() => this.slider.slickNext()} />
-            </div>
             <Slider {...slickSettings} ref={slider => this.slider = slider} >
               {collection.map(({ id, image, released, name, rating, platforms }) => (
                 <Plate key={id} className="games-preview-slider">
@@ -56,6 +52,10 @@ class GamesPreview extends React.Component {
                     </Link>
                   </Plate.Left>
                   <Plate.Right className="games-preview-slider-info">
+                    <div className="games-preview-slider-control" onMouseOver={() => this.slider.slickPause()} onMouseOut={() => this.slider.slickPlay()}>
+                      <SliderArrow onClick={() => this.slider.slickPrev()} reversed />
+                      <SliderArrow onClick={() => this.slider.slickNext()} />
+                    </div>
                     <Typography component="h6" className="text-muted">Release data: {released}</Typography>
                     <Typography component="h2">{name}</Typography>
                     <Typography component="h6" className="text-muted mb-4">
@@ -82,7 +82,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchGamesData: () => dispatch(fetchGamesData()),
+  fetchGamesData: () => dispatch(fetchGamesData()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(GamesPreview);

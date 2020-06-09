@@ -1,14 +1,22 @@
+@import '~styles/variables'
+@import '~styles/utils/mixins'
+
 .buy-product
   display: flex
   flex-wrap: wrap
   justify-content: space-between
   align-items: center
+  &-left
+    width: 50%
   &-right
+    width: 50%
     flex-wrap: wrap
     display: flex
+    justify-content: flex-end
     align-items: center
   &-price
     margin-right: 30px
+    padding: 10px 0
   &-button-group
     display: flex
   &-cart
@@ -19,3 +27,13 @@
       width: 17px
       height: auto
       fill: white
+
+
++media($breakpoint-md)
+  .buy-product
+    &-left
+      width: 100%
+      margin-bottom: 20px
+    &-right
+      width: 100%
+      justify-content: flex-start

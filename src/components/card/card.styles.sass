@@ -1,5 +1,6 @@
 @import '~styles/variables'
 @import '~styles/utils/grid'
+@import '~styles/utils/mixins'
 
 .card
   position: relative
@@ -16,3 +17,17 @@
     .card-info
       &:after
         transform: translateY(0)
+
+
++media($breakpoint-xl)
+  .card
+    +col-mx(3)
++media($breakpoint-lg)
+  .card
+    +col-mx(4)
++media($breakpoint-md)
+  .card
+    +col-mx(6)
++media($breakpoint-xs)
+  .card
+    +col-mx(12)
