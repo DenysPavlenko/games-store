@@ -22,20 +22,22 @@ const CartItem = ({ cartItem, hideCart, addItem, removeItem, clearItem, classNam
           <figure style={{ backgroundImage: `url(${image})` }}></figure>
         </Link>
       </div>
-      <div className="cart-item-title">
-        <Typography component="h3" className="text-dark">
-          <Link to={`/product/${id}`} onClick={hideCart}>{name}</Link>
-        </Typography>
-        <Typography component="h5" className="text-dark">Price: ${price}</Typography>
-        <div className="cart-item-control">
-          <button className="cart-item-control-item h3" disabled={quantity === 1 && true} onClick={() => removeItem(cartItem)}>-</button>
-          <button className="cart-item-control-item h3" onClick={() => addItem(cartItem)}>+</button>
-          <button className="cart-item-control-item h3" onClick={() => clearItem(cartItem)}><TrashIcon /></button>
+      <div className="cart-item-content">
+        <div className="cart-item-title">
+          <Typography component="h3" className="text-dark">
+            <Link to={`/product/${id}`} onClick={hideCart}>{name}</Link>
+          </Typography>
+          <Typography component="h5" className="text-dark">Price: ${price}</Typography>
+          <div className="cart-item-control">
+            <button className="cart-item-control-item h3" disabled={quantity === 1 && true} onClick={() => removeItem(cartItem)}>-</button>
+            <button className="cart-item-control-item h3" onClick={() => addItem(cartItem)}>+</button>
+            <button className="cart-item-control-item h3" onClick={() => clearItem(cartItem)}><TrashIcon /></button>
+          </div>
         </div>
-      </div>
-      <div className="cart-item-total">
-        <Typography component="h5" className="text-dark">{quantity} {quantity === 1 ? `Copy` : 'Copies'} </Typography>
-        <Typography component="h2" className="text-dark">${price * quantity}</Typography>
+        <div className="cart-item-total">
+          <Typography component="h5" className="text-dark">{quantity} {quantity === 1 ? `Copy` : 'Copies'} </Typography>
+          <Typography component="h2" className="text-dark">${price * quantity}</Typography>
+        </div>
       </div>
     </div>
   );
