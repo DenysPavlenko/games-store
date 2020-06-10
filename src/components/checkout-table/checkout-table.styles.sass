@@ -1,4 +1,5 @@
 @import ~styles/variables
+@import ~styles/utils/mixins
 
 .checkout-table
   background-color: $primary-color
@@ -11,3 +12,8 @@
     margin-bottom: 20px
   &-policy
     margin-bottom: 30px
+
+
++media($breakpoint-xs)
+  .checkout-table
+    padding: 30px 15px
