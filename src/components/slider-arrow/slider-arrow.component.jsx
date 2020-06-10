@@ -1,7 +1,8 @@
 import React from 'react';
-import classNames from 'classnames'
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 // Styles
-import './slider-arrow.styles.sass'
+import './slider-arrow.styles.sass';
 // Assets
 import { ReactComponent as Arrow } from 'assets/images/icons/chevron.svg';
 
@@ -18,6 +19,20 @@ const SliderArrow = ({ className, reversed, arrowAlt, onClick }) => {
       <Arrow className="slider-arrow-icon" />
     </div>
   );
+};
+
+SliderArrow.defaultProps = {
+  className: '',
+  reversed: false,
+  arrowAlt: false,
+  onClick: () => { }
+};
+
+SliderArrow.propTypes = {
+  className: PropTypes.string,
+  reversed: PropTypes.bool,
+  arrowAlt: PropTypes.bool,
+  onClick: PropTypes.func
 };
 
 export default SliderArrow;

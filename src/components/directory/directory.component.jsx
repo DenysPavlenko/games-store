@@ -1,16 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import PropTypes from 'prop-types';
 // Redux
 import { fetchCategoriesData } from '../../redux/categories/categories.actions';
 import { selectCategories } from '../../redux/categories/categories.selectors';
 // Components
 import DirectoryCollection from 'components/directory-collection/directory-collection.component';
-import Container from 'components/container/container.component'
+import Container from 'components/container/container.component';
 // Styles
-import './directory.styles.sass'
+import './directory.styles.sass';
 
 class Directory extends React.Component {
+
+  static propTypes = {
+    categories: PropTypes.object.isRequired,
+    fetchCategoriesData: PropTypes.func.isRequired
+  }
+
   componentDidMount() {
     const { fetchCategoriesData } = this.props;
     fetchCategoriesData('genres');
@@ -19,7 +26,7 @@ class Directory extends React.Component {
   }
 
   render() {
-    const { categories } = this.props
+    const { categories } = this.props;
     return (
       <div className="directory">
         <Container>

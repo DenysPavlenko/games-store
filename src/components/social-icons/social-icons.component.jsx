@@ -1,7 +1,8 @@
 import React from 'react';
 import classNames from 'classnames'
+import PropTypes from 'prop-types';
 // Styles
-import './social-icons.styles.sass'
+import './social-icons.styles.sass';
 
 const SocialIcons = ({ socials, className }) => {
   const classes = classNames({
@@ -16,6 +17,15 @@ const SocialIcons = ({ socials, className }) => {
       ))}
     </div>
   );
+};
+
+SocialIcons.defaultProps = {
+  className: '',
+};
+
+SocialIcons.propTypes = {
+  socials: PropTypes.array.isRequired,
+  className: PropTypes.string,
 };
 
 export default SocialIcons;

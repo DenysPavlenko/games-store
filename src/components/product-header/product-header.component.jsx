@@ -1,15 +1,25 @@
 import React from 'react';
-import classNames from 'classnames'
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 // Components
-import SliderArrow from 'components/slider-arrow/slider-arrow.component'
+import SliderArrow from 'components/slider-arrow/slider-arrow.component';
 import Slider from 'react-slick';
 // Styles
-import './product-header.styles.sass'
+import './product-header.styles.sass';
 
 class ProductHeader extends React.Component {
 
   state = {
     videoIndex: 0
+  }
+
+  static defaultProps = {
+    className: ''
+  }
+
+  static propTypes = {
+    previews: PropTypes.array.isRequired,
+    className: PropTypes.string
   }
 
   componentDidMount() {
@@ -68,20 +78,18 @@ class ProductHeader extends React.Component {
   }
 };
 
-const ProductHeaderVideo = ({ preview }) => {
-  return (
-    <div className="product-header-video">
-      <video controls>
-        <source src={preview} type="video/mp4" />
-      </video>
-    </div>
-  )
-}
+const ProductHeaderVideo = ({ preview }) => (
+  <div className="product-header-video">
+    <video controls>
+      <source src={preview} type="video/mp4" />
+    </video>
+  </div>
+);
+
 const ProductHeaderImage = ({ preview }) => (
   <div className="product-header-image">
     <figure className="product-header-image" style={{ backgroundImage: `url(${preview})` }}></figure>
   </div>
-)
-
+);
 
 export default ProductHeader;

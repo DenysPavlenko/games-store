@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
+import PropTypes from 'prop-types';
 // Redux
 import { clearCart } from 'redux/cart/cart.actions';
 import { selectCartItems } from 'redux/cart/cart.selectors';
@@ -19,6 +20,16 @@ class StripePayment extends React.Component {
   state = {
     showModal: false
   }
+
+  static defaultProps = {
+    clearCart: () => { }
+  }
+
+  static propTypes = {
+    cartItems: PropTypes.array.isRequired,
+    clearCart: PropTypes.func,
+  }
+
   isSuccess = () => {
     this.setState({ showModal: true });
   }
@@ -30,7 +41,7 @@ class StripePayment extends React.Component {
   }
 
   render() {
-    const {showModal} = this.state;
+    const { showModal } = this.state;
     return (
       <Elements stripe={stripePromise} >
         <CheckoutForm isSuccess={this.isSuccess} />

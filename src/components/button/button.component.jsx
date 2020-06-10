@@ -1,9 +1,10 @@
 import React from 'react';
 import classNames from 'classnames'
+import PropTypes from 'prop-types';
 // Components
 import Spinner from 'components/spinner/spinner.component';
 // Styles
-import './button.styles.sass'
+import './button.styles.sass';
 // Assets
 import { ReactComponent as Arrow } from 'assets/images/icons/arrow.svg';
 import { ReactComponent as GoogleIcon } from 'assets/images/icons/google.svg';
@@ -43,6 +44,30 @@ const Button = ({ children, href, btnBordered, btnLarge, btnArrow, btnBorderedLg
       }
     </Tag>
   );
+};
+
+Button.defaultProps = {
+  btnLarge: false,
+  btnBordered: false,
+  btnArrow: false,
+  btnBorderedLg: false,
+  isDisabled: false,
+  isLoading: false,
+  isGoogleSignIn: false,
+  className: '',
+};
+
+Button.propTypes = {
+  children: PropTypes.node.isRequired,
+  btnLarge: PropTypes.bool,
+  btnBordered: PropTypes.bool,
+  btnArrow: PropTypes.bool,
+  btnBorderedLg: PropTypes.bool,
+  isDisabled: PropTypes.bool,
+  isLoading: PropTypes.bool,
+  isGoogleSignIn: PropTypes.bool,
+  className: PropTypes.string,
+  href: PropTypes.string,
 };
 
 export default Button;

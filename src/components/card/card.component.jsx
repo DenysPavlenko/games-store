@@ -1,14 +1,23 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 // Components
-import CardImage from './card-image/card-image.component'
-import CardInfo from './card-info/card-info.component'
+import CardImage from './card-image/card-image.component';
+import CardInfo from './card-info/card-info.component';
 // Styles
-import './card.styles.sass'
+import './card.styles.sass';
 
 class Card extends React.Component {
   static Image = CardImage;
   static Info = CardInfo;
+
+  static defaultProps = {
+    onClick: () => { },
+  }
+
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+  }
 
   render() {
     const { children, onClick } = this.props;

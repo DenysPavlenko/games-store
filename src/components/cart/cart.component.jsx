@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import PropTypes from 'prop-types';
 // Redux
 import { hideCart, addItemToCart, removeItemFromCart, clearItemFromCart } from 'redux/cart/cart.actions';
 import { selectCartItems, selectCartHidden, selectCartTotalCount } from 'redux/cart/cart.selectors';
@@ -12,14 +13,14 @@ import Button from 'components/button/button.component';
 import CartItem from 'components/cart-item/cart-item.component';
 import CartEmpty from 'components/cart-empty/cart-empty.component';
 // Styles
-import './cart.styles.sass'
+import './cart.styles.sass';
 
 const Cart = ({ cartHidden, cartItems, hideCart, ...otherProps }) => {
   return (
     <Modal closeModal={hideCart} hidden={cartHidden}>
       <div className="cart">
         {cartItems.length === 0 ?
-          <CartEmpty centered/>
+          <CartEmpty centered />
           :
           <CartContent cartItems={cartItems} hideCart={hideCart} {...otherProps} />
         }
@@ -54,16 +55,33 @@ const CartContent = ({ cartItems, hideCart, addItemToCart, removeItemFromCart, c
   )
 }
 
+Cart.defaultProps = {
+  hideCart: () => { },
+  addItemToCart: () => { },
+  removeItemFromCart: () => { },
+  clearItemFromCart: () => { },
+};
+
+Cart.propTypes = {
+  cartHidden: PropTypes.bool,
+  cartItems: PropTypes.array,
+  hideCart: PropTypes.func,
+  addItemToCart: PropTypes.func,
+  removeItemFromCart: PropTypes.func,
+  clearItemFromCart: PropTypes.func,
+  totalCount: PropTypes.number
+};
+
 const mapStateToProps = createStructuredSelector({
   cartHidden: selectCartHidden,
   cartItems: selectCartItems,
   totalCount: selectCartTotalCount
 });
 const mapDispatchToProps = dispatch => ({
-    hideCart: () => dispatch(hideCart()),
-    addItemToCart: (cartItem) => dispatch(addItemToCart(cartItem)),
-    removeItemFromCart: (cartItem) => dispatch(removeItemFromCart(cartItem)),
-    clearItemFromCart: (cartItem) => dispatch(clearItemFromCart(cartItem)),
+  hideCart: () => dispatch(hideCart()),
+  addItemToCart: (cartItem) => dispatch(addItemToCart(cartItem)),
+  removeItemFromCart: (cartItem) => dispatch(removeItemFromCart(cartItem)),
+  clearItemFromCart: (cartItem) => dispatch(clearItemFromCart(cartItem)),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Cart));

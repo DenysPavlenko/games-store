@@ -1,6 +1,7 @@
 import React from 'react';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 // Redux
 import { fetchCategoryData } from 'redux/category/category.actions';
 import { fetchCategoryDetailsData } from 'redux/category-details/category-details.actions';
@@ -14,9 +15,16 @@ import Cards from 'components/cards/cards.component';
 import Card from 'components/card/card.component';
 import Breadcrumbs from 'components/breadcrumbs/breadcrumbs.component';
 // Styles
-import './category-page.sass'
+import './category-page.sass';
 
 class CategoryPage extends React.Component {
+
+  static propTypes = {
+    category: PropTypes.object.isRequired,
+    categoryDetails: PropTypes.object.isRequired,
+    fetchCategoryData: PropTypes.func.isRequired,
+    fetchCategoryDetailsData: PropTypes.func.isRequired,
+  }
 
   componentDidMount() {
     const { fetchCategoryData, fetchCategoryDetailsData, match: { params } } = this.props;

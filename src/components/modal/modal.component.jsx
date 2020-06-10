@@ -2,13 +2,26 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
+import PropTypes from 'prop-types';
 // Styles
-import './modal.styles.sass'
+import './modal.styles.sass';
 // Assets
 import { ReactComponent as CloseIcon } from 'assets/images/icons/close.svg';
 
 class Modal extends React.Component {
   modalParent = document.createElement('div');
+
+  static defaultProps = {
+    small: false,
+  }
+
+  static propTypes = {
+    hidden: PropTypes.bool.isRequired,
+    closeModal: PropTypes.func.isRequired,
+    children: PropTypes.node.isRequired,
+    small: PropTypes.bool,
+    className: PropTypes.string
+  }
 
   componentDidMount() {
     const { hidden } = this.props;

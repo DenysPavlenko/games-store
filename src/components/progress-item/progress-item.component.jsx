@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 // Components
 import Typography from 'components/typography/typography.component';
-import './progress-item.styles.sass'
+import './progress-item.styles.sass';
 
-const ProgressItem = ({ title, percents, radius = 36 }) => {
+const ProgressItem = ({ title, percents, radius }) => {
   const circle = Math.PI * radius * 2;
   return (
     <div className="progress-item">
@@ -17,6 +18,17 @@ const ProgressItem = ({ title, percents, radius = 36 }) => {
       <Typography component="h5" className="progress-item-title mb-0">{title}</Typography>
     </div>
   );
+};
+
+ProgressItem.defaultProps = {
+  radius: 36,
+  title: ''
+};
+
+ProgressItem.propTypes = {
+  title: PropTypes.string,
+  radius: PropTypes.number,
+  percents: PropTypes.number,
 };
 
 export default ProgressItem;

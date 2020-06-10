@@ -19,5 +19,4 @@ const GamesPreviewPlaceholder = () => {
   )
 }
 
-
 export default GamesPreviewPlaceholder;

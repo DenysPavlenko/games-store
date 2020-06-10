@@ -1,7 +1,8 @@
 import React from 'react';
-import classNames from 'classnames'
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 // Styles
-import './plate-left.styles.sass'
+import './plate-left.styles.sass';
 
 const PlateLeft = ({ children, className }) => {
   const classes = classNames({
@@ -13,6 +14,14 @@ const PlateLeft = ({ children, className }) => {
       {children}
     </div>
   );
+};
+
+PlateLeft.defaultProps = {
+  className: ''
+};
+PlateLeft.propTypes = {
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
 };
 
 export default PlateLeft;

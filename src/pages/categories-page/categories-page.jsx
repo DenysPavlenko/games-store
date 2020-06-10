@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import PropTypes from 'prop-types';
 // Redux actions
 import { fetchCategoriesData } from '../../redux/categories/categories.actions';
 import { selectChosenCategory } from '../../redux/categories/categories.selectors';
@@ -14,14 +15,22 @@ import Breadcrumbs from 'components/breadcrumbs/breadcrumbs.component';
 import './categories-page.sass'
 
 class CategoriesPage extends React.Component {
+  static propTypes = {
+    data: PropTypes.object.isRequired,
+    fetchCategoriesData: PropTypes.func.isRequired,
+  }
+
   componentDidMount() {
     this.fetchData();
   }
+
   componentDidUpdate(prevProps) {
-    if (this.props.match.params.categoriesRout !== prevProps.match.params.categoriesRout) {
+    const { match: { params } } = this.props;
+    if (params.categoriesRout !== prevProps.match.params.categoriesRout) {
       this.fetchData();
     }
   }
+
   fetchData = () => {
     const { data, fetchCategoriesData, match } = this.props;
     if (data.loading || (!data.loading && data.error)) {
@@ -64,7 +73,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetchCategoriesData: categories => dispatch(fetchCategoriesData(categories)),
+  fetchCategoriesData: categories => dispatch(fetchCategoriesData(categories)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoriesPage);

@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { withBreakpoints } from 'react-breakpoints'
+import { withBreakpoints } from 'react-breakpoints';
+import PropTypes from 'prop-types';
 // Components
 import Cards from 'components/cards/cards.component';
 import Card from 'components/card/card.component';
@@ -12,6 +13,19 @@ import './directory-collection.styles.sass';
 class DirectoryCollection extends React.Component {
   state = {
     itemsToShow: 5
+  }
+
+  static defaultProps = {
+    isLoading: false,
+    hasError: false,
+    title: '',
+  }
+  static propTypes = {
+    collection: PropTypes.array.isRequired,
+    isLoading: PropTypes.bool,
+    hasError: PropTypes.bool,
+    title: PropTypes.string,
+    rootName: PropTypes.string.isRequired,
   }
 
   componentDidMount() {

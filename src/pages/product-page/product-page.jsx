@@ -2,6 +2,7 @@ import React from 'react';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 // Redux
 import { fetchGameDetails } from 'redux/game/game.actions';
 import { addItemToCart } from 'redux/cart/cart.actions';
@@ -25,7 +26,7 @@ import { ReactComponent as Facebook } from 'assets/images/icons/facebook.svg';
 import { ReactComponent as Instagram } from 'assets/images/icons/instagram.svg';
 import { ReactComponent as Youtube } from 'assets/images/icons/youtube.svg';
 // Styles
-import './product-page.sass'
+import './product-page.sass';
 
 const reviews = [
   { id: '1', title: 'Game Informer', name: 'by Matt Miller', rating: '8/10', review: 'Electric catfish leaffish boga flabby whalefish whiting Black mackerel whitetip reef shark--Atlantic herring Rainbow trout four-eyed fish, mooneye Pacific salmon. Gray reef shark perch codling bluntnose knifefish loweye catfish whitefish mud cat loach minnow roundhead. Sargassum fish cornetfish tilapia anglerfish; carpsucker poacher frogfish sheepshead.' },
@@ -46,6 +47,17 @@ class ProductPage extends React.Component {
       { Icon: Youtube, link: 'http://example.com' },
     ],
     inCart: false
+  }
+
+  static defaultProps = {
+    addItemToCart: () => { }
+  }
+
+  static propTypes = {
+    game: PropTypes.object.isRequired,
+    cartItems: PropTypes.array.isRequired,
+    fetchGameDetails: PropTypes.func.isRequired,
+    addItemToCart: PropTypes.func,
   }
 
   componentDidMount() {

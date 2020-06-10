@@ -1,5 +1,7 @@
 import React from 'react';
-import './card-info.styles.sass'
+import PropTypes from 'prop-types';
+// Styles
+import './card-info.styles.sass';
 
 const CardInfo = ({ children }) => {
   return (
@@ -7,6 +9,10 @@ const CardInfo = ({ children }) => {
       {children}
     </div>
   );
+};
+
+CardInfo.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default CardInfo;

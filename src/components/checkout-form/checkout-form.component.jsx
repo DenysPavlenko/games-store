@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 // Helpers
@@ -11,7 +12,7 @@ import Input from 'components/input/input.component';
 import Typography from 'components/typography/typography.component';
 import Button from 'components/button/button.component';
 // Styles
-import './checkout-form.styles.sass'
+import './checkout-form.styles.sass';
 
 const initialState = {
   name: '',
@@ -30,6 +31,16 @@ class CheckoutForm extends React.Component {
   state = {
     ...initialState,
   }
+
+  static defaultProps = {
+    isSuccess: () => { }
+  }
+
+  static propTypes = {
+    user: PropTypes.object.isRequired,
+    isSuccess: PropTypes.func.isRequired
+  }
+
   componentDidMount() {
     const { user: { currentUser } } = this.props;
     if (currentUser) {

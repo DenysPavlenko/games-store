@@ -1,8 +1,8 @@
 import React from 'react';
 // Styles
-import './card-placeholder.styles.sass'
+import './card-placeholder.styles.sass';
 
-const CardPlaceholder = ({ image, name, slug, total }) => {
+const CardPlaceholder = () => {
   return (
     <div className="card-placeholder">
       <div className="card-placeholder-image"></div>

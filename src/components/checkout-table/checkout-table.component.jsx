@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 // Components
 import Typography from 'components/typography/typography.component';
 import StripePayment from 'components/stripe-payment/stripe-payment.component';
@@ -15,6 +16,10 @@ const CheckoutTable = ({ total }) => {
       <StripePayment />
     </div >
   );
+};
+
+CheckoutTable.propTypes = {
+  total: PropTypes.number.isRequired,
 };
 
 export default CheckoutTable;

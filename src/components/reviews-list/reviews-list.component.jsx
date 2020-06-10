@@ -1,12 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 // Components
 import Slider from 'react-slick';
-import ReviewsListItem from 'components/reviews-list-item/reviews-list-item.component'
-import SliderArrow from 'components/slider-arrow/slider-arrow.component'
+import ReviewsListItem from 'components/reviews-list-item/reviews-list-item.component';
+import SliderArrow from 'components/slider-arrow/slider-arrow.component';
 // Styles
-import './reviews-list.styles.sass'
+import './reviews-list.styles.sass';
 
 class ReviewsList extends React.Component {
+
+  static propTypes = {
+    reviews: PropTypes.array.isRequired,
+  }
 
   render() {
     const { reviews } = this.props;

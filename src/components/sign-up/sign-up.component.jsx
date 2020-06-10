@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import validateInput from 'helpers/validate-input';
 import { createStructuredSelector } from 'reselect';
+import PropTypes from 'prop-types';
 // Redux
 import { signUpWithEmail } from 'redux/user/user.actions';
 import { selectUser } from 'redux/user/user.selectors';
@@ -27,7 +28,11 @@ const initialState = {
 class SignUp extends Component {
   state = {
     ...initialState
-  }
+  };
+
+  static propTypes = {
+    signUpWithEmail: PropTypes.func.isRequired,
+  };
 
   handleInput = event => {
     const { name, type, value } = event.target;

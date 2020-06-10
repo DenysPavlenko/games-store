@@ -1,13 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 // Components
 import ErrorIndicator from 'components/error-indicator/error-indicator.component';
 import Plate from 'components/plate/plate.component';
 import Typography from 'components/typography/typography.component';
-import Container from 'components/container/container.component'
+import Container from 'components/container/container.component';
 import PlatePlaceholder from 'components/plate/plate-placeholder/plate-placeholder';
-
 // Styles
-import './category-preview.styles.sass'
+import './category-preview.styles.sass';
 
 const CategoryPreview = ({ data, isLoading, hasError }) => {
 
@@ -27,6 +27,17 @@ const CategoryPreview = ({ data, isLoading, hasError }) => {
       </Plate>
     </Container>
   )
+};
+
+CategoryPreview.defaultProps = {
+  isLoading: false,
+  hasError: false,
+};
+
+CategoryPreview.propTypes = {
+  data: PropTypes.object.isRequired,
+  isLoading: PropTypes.bool,
+  hasError: PropTypes.bool,
 };
 
 export default CategoryPreview;

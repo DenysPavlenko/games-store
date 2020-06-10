@@ -1,8 +1,9 @@
 import React from 'react';
 // Components
 import Typography from 'components/typography/typography.component';
+import PropTypes from 'prop-types';
 // Styles
-import './reviews-list-item.styles.sass'
+import './reviews-list-item.styles.sass';
 
 const ReviewsListItem = ({ title, name, rating, review }) => {
   return (
@@ -15,6 +16,12 @@ const ReviewsListItem = ({ title, name, rating, review }) => {
       <Typography component="p" className="mb-0 text-muted">{review}</Typography>
     </div>
   );
+};
+
+ReviewsListItem.propTypes = {
+  title: PropTypes.string,
+  name: PropTypes.string,
+  rating: PropTypes.string,
 };
 
 export default ReviewsListItem;

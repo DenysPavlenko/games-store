@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import PropTypes from 'prop-types';
 // Redux
 import { selectUser } from 'redux/user/user.selectors';
 import { userSignOut } from 'redux/user/user.actions';
@@ -22,12 +23,17 @@ const nav = [
   { name: 'Genres', rootName: '/categories/genres' },
   { name: 'Developers', rootName: '/categories/developers' },
   { name: 'Platforms', rootName: '/categories/platforms' },
-]
+];
 
 class Navigation extends React.Component {
   state = {
     showModal: false,
     register: false,
+  }
+
+  static propTypes = {
+    user: PropTypes.object.isRequired,
+    userSignOut: PropTypes.func.isRequired,
   }
 
   toggleModal = () => {

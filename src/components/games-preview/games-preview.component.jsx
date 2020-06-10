@@ -1,6 +1,7 @@
 import React from 'react';
 import { createStructuredSelector } from 'reselect';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 // Redux
 import { connect } from 'react-redux';
 import { fetchGamesData } from '../../redux/games/games.actions';
@@ -15,15 +16,21 @@ import SliderArrow from 'components/slider-arrow/slider-arrow.component';
 import Typography from 'components/typography/typography.component';
 import Button from 'components/button/button.component';
 // Styles
-import './games-preview.styles.sass'
+import './games-preview.styles.sass';
 
 class GamesPreview extends React.Component {
+
+  static propTypes = {
+    games: PropTypes.object.isRequired,
+    fetchGamesData: PropTypes.func.isRequired
+  }
+
   componentDidMount() {
     this.props.fetchGamesData()
   }
+
   render() {
-    const { games } = this.props;
-    const { collection } = games;
+    const { games, games: { collection } } = this.props;
     const slickSettings = {
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -75,7 +82,6 @@ class GamesPreview extends React.Component {
     );
   }
 }
-
 
 const mapStateToProps = createStructuredSelector({
   games: selectGames

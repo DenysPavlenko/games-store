@@ -1,13 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import PropTypes from 'prop-types';
 // Redux
 import { hideCart, addItemToCart, removeItemFromCart, clearItemFromCart } from 'redux/cart/cart.actions';
 import { selectCartItems, selectCartHidden, selectCartTotalCount } from 'redux/cart/cart.selectors';
 // Components
-import Container from 'components/container/container.component'
-import CartItem from 'components/cart-item/cart-item.component'
-import CheckoutTable from 'components/checkout-table/checkout-table.component'
+import Container from 'components/container/container.component';
+import CartItem from 'components/cart-item/cart-item.component';
+import CheckoutTable from 'components/checkout-table/checkout-table.component';
 // Styles
 import './checkout-page.sass';
 
@@ -30,6 +31,21 @@ const CheckoutPage = ({ cartItems, hideCart, removeItemFromCart, addItemToCart, 
   );
 };
 
+CheckoutPage.propTypes = {
+  hideCart: () => { },
+  removeItemFromCart: () => { },
+  addItemToCart: () => { },
+  clearItemFromCart: () => { },
+};
+
+CheckoutPage.propTypes = {
+  cartItems: PropTypes.array.isRequired,
+  hideCart: PropTypes.func,
+  removeItemFromCart: PropTypes.func,
+  addItemToCart: PropTypes.func,
+  clearItemFromCart: PropTypes.func,
+  totalCount: PropTypes.number,
+};
 
 const mapStateToProps = createStructuredSelector({
   cartHidden: selectCartHidden,

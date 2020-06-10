@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 // Components
 import Container from 'components/container/container.component';
 // Styles
-import './breadcrumbs.styles.sass'
+import './breadcrumbs.styles.sass';
 
 const Breadcrumbs = ({ routes, history: { location } }) => {
   const path = location.pathname;
@@ -20,6 +21,11 @@ const Breadcrumbs = ({ routes, history: { location } }) => {
       </Container>
     </div >
   );
+};
+
+Breadcrumbs.propTypes = {
+  routes: PropTypes.array.isRequired,
+  history: PropTypes.object.isRequired
 };
 
 export default withRouter(Breadcrumbs);

@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import classNames from 'classnames'
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 // Components
 import Typography from 'components/typography/typography.component';
 // Styles
-import './cart-item.styles.sass'
+import './cart-item.styles.sass';
 // Assets
 import { ReactComponent as TrashIcon } from 'assets/images/icons/trash.svg';
 
@@ -41,6 +42,24 @@ const CartItem = ({ cartItem, hideCart, addItem, removeItem, clearItem, classNam
       </div>
     </div>
   );
+};
+
+CartItem.defaultProps = {
+  hideCart: () => { },
+  addItem: () => { },
+  removeItem: () => { },
+  clearItem: () => { },
+  inverted: false
+};
+
+CartItem.propTypes = {
+  cartItem: PropTypes.object.isRequired,
+  hideCart: PropTypes.func,
+  addItem: PropTypes.func,
+  removeItem: PropTypes.func,
+  clearItem: PropTypes.func,
+  className: PropTypes.string,
+  inverted: PropTypes.bool,
 };
 
 export default CartItem;

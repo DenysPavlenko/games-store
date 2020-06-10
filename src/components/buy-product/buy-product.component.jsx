@@ -1,11 +1,12 @@
 import React from 'react';
 import classNames from 'classnames'
+import PropTypes from 'prop-types';
 // Components
 import Button from 'components/button/button.component';
 import Chip from 'components/chip/chip.component';
 import Typography from 'components/typography/typography.component';
 // Styles
-import './buy-product.styles.sass'
+import './buy-product.styles.sass';
 // Assets
 import { ReactComponent as CartIcon } from 'assets/images/icons/cart.svg';
 
@@ -34,6 +35,20 @@ const BuyProduct = ({ price, name, className, onCartClick, onButtonClick, inCart
       </div>
     </div>
   );
+};
+
+BuyProduct.defaultProps = {
+  onCartClick: () => { },
+  onButtonClick: () => { }
+};
+
+BuyProduct.propTypes = {
+  price: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  inCart: PropTypes.bool.isRequired,
+  className: PropTypes.string,
+  onCartClick: PropTypes.func,
+  onButtonClick: PropTypes.func,
 };
 
 export default BuyProduct;
