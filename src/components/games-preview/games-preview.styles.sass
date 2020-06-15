@@ -3,6 +3,19 @@
 
 .games-preview
   &-slider
+    .slick-slider
+      width: 100%
+      display: flex
+      flex: 1
+    .slick-list,
+    .slick-track
+      height: 100%
+      width: 100%
+      .slick-slide
+        height: 100%
+        >div
+          display: flex
+          height: 100%
     &-wrapper
       position: relative
     &-image
@@ -15,34 +28,21 @@
         repeat: no-repeat
     &-info
       position: relative
-      margin-top: 40px
+      display: flex !important
+      flex-direction: column
+      flex-wrap: wrap
       &-button
         margin-top: auto
-        position: relative
         z-index: 2
     &-control
-      position: absolute
-      top: -20px
       display: flex
-      left: 24px
-      z-index: 2
+      margin-bottom: 20px
+      margin-left: -15px
 
-
-+media($breakpoint-xl)
-  .games-preview
-    &-slider
-      &-control
-        left: 15px
 
 +media($breakpoint-md)
   .games-preview
     &-slider
       &-info
-        margin-top: 0
         &-button
           margin-top: 30px
-      &-control
-        position: relative
-        top: 0
-        left: -15px
-        margin-bottom: 20px

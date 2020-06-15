@@ -25,12 +25,53 @@ class GamesPreview extends React.Component {
     fetchGamesData: PropTypes.func.isRequired
   }
 
+  slider1 = null;
+  slider2 = null;
+
+  state = {
+    nav1: null,
+    nav2: null
+  }
+
+  setSlider1Ref = slider => {
+    this.slider1 = slider;
+    this.setState({ nav1: slider });
+  }
+
+  setSlider2Ref = slider => {
+    this.slider2 = slider;
+    this.setState({ nav2: slider });
+  }
+
   componentDidMount() {
-    this.props.fetchGamesData()
+    this.props.fetchGamesData();
+  }
+
+  stopSliders = () => {
+    const { nav1, nav2 } = this.state;
+    nav1.slickPause();
+    nav2.slickPause();
+  }
+
+  startSliders = () => {
+    const { nav1, nav2 } = this.state;
+    nav1.slickPlay();
+    nav2.slickPlay();
+  }
+
+  nextSlide = () => {
+    const { nav1 } = this.state;
+    nav1.slickNext();
+  }
+
+  prevSlide = () => {
+    const { nav1 } = this.state;
+    nav1.slickPrev();
   }
 
   render() {
     const { games, games: { collection } } = this.props;
+    const { nav1, nav2 } = this.state;
     const slickSettings = {
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -47,22 +88,26 @@ class GamesPreview extends React.Component {
     if (games.loading) { return <Container><PlatePlaceholder /></Container> }
 
     return (
-      <div className="games-preview">
+      <div className="games-preview" onMouseOver={this.stopSliders} onMouseOut={this.startSliders}>
         <Container>
-          <div className="games-preview-slider-wrapper">
-            <Slider {...slickSettings} ref={slider => this.slider = slider} >
-              {collection.map(({ id, image, released, name, rating, platforms }) => (
-                <Plate key={id} className="games-preview-slider">
-                  <Plate.Left>
-                    <Link to={`/product/${id}`}>
-                      <figure className="games-preview-slider-image" style={{ backgroundImage: `url(${image})` }}></figure>
-                    </Link>
-                  </Plate.Left>
-                  <Plate.Right className="games-preview-slider-info">
-                    <div className="games-preview-slider-control" onMouseOver={() => this.slider.slickPause()} onMouseOut={() => this.slider.slickPlay()}>
-                      <SliderArrow onClick={() => this.slider.slickPrev()} reversed />
-                      <SliderArrow onClick={() => this.slider.slickNext()} />
-                    </div>
+          <Plate className="games-preview-slider">
+            <Plate.Left>
+              <Slider {...slickSettings} asNavFor={nav2} ref={this.setSlider1Ref}>
+                {collection.map(({ id, image }) => (
+                  <Link key={id} to={`/product/${id}`}>
+                    <figure className="games-preview-slider-image" style={{ backgroundImage: `url(${image})` }}></figure>
+                  </Link>
+                ))}
+              </Slider>
+            </Plate.Left>
+            <Plate.Right>
+              <div className="games-preview-slider-control">
+                <SliderArrow onClick={this.nextSlide} reversed />
+                <SliderArrow onClick={this.prevSlide} />
+              </div>
+              <Slider {...slickSettings} asNavFor={nav1} ref={this.setSlider2Ref}>
+                {collection.map(({ id, released, name, rating, platforms }) => (
+                  <div key={id} className="games-preview-slider-info">
                     <Typography component="h6" className="text-muted">Release data: {released}</Typography>
                     <Typography component="h2">{name}</Typography>
                     <Typography component="h6" className="text-muted mb-4">
@@ -72,11 +117,11 @@ class GamesPreview extends React.Component {
                     <Link className="games-preview-slider-info-button" to={`/product/${id}`}>
                       <Button btnArrow>Learn more</Button>
                     </Link>
-                  </Plate.Right>
-                </Plate>
-              ))}
-            </Slider>
-          </div>
+                  </div>
+                ))}
+              </Slider>
+            </Plate.Right>
+          </Plate>
         </Container>
       </div>
     );
