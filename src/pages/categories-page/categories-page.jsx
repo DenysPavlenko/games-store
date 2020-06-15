@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
@@ -11,6 +12,8 @@ import Typography from 'components/typography/typography.component';
 import Cards from 'components/cards/cards.component';
 import Card from 'components/card/card.component';
 import Breadcrumbs from 'components/breadcrumbs/breadcrumbs.component';
+import Banner from 'components/banner/banner.component';
+import Button from 'components/button/button.component';
 // Styles
 import './categories-page.sass'
 
@@ -48,6 +51,34 @@ class CategoriesPage extends React.Component {
     return (
       <div className="categories-page">
         <Breadcrumbs routes={[params.categoriesRout]} />
+
+        <Banner isLoading={loading} hasErorr={error} className="categories-page-banner">
+          <Banner.Left>
+            {collection.map(({ id, image, rout }) => (
+              <Link to={`${url}/${rout}`} key={id} className="categories-page-banner-image">
+                <figure style={{ backgroundImage: `url(${image})` }}></figure>
+              </Link>
+            ))}
+          </Banner.Left>
+          <Banner.Right>
+            {collection.map(({ id, name, games, rout }) => (
+              <div key={id} className="categories-page-banner-info">
+                <Typography component="h2">{name}</Typography>
+                <Typography component="h6">Most Popular games:</Typography>
+                <div className="categories-page-banner-list">
+                  {games.map(({ id, slug, name }) => (
+                    <Link key={id} className="categories-page-banner-list-item" to={`${url}/${slug}`}>
+                      <Typography component="span" variant="p" className="categories-page-banner-list">{name}</Typography>
+                    </Link>
+                  ))}
+                </div>
+                <Link className="categories-page-banner-button" to={`${url}/${rout}`}>
+                  <Button btnArrow>Learn more</Button>
+                </Link>
+              </div>
+            ))}
+          </Banner.Right>
+        </Banner>
 
         <Container>
           <Typography component="h2" className="mb-5">All {params.categoriesRout}</Typography>

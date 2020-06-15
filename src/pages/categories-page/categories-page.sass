@@ -1,2 +1,37 @@
+@import ~styles/variables
+
 .categories-page
   padding: 120px 0 40px
+  &-banner
+    margin-bottom: 60px
+    &-image
+      position: relative
+      display: block
+      width: 100%
+      height: 400px
+      z-index: 1
+      figure
+        width: 100%
+        height: 100%
+        background:
+          size: cover
+          position: center
+          repeat: no-repeat
+    &-info
+      position: relative
+      display: flex !important
+      flex-direction: column
+      flex-wrap: wrap
+      z-index: 1
+    &-button
+      margin-top: auto
+    &-list
+      &-item
+        color: $muted-color
+        transition: 0.2s
+        &:not(:last-child)
+          margin-right: 5px
+          &:after
+            content: ','
+        &:hover
+          color: $light-color

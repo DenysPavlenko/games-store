@@ -50,7 +50,7 @@ class CategoryPage extends React.Component {
 
         <Container>
           <Cards isLoading={category.loading} hasError={category.error} placeholdersToShow={10}>
-            {category.collection.map(({ id, image, name, rating, rout }) => (
+            {category.collection.map(({ id, image, name, rating }) => (
               <Card key={id} onClick={() => history.push(`/product/${id}`)}>
                 <Card.Image image={image} />
                 <Card.Info>

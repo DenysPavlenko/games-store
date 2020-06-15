@@ -1,0 +1,73 @@
+@import ~styles/variables
+@import '~styles/common/animations'
+@import ~styles/utils/mixins
+
+.banner-placeholder
+  background-color: $primary-color
+  display: flex
+  flex-wrap: wrap
+  height: 400px
+  animation: 1.7s pulse linear infinite
+  &-left
+    width: 60%
+    background-color: darken($primary-color, 3%)
+  &-right
+    position: relative
+    width: 40%
+    display: flex
+    flex-direction: column
+    padding: 30px 40px 40px
+  &-control,
+  &-release,
+  &-name,
+  &-platforms,
+  &-rating,
+  &-button
+    background-color: lighten($primary-color, 3%)
+  &-control
+    width: 50px
+    height: 20px
+    margin-bottom: 30px
+  &-release
+    width: 36%
+    height: 16px
+    margin-bottom: .7rem
+  &-name
+    width: 56%
+    height: 25px
+    margin-bottom: .7rem
+  &-platforms
+    width: 76%
+    height: 32px
+    margin-bottom: .7rem
+  &-rating
+    width: 18%
+    height: 16px
+  &-button
+    margin-top: auto
+    width: 23%
+    height: 16px
+
+
++media($breakpoint-xl)
+  .plate-placeholder
+    &-right
+      padding: 30px
+
++media($breakpoint-lg)
+  .plate-placeholder
+    &-left,
+    &-right
+      width: 50%
+
++media($breakpoint-md)
+  .plate-placeholder
+    height: auto
+    &-left
+      width: 100%
+      height: 300px
+    &-right
+      width: 100%
+      padding: 15px
+    &-button
+      margin-top: 40px

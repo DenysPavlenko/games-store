@@ -25,21 +25,16 @@ class GamesPreview extends React.Component {
     fetchGamesData: PropTypes.func.isRequired
   }
 
-  slider1 = null;
-  slider2 = null;
-
   state = {
     nav1: null,
     nav2: null
   }
 
-  setSlider1Ref = slider => {
-    this.slider1 = slider;
+  setSlider1Red = slider => {
     this.setState({ nav1: slider });
   }
 
   setSlider2Ref = slider => {
-    this.slider2 = slider;
     this.setState({ nav2: slider });
   }
 
@@ -92,7 +87,7 @@ class GamesPreview extends React.Component {
         <Container>
           <Plate className="games-preview-slider">
             <Plate.Left>
-              <Slider {...slickSettings} asNavFor={nav2} ref={this.setSlider1Ref}>
+              <Slider {...slickSettings} asNavFor={nav2} ref={this.setSlider1Red}>
                 {collection.map(({ id, image }) => (
                   <Link key={id} to={`/product/${id}`}>
                     <figure className="games-preview-slider-image" style={{ backgroundImage: `url(${image})` }}></figure>
