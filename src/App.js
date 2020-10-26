@@ -12,10 +12,10 @@ import CategoryPage from 'pages/category-page/category-page';
 import ProductPage from 'pages/product-page/product-page';
 import CheckoutPage from 'pages/checkout-page/checkout-page';
 // Components
-import ScrollToTop from "components/scroll-to-top/scroll-to-top.component";
-import Navigation from "components/navigation/navigation.component";
-import Footer from "components/footer/footer.component";
-import Cart from "components/cart/cart.component";
+import ScrollToTop from "components/scroll-to-top/scroll-to-top";
+import Navigation from "components/navigation/navigation";
+import Footer from "components/footer/footer";
+import Cart from "components/cart/cart";
 import './app.sass'
 
 class App extends React.Component {

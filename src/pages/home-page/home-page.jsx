@@ -1,7 +1,7 @@
 import React from 'react';
 // Components
-import GamesPreview from 'components/games-preview/games-preview.component';
-import Directory from 'components/directory/directory.component';
+import GamesPreview from 'components/games-preview/games-preview';
+import Directory from 'components/directory/directory';
 // Styles
 import './home-page.sass'
 

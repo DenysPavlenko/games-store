@@ -2,13 +2,13 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import classNames from 'classnames';
 // Components
-import Container from 'components/container/container.component';
-import BannerLeft from './banner-left/banner-left.component';
-import BannerRight from './banner-right/banner-right.component';
+import Container from 'components/container/container';
+import BannerLeft from './banner-left/banner-left';
+import BannerRight from './banner-right/banner-right';
 import BannerPlaceholder from './banner-placeholder/banner-placeholder';
-import ErrorIndicator from 'components/error-indicator/error-indicator.component';
+import ErrorIndicator from 'components/error-indicator/error-indicator';
 // Styles
-import './banner.styles.sass';
+import './banner.sass';
 
 class Banner extends React.Component {
 

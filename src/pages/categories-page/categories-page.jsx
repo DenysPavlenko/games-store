@@ -7,13 +7,13 @@ import PropTypes from 'prop-types';
 import { fetchCategoriesData } from '../../redux/categories/categories.actions';
 import { selectChosenCategory } from '../../redux/categories/categories.selectors';
 // Components
-import Container from 'components/container/container.component';
-import Typography from 'components/typography/typography.component';
-import Cards from 'components/cards/cards.component';
-import Card from 'components/card/card.component';
-import Breadcrumbs from 'components/breadcrumbs/breadcrumbs.component';
+import Container from 'components/container/container';
+import Typography from 'components/typography/typography';
+import Cards from 'components/cards/cards';
+import Card from 'components/card/card';
+import Breadcrumbs from 'components/breadcrumbs/breadcrumbs';
 import Banner from 'components/banner/banner.component';
-import Button from 'components/button/button.component';
+import Button from 'components/button/button';
 // Styles
 import './categories-page.sass'
 

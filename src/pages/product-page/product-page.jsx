@@ -10,15 +10,15 @@ import { selectGame } from 'redux/game/game.selectors';
 import { selectCartItems } from 'redux/cart/cart.selectors';
 // Components
 import ProductPagePlaceholder from './product-page-placeholder/product-page-placeholder';
-import ErrorIndicator from 'components/error-indicator/error-indicator.component';
-import Container from 'components/container/container.component';
-import ProductHeader from 'components/product-header/product-header.component';
-import Typography from 'components/typography/typography.component';
-import ProgressItem from 'components/progress-item/progress-item.component';
-import BuyProduct from 'components/buy-product/buy-product.component';
-import SocialIcons from 'components/social-icons/social-icons.component';
-import ReviewsList from 'components/reviews-list/reviews-list.component'
-import Breadcrumbs from 'components/breadcrumbs/breadcrumbs.component';
+import ErrorIndicator from 'components/error-indicator/error-indicator';
+import Container from 'components/container/container';
+import ProductHeader from 'components/product-header/product-header';
+import Typography from 'components/typography/typography';
+import ProgressItem from 'components/progress-item/progress-item';
+import BuyProduct from 'components/buy-product/buy-product';
+import SocialIcons from 'components/social-icons/social-icons';
+import ReviewsList from 'components/reviews-list/reviews-list'
+import Breadcrumbs from 'components/breadcrumbs/breadcrumbs';
 // Socials
 import { ReactComponent as Twitter } from 'assets/images/icons/twitter.svg';
 import { ReactComponent as Discord } from 'assets/images/icons/discord.svg';

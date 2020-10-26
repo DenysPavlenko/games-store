@@ -8,12 +8,12 @@ import { fetchCategoryDetailsData } from 'redux/category-details/category-detail
 import { selectCategory } from 'redux/category/category.selectors';
 import { selectCategoryDetails } from 'redux/category-details/category-details.selectors';
 // Components
-import Container from 'components/container/container.component';
-import CategoryPreview from 'components/category-preview/category-preview.component';
-import Typography from 'components/typography/typography.component';
-import Cards from 'components/cards/cards.component';
-import Card from 'components/card/card.component';
-import Breadcrumbs from 'components/breadcrumbs/breadcrumbs.component';
+import Container from 'components/container/container';
+import CategoryPreview from 'components/category-preview/category-preview';
+import Typography from 'components/typography/typography';
+import Cards from 'components/cards/cards';
+import Card from 'components/card/card';
+import Breadcrumbs from 'components/breadcrumbs/breadcrumbs';
 // Styles
 import './category-page.sass';
 

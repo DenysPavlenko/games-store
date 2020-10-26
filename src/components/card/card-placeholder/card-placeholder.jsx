@@ -1,6 +1,6 @@
 import React from 'react';
 // Styles
-import './card-placeholder.styles.sass';
+import './card-placeholder.sass';
 
 const CardPlaceholder = () => {
   return (
