@@ -22,7 +22,7 @@ const CategoryPreview = ({ data, isLoading, hasError }) => {
         </Plate.Left>
         <Plate.Right className="category-preview-info">
           <Typography component="h4">{data.name} games</Typography>
-          <Typography dangerouslySetInnerHTML={{ __html: data.description }} component="p"></Typography>
+          <Typography component="p">{data.description.match(/<p>(.*?)<\/p>/)[1]}</Typography>
         </Plate.Right>
       </Plate>
     </Container>
@@ -35,7 +35,7 @@ CategoryPreview.defaultProps = {
 };
 
 CategoryPreview.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.object,
   isLoading: PropTypes.bool,
   hasError: PropTypes.bool,
 };
