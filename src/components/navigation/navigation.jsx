@@ -8,11 +8,9 @@ import { selectUser } from 'redux/user/user.selectors';
 import { userSignOut } from 'redux/user/user.actions';
 // Components
 import Button from 'components/button/button';
+import UserDropdown from 'components/user-dropdown/user-dropdown';
+import SignInSignUpModal from 'components/sign-in-sign-up-modal/sign-in-sign-up-modal';
 import CartIcon from 'components/cart-icon/cart-icon';
-import Modal from 'components/modal/modal';
-import SignIn from 'components/sign-in/sign-in';
-import SignUp from 'components/sign-up/sign-up';
-import Typography from 'components/typography/typography';
 // Styles
 import "./navigation.sass";
 // Assets
@@ -43,10 +41,6 @@ class Navigation extends React.Component {
     }))
   }
 
-  switchForm = () => {
-    this.setState(({ register }) => ({ register: !register }))
-  }
-
   componentDidUpdate(prevProps) {
     const { user: { currentUser } } = this.props;
     const { showModal } = this.state;
@@ -75,34 +69,19 @@ class Navigation extends React.Component {
         <div className="navigation-user">
           <CartIcon />
           {currentUser ?
-            <Button className="navigation-button" onClick={userSignOut}>Sign Out</Button>
+            <div className="navigation-user-dropdown">
+              <Button className="navigation-button" onClick={userSignOut}>Sign Out</Button>
+              <UserDropdown />
+            </div>
             :
             <Button className="navigation-button" onClick={this.toggleModal}>Sign In</Button>
           }
         </div>
-        <Modal hidden={!showModal} closeModal={() => this.setState({ showModal: false })} small>
-          <div className="navigation-modal-wrap">
-            {!register ?
-              <SignIn />
-              :
-              <SignUp />
-            }
-            <div className="navigation-modal-switch">
-              <Typography component="span" variant="p" className="text-accent navigation-modal-switch-title mb-0" onClick={this.switchForm}>
-                {!register ?
-                  'Create a new account'
-                  :
-                  'Use an existing account'
-                }
-              </Typography>
-            </div>
-          </div>
-        </Modal>
+        <SignInSignUpModal showModal={showModal} closeModal={() => this.setState({ showModal: false })} />
       </div>
     );
   }
 };
-
 
 const mapStateToProps = createStructuredSelector({
   user: selectUser

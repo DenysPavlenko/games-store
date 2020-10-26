@@ -62,14 +62,15 @@ class Modal extends React.Component {
   }
 
   render() {
-    const { hidden, closeModal, children, small, className } = this.props;
+    const { hidden, closeModal, children, small, className, onExited } = this.props;
     const classes = classNames({
       'modal': true,
       'modal-small': small,
       [className]: className
-    })
+    });
+
     return ReactDOM.createPortal(
-      <CSSTransition in={!hidden} timeout={300} unmountOnExit classNames="modal-animation">
+      <CSSTransition in={!hidden} onExited={onExited} timeout={300} unmountOnExit classNames="modal-animation">
         <div className={classes} onClick={this.handleClose}>
           <div className="modal-container">
             <div className="modal-wrapper">

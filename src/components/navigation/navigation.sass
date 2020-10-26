@@ -19,7 +19,7 @@
   &-logo
     width: 40px
     height: auto
-    margin: 0 20px
+    margin: 0 20px 0 30px
     display: block
     fill: $muted-color
   &-list
@@ -45,7 +45,8 @@
         height: 5px
         transform: translateY(110%)
         transition: .3s
-      &:hover,
+      &:hover
+        color: $text-light
       &.active
         color: $text-light
         &:after
@@ -53,17 +54,5 @@
 
   &-user
     display: flex
-
-  // Modal
-  &-modal
-    text-align: center
-    &-wrap
-      padding: 40px 0
-    &-switch
-      margin-top: 40px
-      text-align: center
-      &-title
-        cursor: pointer
-        transition: 0.2s
-        &:hover
-          opacity: 0.6
+    &-dropdown
+      margin-right: 30px

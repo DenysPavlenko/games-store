@@ -1,0 +1,27 @@
+@import ~styles/abstract/variables
+
+.user-dropdown-menu
+  &__items
+    display: flex
+    flex-direction: column
+  &__item
+    display: flex
+    align-items: center
+    height: 40px
+    padding: 0 15px
+    border-radius: $r-type-3
+    transition: 0.2s
+    background-color: transparent
+    cursor: pointer
+    &:hover,
+    &.active
+      background-color: #ccc
+    &:not(:last-child)
+      margin-bottom: 5px
+  &__icon
+    margin-right: 10px
+  &__title
+    font-size: rem(14px)
+    line-height: 1
+    font-weight: 400
+    color: #ccc

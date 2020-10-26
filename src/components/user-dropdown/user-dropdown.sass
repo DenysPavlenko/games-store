@@ -1,0 +1,46 @@
+@import ~styles/abstract/variables
+@import ~styles/abstract/mixins
+
+.user-dropdown
+  display: flex
+  align-items: center
+  height: 100%
+  // Elements
+  &-toggle
+    display: flex
+    align-items: center
+    transition: 0.2s
+    // State
+    &:hover
+      .user-dropdown-name,
+      .user-dropdown-chevron
+        opacity: 1
+    &.is-active
+      .user-dropdown-name,
+      .user-dropdown-chevron
+        opacity: 1
+      .user-dropdown-chevron
+        transform: rotate(180deg)
+  &-avatar
+    margin-right: 10px
+  &-name
+    margin-right: 10px
+    max-width: 100px
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+    transition: 0.2s
+    user-select: none
+    opacity: 0.7
+    +media-max($bp-sm)
+      display: none
+  &-chevron
+    transition: 0.2s
+    opacity: 0.7
+    path
+      fill: $light-color
+  &-box
+    min-width: 140px
+    padding: 10px
+    margin-top: 1px
+    border-radius: 0
