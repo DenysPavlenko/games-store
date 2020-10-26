@@ -5,7 +5,6 @@ import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
 // Redux
 import { selectUser } from 'redux/user/user.selectors';
-import { userSignOut } from 'redux/user/user.actions';
 // Components
 import Button from 'components/button/button';
 import UserDropdown from 'components/user-dropdown/user-dropdown';
@@ -31,7 +30,6 @@ class Navigation extends React.Component {
 
   static propTypes = {
     user: PropTypes.object.isRequired,
-    userSignOut: PropTypes.func.isRequired,
   }
 
   toggleModal = () => {
@@ -50,7 +48,7 @@ class Navigation extends React.Component {
   }
 
   render() {
-    const { user: { currentUser }, userSignOut } = this.props;
+    const { user: { currentUser } } = this.props;
     const { showModal } = this.state;
     return (
       <div className="navigation">
@@ -69,9 +67,8 @@ class Navigation extends React.Component {
         <div className="navigation-user">
           <CartIcon />
           {currentUser ?
-            // <Button className="navigation-button" onClick={userSignOut}>Sign Out</Button>
             <div className="navigation-user-dropdown">
-              <UserDropdown />
+              <UserDropdown userName={currentUser.displayName} />
             </div>
             :
             <Button className="navigation-button" onClick={this.toggleModal}>Sign In</Button>
@@ -87,8 +84,4 @@ const mapStateToProps = createStructuredSelector({
   user: selectUser
 });
 
-const mapDispatchToProps = dispatch => ({
-  userSignOut: () => dispatch(userSignOut())
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
+export default connect(mapStateToProps, null)(Navigation);

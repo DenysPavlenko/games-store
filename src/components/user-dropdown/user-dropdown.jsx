@@ -8,12 +8,12 @@ import { ReactComponent as ChevronDown } from 'assets/images/icons/chevron-down.
 // Style
 import './user-dropdown.sass';
 
-const UserDropdown = () => {
+const UserDropdown = ({ userName }) => {
   return (
     <Dropdown className="user-dropdown">
       <Dropdown.Toggle className="user-dropdown-toggle">
         <Avatar className="user-dropdown-avatar" />
-        <Typography component="h6" className="user-dropdown-name">Justas</Typography>
+        <Typography component="h6" className="user-dropdown-name mb-0">{userName}</Typography>
         <ChevronDown className="user-dropdown-chevron" />
       </Dropdown.Toggle>
       <Dropdown.Box className="user-dropdown-box">

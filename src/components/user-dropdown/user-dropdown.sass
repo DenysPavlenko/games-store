@@ -14,12 +14,12 @@
     &:hover
       .user-dropdown-name
         color: $c-light
-      .user-dropdown-chevron path
+      .user-dropdown-chevron
         fill: $c-light
     &.is-active
       .user-dropdown-name
         color: $c-light
-      .user-dropdown-chevron path
+      .user-dropdown-chevron
         fill: $c-light
       .user-dropdown-chevron
         transform: rotate(180deg)
@@ -38,10 +38,11 @@
       display: none
   &-chevron
     transition: 0.2s
-    path
-      transition: 0.2s
-      fill: $c-muted
+    width: 10px
+    height: 10px
+    transition: 0.2s
+    fill: $c-muted
   &-box
-    min-width: 140px
+    min-width: 120px
     margin-top: 1px
     border-radius: 0
