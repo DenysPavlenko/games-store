@@ -51,7 +51,7 @@ class Navigation extends React.Component {
 
   render() {
     const { user: { currentUser }, userSignOut } = this.props;
-    const { showModal, register } = this.state;
+    const { showModal } = this.state;
     return (
       <div className="navigation">
         <div className="navigation-menu">
