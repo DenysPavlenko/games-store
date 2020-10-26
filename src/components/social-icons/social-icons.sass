@@ -1,6 +1,6 @@
-@import ~styles/utils/grid
-@import ~styles/utils/mixins
-@import ~styles/variables
+@import ~styles/abstract/grid
+@import ~styles/abstract/mixins
+@import ~styles/abstract/variables
 
 .social-icons
   display: flex
@@ -22,7 +22,7 @@
         transition: 0.2s
 
 
-+media($breakpoint-xl)
++media-max($bp-xl)
   .social-icons
     &-icon
       &:not(:last-child)

@@ -1,0 +1,42 @@
+@import ../abstract/variables
+@import ../abstract/mixins
+
+$sizes: [0, 0.25, 0.5, 1, 1.5, 3]
+
+// Regular margins
+@each $size in $sizes
+  $i: #{index($sizes, $size) - 1}
+  .mt-#{$i}
+    margin-top: #{$spacer * $size}
+  .mr-#{$i}
+    margin-right: #{$spacer * $size}
+  .mb-#{$i}
+    margin-bottom: #{$spacer * $size}
+  .ml-#{$i}
+    margin-left: #{$spacer * $size}
+
+// Responsive margins
+@each $bp, $name in $breakpoints
+  +media-min($bp)
+    @each $size in $sizes
+      $i: #{index($sizes, $size) - 1}
+      .mt-#{$name}-#{$i}
+        margin-top: #{$spacer * $size}
+      .mr-#{$name}-#{$i}
+        margin-right: #{$spacer * $size}
+      .mb-#{$name}-#{$i}
+        margin-bottom: #{$spacer * $size}
+      .ml-#{$name}-#{$i}
+        margin-left: #{$spacer * $size}
+
+// Auto margins
+.ml-auto
+  margin-left: auto
+.mr-auto
+  margin-right: auto
+// Responsive auto margins
+@each $bp, $name in $breakpoints
+  .ml-#{$name}-auto
+    margin-left: auto
+  .mr-#{$name}-auto
+    margin-right: auto

@@ -2,7 +2,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import classNames from 'classnames';
 // Components
-import Container from 'components/container/container';
+import Container from 'layout/container/container';
 import BannerLeft from './banner-left/banner-left';
 import BannerRight from './banner-right/banner-right';
 import BannerPlaceholder from './banner-placeholder/banner-placeholder';

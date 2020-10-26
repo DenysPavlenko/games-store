@@ -1,6 +1,6 @@
-@import ~styles/variables
-@import ~styles/utils/mixins
-@import ~styles/utils/grid
+@import ~styles/abstract/variables
+@import ~styles/abstract/mixins
+@import ~styles/abstract/grid
 
 .modal
   position: fixed
@@ -66,7 +66,7 @@
       svg
        fill: $muted-color
 
-+media($breakpoint-xs)
++media-max($bp-xs)
   .modal
     &-block
       padding: 30px 15px

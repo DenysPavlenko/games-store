@@ -1,5 +1,5 @@
-@import ~styles/variables
-@import ~styles/utils/mixins
+@import ~styles/abstract/variables
+@import ~styles/abstract/mixins
 
 .product-header
   position: relative
@@ -36,14 +36,14 @@
       height: 100%
 
 
-+media($breakpoint-xl)
++media-max($bp-xl)
   .product-header
     &-image
       height: 500px
     &-video
       height: 500px
 
-+media($breakpoint-lg)
++media-max($bp-lg)
   .product-header
     &-slider-control
       position: absolute
@@ -57,7 +57,7 @@
       z-index: 2
       opacity: 1
 
-+media($breakpoint-md)
++media-max($bp-md)
   .product-header
     &-image
       height: 400px

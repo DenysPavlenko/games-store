@@ -7,7 +7,7 @@ import { fetchCategoriesData } from '../../redux/categories/categories.actions';
 import { selectCategories } from '../../redux/categories/categories.selectors';
 // Components
 import DirectoryCollection from 'components/directory-collection/directory-collection';
-import Container from 'components/container/container';
+import Container from 'layout/container/container';
 // Styles
 import './directory.sass';
 

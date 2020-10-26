@@ -8,7 +8,7 @@ import { fetchGamesData } from '../../redux/games/games.actions';
 import { selectGames } from '../../redux/games/games.selectors';
 // Components
 import ErrorIndicator from 'components/error-indicator/error-indicator';
-import Container from 'components/container/container'
+import Container from 'layout/container/container'
 import Slider from 'react-slick';
 import Plate from 'components/plate/plate';
 import PlatePlaceholder from 'components/plate/plate-placeholder/plate-placeholder';

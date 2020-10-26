@@ -1,5 +1,5 @@
-@import ~styles/variables
-@import ~styles/utils/mixins
+@import ~styles/abstract/variables
+@import ~styles/abstract/mixins
 
 .cart-item
   display: flex
@@ -57,7 +57,7 @@
         color: $text-light
 
 
-+media($breakpoint-xs)
++media-max($bp-xs)
   .cart-item
     &-image
       margin-bottom: 20px

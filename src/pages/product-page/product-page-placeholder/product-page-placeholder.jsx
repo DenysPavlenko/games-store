@@ -1,6 +1,6 @@
 import React from 'react';
 // Components
-import Container from 'components/container/container';
+import Container from 'layout/container/container';
 // Styles
 import './product-page-placeholder.sass'
 

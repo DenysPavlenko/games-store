@@ -1,6 +1,6 @@
-@import ~styles/variables
-@import ~styles/utils/grid
-@import ~styles/utils/mixins
+@import ~styles/abstract/variables
+@import ~styles/abstract/grid
+@import ~styles/abstract/mixins
 
 .cart
   &-heading
@@ -37,7 +37,7 @@
         margin-bottom: 10px
 
 
-+media($breakpoint-md)
++media-max($bp-md)
   .cart
     &-footer
       &-left
@@ -45,7 +45,7 @@
       &-right
         +col(5)
 
-+media($breakpoint-sm)
++media-max($bp-sm)
   .cart
     &-footer
       &-left

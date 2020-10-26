@@ -1,5 +1,5 @@
-@import ~styles/utils/mixins
-@import ~styles/variables
+@import ~styles/abstract/mixins
+@import ~styles/abstract/variables
 
 .plate-left
   position: relative
@@ -7,10 +7,10 @@
   z-index: 1
 
 
-+media($breakpoint-lg)
++media-max($bp-lg)
   .plate-left
     width: 50%
 
-+media($breakpoint-md)
++media-max($bp-md)
   .plate-left
     width: 100%

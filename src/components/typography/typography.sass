@@ -1,15 +1,5 @@
-@import "~styles/variables"
-@import "~styles/utils/mixins"
-
-html, body
-  font-family: 'Baloo Paaji 2', sans-serif
-  font-size: $base-font
-  text-align: left
-  font-weight: 400
-  color: $text-light
-
-input, select, textarea, button
-  font-family: inherit
+@import "~styles/abstract/variables"
+@import "~styles/abstract/mixins"
 
 h1,.h1, h2,.h2, h3,.h3, h4,.h4, h5,.h5, h6,.h6
   margin-bottom: 0.5rem
@@ -52,6 +42,6 @@ p, .p
   text-align: center
 
 
-+media($breakpoint-xs)
++media-max($bp-xs)
   html, body
     font-size: 13px

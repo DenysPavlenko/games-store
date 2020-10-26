@@ -1,5 +1,5 @@
-@import ~styles/variables
-@import ~styles/utils/mixins
+@import ~styles/abstract/variables
+@import ~styles/abstract/mixins
 
 .games-preview
   &-slider
@@ -40,7 +40,7 @@
       margin-left: -15px
 
 
-+media($breakpoint-md)
++media-max($bp-md)
   .games-preview
     &-slider
       &-info

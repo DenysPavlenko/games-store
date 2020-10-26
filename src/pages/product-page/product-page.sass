@@ -1,6 +1,6 @@
-@import ~styles/variables
-@import ~styles/utils/grid
-@import ~styles/utils/mixins
+@import ~styles/abstract/variables
+@import ~styles/abstract/grid
+@import ~styles/abstract/mixins
 
 .product
   padding: 120px 0 40px
@@ -44,7 +44,7 @@
     background-color: $primary-color
 
 
-+media($breakpoint-lg)
++media-max($bp-lg)
   .product
     &-description
       &-title
@@ -57,7 +57,7 @@
       &:not(:last-child)
         margin-right: 40px
 
-+media($breakpoint-md)
++media-max($bp-md)
   .product
     &-description
       &-title
@@ -74,7 +74,7 @@
       &:not(:last-child)
         margin-right: 0
 
-+media($breakpoint-sm)
++media-max($bp-sm)
   .product
     &-description
       &-title
@@ -89,7 +89,7 @@
       &:not(:last-child)
         margin-bottom: 20px
 
-+media($breakpoint-xs)
++media-max($bp-xs)
   .product
     &-description
       &-title

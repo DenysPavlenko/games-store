@@ -8,7 +8,7 @@ import { fetchCategoryDetailsData } from 'redux/category-details/category-detail
 import { selectCategory } from 'redux/category/category.selectors';
 import { selectCategoryDetails } from 'redux/category-details/category-details.selectors';
 // Components
-import Container from 'components/container/container';
+import Container from 'layout/container/container';
 import CategoryPreview from 'components/category-preview/category-preview';
 import Typography from 'components/typography/typography';
 import Cards from 'components/cards/cards';
@@ -51,12 +51,9 @@ class CategoryPage extends React.Component {
         <Container>
           <Cards isLoading={category.loading} hasError={category.error} placeholdersToShow={10}>
             {category.collection.map(({ id, image, name, rating }) => (
-              <Card key={id} onClick={() => history.push(`/product/${id}`)}>
-                <Card.Image image={image} />
-                <Card.Info>
-                  <Typography component="h5">{name}</Typography>
-                  <Typography component="h6" className="mb-0">Rating {rating}</Typography>
-                </Card.Info>
+              <Card key={id} onClick={() => history.push(`/product/${id}`)} image={image}>
+                <Typography component="h5">{name}</Typography>
+                <Typography component="h6" className="mb-0">Rating {rating}</Typography>
               </Card>
             ))}
           </Cards>

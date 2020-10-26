@@ -1,22 +1,27 @@
-// Base font size
-$base-font: 14px
+// Fonts
+$base-font-size: 14px
+$base-font-family: 'Baloo Paaji 2', sans-serif
 // Grid
-$gutter : 30px
 $columns: 12
+$gutter : 30px
 $spacer: 1rem
 // Containers
-$container-xl: 1260px
-$container-lg: 960px
-$container-md: 720px
-$container-sm: 540px
-$container-xs: 100%
+$cnt-xl: 1260px
+$cnt-lg: 960px
+$cnt-md: 720px
+$cnt-sm: 540px
+$cnt-xs: 100%
 // Breakpoints
-$breakpoint-xl: 1380px
-$breakpoint-lg: 991px
-$breakpoint-md: 767px
-$breakpoint-sm: 575px
-$breakpoint-xs: 460px
-
+$bp-xl: 1280px
+$bp-lg: 991px
+$bp-md: 767px
+$bp-sm: 575px
+$bp-xs: 460px
+// Maps
+// $containers : ( $bp-sm: $cnt-xs, $bp-md: $cnt-sm, $bp-lg: $cnt-md, $bp-xl: $cnt-lg )
+$containers : ( $bp-xl: $cnt-lg, $bp-lg: $cnt-md, $bp-md: $cnt-sm, $bp-sm: $cnt-xs )
+$breakpoints: ( $bp-xs: 'xs', $bp-sm: 'sm', $bp-md: 'md', $bp-lg: 'lg', $bp-xl: 'xl' )
+// $breakpoints: ( $bp-xl: 'xl', $bp-lg: 'lg', $bp-md: 'md', $bp-sm: 'sm', $bp-xs: 'xs' )
 // Colors
 $light-color    : #ffffff
 $dark-color     : #121212

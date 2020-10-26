@@ -1,5 +1,5 @@
-@import ~styles/utils/grid
-@import ~styles/utils/mixins
+@import ~styles/abstract/grid
+@import ~styles/abstract/mixins
 
 .checkout-page
   padding: 120px 0 120px
@@ -11,14 +11,14 @@
   &-totals
     +col(4)
 
-+media($breakpoint-xl)
++media-max($bp-xl)
   .checkout-page
     &-cart
       +col(7)
     &-totals
       +col(5)
 
-+media($breakpoint-md)
++media-max($bp-md)
   .checkout-page
     &-cart
       +col(12)

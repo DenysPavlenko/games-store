@@ -59,19 +59,16 @@ class DirectoryCollection extends React.Component {
     const { isLoading, hasError, title, collection, rootName, history } = this.props
     const { itemsToShow } = this.state;
     return (
-      <div className="directory-collection" >
+      <div className="directory-collection">
         <div className="directory-collection-heading">
           <Typography component="h3">By {title}</Typography>
           <Button onClick={() => { history.push(`/categories/${rootName}`) }} btnBordered>View all</Button>
         </div>
         <Cards isLoading={isLoading} hasError={hasError} placeholdersToShow={itemsToShow}>
           {collection.slice(0, itemsToShow).map(({ id, rout, image, name, total }) => (
-            <Card key={id} onClick={() => history.push(`/categories/${rootName}/${rout}`)} >
-              <Card.Image image={image} />
-              <Card.Info>
-                <Typography component="h5">{name}</Typography>
-                <Typography component="h6" className="mb-0">Total: {total} games</Typography>
-              </Card.Info>
+            <Card key={id} onClick={() => history.push(`/categories/${rootName}/${rout}`)} image={image}>
+              <Typography component="h5">{name}</Typography>
+              <Typography component="h6" className="mb-0">Total: {total} games</Typography>
             </Card>
           ))}
         </Cards>

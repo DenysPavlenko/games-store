@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ErrorIndicator from 'components/error-indicator/error-indicator';
 import Plate from 'components/plate/plate';
 import Typography from 'components/typography/typography';
-import Container from 'components/container/container';
+import Container from 'layout/container/container';
 import PlatePlaceholder from 'components/plate/plate-placeholder/plate-placeholder';
 // Styles
 import './category-preview.sass';

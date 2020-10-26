@@ -1,6 +1,6 @@
-@import ~styles/variables
-@import '~styles/common/animations'
-@import ~styles/utils/mixins
+@import ~styles/abstract/variables
+@import ~styles/abstract/animations
+@import ~styles/abstract/mixins
 
 .plate-placeholder
   background-color: $primary-color
@@ -50,18 +50,18 @@
     height: 16px
 
 
-+media($breakpoint-xl)
++media-max($bp-xl)
   .plate-placeholder
     &-right
       padding: 30px
 
-+media($breakpoint-lg)
++media-max($bp-lg)
   .plate-placeholder
     &-left,
     &-right
       width: 50%
 
-+media($breakpoint-md)
++media-max($bp-md)
   .plate-placeholder
     height: auto
     &-left

@@ -1,0 +1,11 @@
+@import ~styles/abstract/variables
+@import ~styles/abstract/mixins
+@import ~styles/abstract/grid
+
+.container
+  +container($cnt-xl)
+  @each $bp, $width in $containers
+    +media-max($bp)
+      +container($width, false)
+.container-fluid
+  +container(100%, false, true)

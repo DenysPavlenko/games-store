@@ -1,5 +1,5 @@
-@import ~styles/utils/mixins
-@import ~styles/variables
+@import ~styles/abstract/mixins
+@import ~styles/abstract/variables
 
 .plate-right
   position: relative
@@ -10,15 +10,15 @@
   flex-direction: column
   z-index: 1
 
-+media($breakpoint-xl)
++media-max($bp-xl)
   .plate-right
     padding: 30px
 
-+media($breakpoint-lg)
++media-max($bp-lg)
   .plate-right
     width: 50%
 
-+media($breakpoint-md)
++media-max($bp-md)
   .plate-right
     width: 100%
     padding: 30px 15px

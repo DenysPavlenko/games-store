@@ -1,0 +1,38 @@
+.row-group
+  display: flex
+  flex-wrap: wrap
+  // Elements
+  &>*
+    flex-shrink: 0
+    &:not(:last-child)
+      margin-right: 20px
+    &--flex-1
+      flex: 1
+  // Modifiers
+  &--align-center
+    align-items: center
+  &--justify-center
+    justify-content: center
+  &--nowrap
+    flex-wrap: nowrap
+  &--flex-1
+    .row-group__item
+      flex: 1
+  &--w100
+    width: 100%
+  &--md
+    &>*
+      &:not(:last-child)
+        margin-right: 15px
+  &--sm
+    &>*
+      &:not(:last-child)
+        margin-right: 10px
+  &--xs
+    &>*
+      &:not(:last-child)
+        margin-right: 5px
+  &--0
+    &>*
+      &:not(:last-child)
+        margin-right: 0

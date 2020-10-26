@@ -1,16 +1,23 @@
-@import ~styles/variables
-@import ~styles/utils/grid
-@import ~styles/utils/mixins
+@import ~styles/abstract/variables
+@import ~styles/abstract/grid
+@import ~styles/abstract/mixins
 
 .card
   position: relative
+  height: 350px
   width: calc( 20% - 30px )
   margin: 0 15px
   margin-bottom: 60px
-  height: 350px
   cursor: pointer
   overflow: hidden
-  transition: 0.5s
+  +media-max($bp-xl)
+    +col-mx(3)
+  +media-max($bp-lg)
+    +col-mx(4)
+  +media-max($bp-md)
+    +col-mx(6)
+  +media-max($bp-xs)
+    +col-mx(12)
   &:hover
     .card-image
       transform: scale(1.1)
@@ -18,16 +25,46 @@
       &:after
         transform: translateY(0)
 
+  &-image
+    width: 100%
+    height: 100%
+    transition: transform 4s
+    background:
+      size: cover
+      position: center
+      repeat: no-repeat
 
-+media($breakpoint-xl)
+  &-info
+    position: absolute
+    width: 100%
+    background-color: $dark-color
+    bottom: 0
+    left: 0
+    text-align: left
+    padding: 14px 0 16px
+    color: $text-light
+    z-index: 2
+    &:after
+      position: absolute
+      content: ''
+      bottom: 0
+      left: 0
+      width: 100%
+      height: 6px
+      transform: translateY(5px)
+      transition: .3s
+      background-color: $accent-color
+
+
++media-max($bp-xl)
   .card
     +col-mx(3)
-+media($breakpoint-lg)
++media-max($bp-lg)
   .card
     +col-mx(4)
-+media($breakpoint-md)
++media-max($bp-md)
   .card
     +col-mx(6)
-+media($breakpoint-xs)
++media-max($bp-xs)
   .card
     +col-mx(12)

@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { fetchCategoriesData } from '../../redux/categories/categories.actions';
 import { selectChosenCategory } from '../../redux/categories/categories.selectors';
 // Components
-import Container from 'components/container/container';
+import Container from 'layout/container/container';
 import Typography from 'components/typography/typography';
 import Cards from 'components/cards/cards';
 import Card from 'components/card/card';
@@ -84,12 +84,9 @@ class CategoriesPage extends React.Component {
           <Typography component="h2" className="mb-5">All {params.categoriesRout}</Typography>
           <Cards isLoading={loading} hasError={error} placeholdersToShow={20}>
             {collection.map(({ id, rout, image, name, total }) => (
-              <Card key={id} onClick={() => history.push(`${url}/${rout}`)} >
-                <Card.Image image={image} />
-                <Card.Info>
-                  <Typography component="h5">{name}</Typography>
-                  <Typography component="h6" className="mb-0">Total: {total} games</Typography>
-                </Card.Info>
+              <Card key={id} onClick={() => history.push(`${url}/${rout}`)} image={image}>
+                <Typography component="h5">{name}</Typography>
+                <Typography component="h6" className="mb-0">Total: {total} games</Typography>
               </Card>
             ))}
           </Cards>

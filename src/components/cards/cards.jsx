@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // Components
-import CardPlaceholder from 'components/card/card-placeholder/card-placeholder';
+import CardPlaceholder from 'components/card-placeholder/card-placeholder';
 import ErrorIndicator from 'components/error-indicator/error-indicator';
 // Styles
 import './cards.sass';
@@ -26,7 +26,7 @@ const Cards = ({ isLoading, hasError, placeholdersToShow, children }) => {
   return (
     <div className="cards">
       {children}
-    </div>
+    </div >
   );
 };
 

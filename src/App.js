@@ -16,7 +16,6 @@ import ScrollToTop from "components/scroll-to-top/scroll-to-top";
 import Navigation from "components/navigation/navigation";
 import Footer from "components/footer/footer";
 import Cart from "components/cart/cart";
-import './app.sass'
 
 class App extends React.Component {
 

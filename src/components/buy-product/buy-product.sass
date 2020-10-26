@@ -1,5 +1,5 @@
-@import ~styles/variables
-@import ~styles/utils/mixins
+@import ~styles/abstract/variables
+@import ~styles/abstract/mixins
 
 .buy-product
   display: flex
@@ -29,7 +29,7 @@
       fill: white
 
 
-+media($breakpoint-md)
++media-max($bp-md)
   .buy-product
     &-left
       width: 100%

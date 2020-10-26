@@ -1,5 +1,5 @@
-@import ~styles/variables
-@import ~styles/utils/mixins
+@import ~styles/abstract/variables
+@import ~styles/abstract/mixins
 
 .reviews-list-item
   height: 100%
@@ -11,6 +11,6 @@
     margin-bottom: 20px
 
 
-+media($breakpoint-xl)
++media-max($bp-xl)
   .reviews-list-item
     padding: 40px 15px

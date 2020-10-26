@@ -1,0 +1,46 @@
+@import ~styles/abstract/variables
+@import ~styles/abstract/grid
+@import ~styles/abstract/mixins
+
+// Default flex column
+.col
+  +col(0, false, false)
+// Default flex columns from 1 to 12
+@for $i from 1 through $columns
+  .col-#{$i}
+    +col($i, false, false)
+// Responsive columns
+@each $bp, $name in $breakpoints
+  +media-min($bp)
+    .col-#{$name}
+      +col(0, false, false)
+    @for $i from 1 through $columns
+      .col-#{$name}-#{$i}
+        +col($i, false, false)
+
+// Default offsets styles
+@for $i from 1 through $columns
+  .offset-#{$i}
+    +offset($i)
+// Responsive offsets styles
+@each $bp, $name in $breakpoints
+  +media-min($bp)
+    @for $i from 1 through $columns
+      .offset-#{$name}-#{$i}
+        +offset($i)
+
+$max: 12
+// Default orders
+$i: 0
+@while $i <= $max
+  .order-#{$i}
+    order: $i
+  $i: $i + 1
+// Responsive orders
+@each $bp, $name in $breakpoints
+  $i: 0
+  +media-min($bp)
+    @while $i <= $max
+      .order-#{$name}-#{$i}
+        order: $i
+      $i: $i + 1

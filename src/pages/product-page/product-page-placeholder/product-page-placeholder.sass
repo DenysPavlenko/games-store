@@ -1,7 +1,7 @@
-@import ~styles/variables
-@import ~styles/utils/grid
-@import ~styles/utils/mixins
-@import '~styles/common/animations'
+@import ~styles/abstract/variables
+@import ~styles/abstract/grid
+@import ~styles/abstract/mixins
+@import ~styles/abstract/animations
 
 .product-placeholder
   padding: 123px 0 40px
@@ -48,12 +48,12 @@
       height: 360px
 
 
-+media($breakpoint-xl)
++media-max($bp-xl)
   .product-placeholder
     &-header
       height: 500px
 
-+media($breakpoint-lg)
++media-max($bp-lg)
   .product-placeholder
     &-description
       &-title

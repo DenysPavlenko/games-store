@@ -1,6 +1,6 @@
 import React from 'react';
 // Components
-import Container from 'components/container/container'
+import Container from 'layout/container/container'
 import SocialIcons from 'components/social-icons/social-icons';
 import Typography from 'components/typography/typography';
 // Styles
