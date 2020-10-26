@@ -69,8 +69,8 @@ class Navigation extends React.Component {
         <div className="navigation-user">
           <CartIcon />
           {currentUser ?
+            // <Button className="navigation-button" onClick={userSignOut}>Sign Out</Button>
             <div className="navigation-user-dropdown">
-              <Button className="navigation-button" onClick={userSignOut}>Sign Out</Button>
               <UserDropdown />
             </div>
             :

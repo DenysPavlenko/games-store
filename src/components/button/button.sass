@@ -10,7 +10,7 @@
   line-height: 1
   font-weight: 500
   letter-spacing: 0.02rem
-  color: $text-light
+  color: $c-light
   background-color: $button-bg
   transition: 0.3s
   cursor: pointer
@@ -23,35 +23,35 @@
     min-width: 180px
 
   &-bordered
-    border: 1px solid $muted-color-alt
+    border: 1px solid $c-muted-alt
     padding: 10px 20px 9px
     background-color: transparent
-    color: $text-light
+    color: $c-light
     &:hover
-      border: 1px solid $light-color
+      border: 1px solid $c-light
       background-color: transparent
-      color: $text-light
+      color: $c-light
   &-bordered-lg
-    border: 1px solid $muted-color-alt
+    border: 1px solid $c-muted-alt
     padding: 19px 40px 18px
     background-color: transparent
-    color: $text-dark
+    color: $c-dark
     &:hover
-      border: 1px solid $muted-color
+      border: 1px solid $c-muted
       background-color: transparent
 
   &-arrow
     padding: 0
     background-color: unset
     display: inline-flex
-    color: $muted-color
+    color: $c-muted
     &-icon
       width: 13px
       margin-left: 8px
       transition: transform 0.3s
     &:hover
       background-color: unset
-      color: $text-light
+      color: $c-light
       .button-arrow-icon
         transform: translateX(5px)
 
@@ -77,13 +77,13 @@
   &-google-sign-in
     position: relative
     padding: 0
-    background-color: $primary-color
+    background-color: $c-primary
     &-icon-wrap
       padding: 11px 0 11px
       width: 45px
       display: flex
       justify-content: center
-      background-color: $dark-color
+      background-color: $c-dark
       transition: 0.2s
     &-icon
       width: 19px
@@ -92,7 +92,7 @@
       padding: 0 10px
       width: calc(100% - 45px)
     &:hover
-      background-color: lighten($primary-color, 10%)
+      background-color: lighten($c-primary, 10%)
 
 
 +media-max($bp-md)

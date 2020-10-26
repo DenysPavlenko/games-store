@@ -3,7 +3,7 @@ import React from 'react';
 import Avatar from 'components/avatar/avatar';
 import Dropdown from 'components/dropdown/dropdown';
 import Typography from 'components/typography/typography';
-// import UserDropdownMenu from 'components/user-dropdown-menu/user-dropdown-menu';
+import UserDropdownMenu from 'components/user-dropdown-menu/user-dropdown-menu';
 import { ReactComponent as ChevronDown } from 'assets/images/icons/chevron-down.svg';
 // Style
 import './user-dropdown.sass';
@@ -17,8 +17,7 @@ const UserDropdown = () => {
         <ChevronDown className="user-dropdown-chevron" />
       </Dropdown.Toggle>
       <Dropdown.Box className="user-dropdown-box">
-        {/* <UserDropdownMenu /> */}
-        <p>lomre</p>
+        <UserDropdownMenu />
       </Dropdown.Box>
     </Dropdown>
   );

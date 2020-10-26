@@ -4,35 +4,35 @@ input.input
   width: 100%
   background-color: transparent
   border: 1px solid $input-border
-  color: $text-light
+  color: $c-light
   padding: 6px 15px
   font-family: inherit
   font-size: 1rem
   line-height: 1rem
   &::placeholder
-    color: $input-placeholder
+    color:  rgba($c-light, 0.3)
   &[type="checkbox"]
     width: auto
 
   &-dark
-    border: 1px solid $primary-color
-    color: $text-dark
+    border: 1px solid $c-primary
+    color: $c-dark
     &::placeholder
-      color: $text-dark
+      color: $c-dark
     &:-webkit-autofill,
     &:-webkit-autofill:hover,
     &:-webkit-autofill:focus,
-      border: 1px solid $primary-color !important
-      -webkit-text-fill-color: $text-dark !important
-      -webkit-box-shadow: 0 0 0px 1000px $light-color inset !important
+      border: 1px solid $c-primary !important
+      -webkit-text-fill-color: $c-dark !important
+      -webkit-box-shadow: 0 0 0px 1000px $c-light inset !important
 
   &-invalid
-    border: 1px solid $danger-color
+    border: 1px solid $c-danger
 
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus,
     background-color: transparent
     border: 1px solid $input-border
-    -webkit-text-fill-color: $text-light
-    -webkit-box-shadow: 0 0 0px 1000px $primary-color inset
+    -webkit-text-fill-color: $c-light
+    -webkit-box-shadow: 0 0 0px 1000px $c-primary inset

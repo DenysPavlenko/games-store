@@ -21,7 +21,7 @@
     height: auto
     margin: 0 20px 0 30px
     display: block
-    fill: $muted-color
+    fill: $c-muted
   &-list
     overflow: hidden
     display: flex
@@ -32,7 +32,7 @@
       font-size: rem(14px)
       line-height: 1
       font-weight: 500
-      color: $text-muted
+      color: $c-muted
       transition: 0.3s
       letter-spacing: 0.02rem
       &:after
@@ -41,14 +41,14 @@
         bottom: 0
         left: 0
         width: 100%
-        background-color: $accent-color
+        background-color: $c-accent
         height: 5px
         transform: translateY(110%)
         transition: .3s
       &:hover
-        color: $text-light
+        color: $c-light
       &.active
-        color: $text-light
+        color: $c-light
         &:after
           transform: translateY(0)
 

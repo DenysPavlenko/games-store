@@ -1,27 +1,30 @@
 @import ~styles/abstract/variables
 
 .user-dropdown-menu
-  &__items
+  &-items
     display: flex
     flex-direction: column
-  &__item
+  &-item
     display: flex
     align-items: center
-    height: 40px
-    padding: 0 15px
-    border-radius: $r-type-3
+    color: $c-muted
+    padding: 12px 15px
     transition: 0.2s
     background-color: transparent
     cursor: pointer
     &:hover,
     &.active
-      background-color: #ccc
-    &:not(:last-child)
-      margin-bottom: 5px
-  &__icon
+      background-color: $c-muted-alt
+      color: $c-light
+      .user-dropdown-menu-icon path
+        fill: $c-light
+  &-icon
     margin-right: 10px
-  &__title
+    path
+      transition: 0.2s
+      fill: $c-muted
+  &-title
     font-size: rem(14px)
     line-height: 1
     font-weight: 400
-    color: #ccc
+    color: $c-muted
