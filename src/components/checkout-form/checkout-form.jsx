@@ -151,6 +151,7 @@ class CheckoutForm extends React.Component {
             this.setState({ cardInvalid: event.error });
           }} />
         </div>
+        <Typography component="span" variant="p" className="text-muted">Test card: <span className="text-danger">4242424242424242, 1231, 111, 1111</span></Typography>
         <div className="checkout-form-terms">
           <Input className="checkout-form-terms-input" type="checkbox" checked={terms} name="terms" id="terms" onChange={this.handleCheck} />
           <label htmlFor="terms">
