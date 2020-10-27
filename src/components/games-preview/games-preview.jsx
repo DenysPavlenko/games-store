@@ -18,7 +18,7 @@ const GamesPreview = ({ games, games: { collection }, fetchGamesData }) => {
 
   useEffect(() => {
     fetchGamesData();
-  }, [])
+  }, [fetchGamesData]);
 
   return (
     <div className="games-preview">
