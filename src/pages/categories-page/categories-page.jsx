@@ -8,11 +8,12 @@ import { fetchCategoriesData } from '../../redux/categories/categories.actions';
 import { selectChosenCategory } from '../../redux/categories/categories.selectors';
 // Components
 import Container from 'layout/container/container';
+import Figure from 'components/figure/figure';
 import Typography from 'components/typography/typography';
 import Cards from 'components/cards/cards';
 import Card from 'components/card/card';
 import Breadcrumbs from 'components/breadcrumbs/breadcrumbs';
-import Banner from 'components/banner/banner.component';
+import Banner from 'components/slider-preview/slider-preview';
 import Button from 'components/button/button';
 // Styles
 import './categories-page.sass'
@@ -56,7 +57,7 @@ class CategoriesPage extends React.Component {
           <Banner.Left>
             {collection.map(({ id, image, rout }) => (
               <Link to={`${url}/${rout}`} key={id} className="categories-page-banner-image">
-                <figure style={{ backgroundImage: `url(${image})` }}></figure>
+                <Figure image={image} />
               </Link>
             ))}
           </Banner.Left>
@@ -90,7 +91,7 @@ class CategoriesPage extends React.Component {
               </Card>
             ))}
           </Cards>
-        </Container >
+        </Container>
       </div >
     );
   }

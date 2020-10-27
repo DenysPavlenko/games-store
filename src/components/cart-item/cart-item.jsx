@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 // Components
 import Typography from 'components/typography/typography';
+import Figure from 'components/figure/figure';
 // Styles
 import './cart-item.sass';
 // Assets
@@ -20,7 +21,7 @@ const CartItem = ({ cartItem, hideCart, addItem, removeItem, clearItem, classNam
     <div className={classes}>
       <div className="cart-item-image">
         <Link to={`/product/${id}`} onClick={hideCart}>
-          <figure style={{ backgroundImage: `url(${image})` }}></figure>
+          <Figure image={image} />
         </Link>
       </div>
       <div className="cart-item-content">

@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 // Components
 import SliderArrow from 'components/slider-arrow/slider-arrow';
+import Figure from 'components/figure/figure';
 import Slider from 'react-slick';
 // Styles
 import './product-header.sass';
@@ -88,7 +89,7 @@ const ProductHeaderVideo = ({ preview }) => (
 
 const ProductHeaderImage = ({ preview }) => (
   <div className="product-header-image">
-    <figure className="product-header-image" style={{ backgroundImage: `url(${preview})` }}></figure>
+    <Figure className="product-header-image" image={preview} />
   </div>
 );
 

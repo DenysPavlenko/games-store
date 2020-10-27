@@ -1,26 +1,28 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+// Components
+import Figure from 'components/figure/figure';
 // Styles
 import './card.sass';
 
-const Card = ({ image, onClick, children }) => {
+const Card = ({ image, children, onClick }) => {
   return (
     <div className="card" onClick={onClick}>
-      <figure className="card-image" style={{ backgroundImage: `url(${image})` }}></figure>
+      <Figure className="card-image" image={image} />
       <div className="card-info">
         {children}
       </div>
     </div>
   )
 }
-
 Card.defaultProps = {
-  onClick: () => { },
+  onClick: () => { }
 }
 
 Card.propTypes = {
   children: PropTypes.node.isRequired,
+  onClick: PropTypes.func,
 }
 
 export default withRouter(Card);

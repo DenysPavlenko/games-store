@@ -8,7 +8,8 @@ const PlateLeft = ({ children, className }) => {
   const classes = classNames({
     'plate-left': true,
     [className]: className
-  })
+  });
+
   return (
     <div className={classes}>
       {children}

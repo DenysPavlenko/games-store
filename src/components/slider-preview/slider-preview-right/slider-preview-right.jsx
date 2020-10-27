@@ -1,9 +1,11 @@
 import React from 'react';
 import Slider from 'react-slick';
+// Components
+import Plate from 'components/plate/plate';
 // Assets
 import SliderArrow from 'components/slider-arrow/slider-arrow';
 // Styles
-import './banner-right.sass';
+import './slider-preview-right.sass';
 
 class BannerRight extends React.Component {
   sliderRight = React.createRef();
@@ -16,15 +18,15 @@ class BannerRight extends React.Component {
   render() {
     const { children, slickSettings, nextSlide, sliderLeft, prevSlide } = this.props
     return (
-      <div className="banner-right">
-        <div className="banner-right-slider-control">
+      <Plate.Right className="slider-preview-right">
+        <div className="slider-preview-right-slider-control">
           <SliderArrow onClick={nextSlide} reversed />
           <SliderArrow onClick={prevSlide} />
         </div>
         <Slider asNavFor={sliderLeft} {...slickSettings} ref={this.sliderRight}>
           {children}
         </Slider>
-      </div>
+      </Plate.Right>
     );
   }
 };

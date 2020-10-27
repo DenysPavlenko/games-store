@@ -1,7 +1,7 @@
 import React from 'react';
 import Slider from 'react-slick';
-// Styles
-import './banner-left.sass';
+// Components
+import Plate from 'components/plate/plate';
 
 class BannerLeft extends React.Component {
   sliderLeft = React.createRef();
@@ -14,11 +14,11 @@ class BannerLeft extends React.Component {
   render() {
     const { children, slickSettings, sliderRight } = this.props;
     return (
-      <div className="banner-left">
+      <Plate.Left>
         <Slider {...slickSettings} asNavFor={sliderRight} ref={this.sliderLeft}>
           {children}
         </Slider>
-      </div>
+      </Plate.Left>
     )
   }
 };

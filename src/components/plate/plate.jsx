@@ -17,18 +17,17 @@ class Plate extends React.Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
-    onClick: PropTypes.func,
   }
 
   render() {
-    const { children, className, onClick } = this.props;
+    const { children, className, ...otherProps } = this.props;
     const classes = classNames({
       'plate': true,
       [className]: className
-    })
+    });
 
     return (
-      <div className={classes} onClick={onClick}>
+      <div className={classes} {...otherProps}>
         {React.Children.map(children, child => (
           React.cloneElement(child, {})
         ))}

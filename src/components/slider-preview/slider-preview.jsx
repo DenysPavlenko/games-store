@@ -3,17 +3,18 @@ import React from 'react';
 import classNames from 'classnames';
 // Components
 import Container from 'layout/container/container';
-import BannerLeft from './banner-left/banner-left';
-import BannerRight from './banner-right/banner-right';
-import BannerPlaceholder from './banner-placeholder/banner-placeholder';
+import Plate from 'components/plate/plate';
+import PlatePlaceholder from 'components/plate/plate-placeholder/plate-placeholder';
+import SliderPreview from './slider-preview-left/slider-preview-left';
+import SliderPreviewRight from './slider-preview-right/slider-preview-right';
 import ErrorIndicator from 'components/error-indicator/error-indicator';
 // Styles
-import './banner.sass';
+import './slider-preview.sass';
 
 class Banner extends React.Component {
 
-  static Left = BannerLeft;
-  static Right = BannerRight;
+  static Left = SliderPreview;
+  static Right = SliderPreviewRight;
 
   state = {
     sliderRight: null,
@@ -64,30 +65,28 @@ class Banner extends React.Component {
     };
 
     const classes = classNames({
-      'banner': true,
+      'slider-preview': true,
       [className]: className
     });
 
     if (hasError) { return <div className={classes}><Container><ErrorIndicator /></Container></div> }
-    if (isLoading) { return <div className={classes}><Container><BannerPlaceholder /></Container></div> }
+    if (isLoading) { return <div className={classes}><Container><PlatePlaceholder /></Container></div> }
 
     return (
-      <div className={classes}>
-        <Container>
-          <div className="banner-wrapper" onMouseOver={this.stopSliders} onMouseOut={this.startSliders}>
-            {React.Children.map(children, child => (
-              React.cloneElement(child, {
-                slickSettings,
-                sliderLeft,
-                sliderRight,
-                setRef: this.setRef,
-                nextSlide: this.nextSlide,
-                prevSlide: this.prevSlide,
-              })
-            ))}
-          </div>
-        </Container>
-      </div>
+      <Container>
+        <Plate className={classes} onMouseOver={this.stopSliders} onMouseOut={this.startSliders}>
+          {React.Children.map(children, child => (
+            React.cloneElement(child, {
+              slickSettings,
+              sliderLeft,
+              sliderRight,
+              setRef: this.setRef,
+              nextSlide: this.nextSlide,
+              prevSlide: this.prevSlide,
+            })
+          ))}
+        </Plate>
+      </Container>
     );
   }
 }

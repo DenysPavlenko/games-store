@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 // Components
 import ErrorIndicator from 'components/error-indicator/error-indicator';
 import Plate from 'components/plate/plate';
+import Figure from 'components/figure/figure';
 import Typography from 'components/typography/typography';
 import Container from 'layout/container/container';
 import PlatePlaceholder from 'components/plate/plate-placeholder/plate-placeholder';
-// Styles
-import './category-preview.sass';
 
 const CategoryPreview = ({ data, isLoading, hasError }) => {
 
@@ -16,13 +15,13 @@ const CategoryPreview = ({ data, isLoading, hasError }) => {
 
   return (
     <Container>
-      <Plate className="category-preview">
+      <Plate>
         <Plate.Left>
-          <figure className="category-preview-image" style={{ backgroundImage: `url(${data.image})` }}></figure>
+          <Figure image={data.image}></Figure>
         </Plate.Left>
-        <Plate.Right className="category-preview-info">
+        <Plate.Right>
           <Typography component="h4">{data.name} games</Typography>
-          <Typography component="p">{data.description.match(/<p>(.*?)<\/p>/)[1]}</Typography>
+          <Typography component="p" className="mb-0">{data.description.match(/<p>(.*?)<\/p>/)[1]}</Typography>
         </Plate.Right>
       </Plate>
     </Container>

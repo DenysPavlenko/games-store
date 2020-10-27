@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+// Components
+import Figure from 'components/figure/figure';
 // Styles
 import './avatar.sass';
 
@@ -12,7 +14,7 @@ const Avatar = ({ image, className }) => {
 
   return (
     <div className={classnames}>
-      <figure className="avatar-image" style={image && { backgroundImage: `url(${image})` }}></figure>
+      <Figure className="avatar-image" image={image} />
     </div>
   );
 };
