@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
@@ -11,7 +11,7 @@ import Container from 'layout/container/container';
 // Styles
 import './directory.sass';
 
-class Directory extends React.Component {
+class Directory extends Component {
 
   static propTypes = {
     categories: PropTypes.object.isRequired,

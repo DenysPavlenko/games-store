@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { loadStripe } from '@stripe/stripe-js';
@@ -16,7 +16,7 @@ import './stripe-payment.sass';
 
 const stripePromise = loadStripe("pk_test_hISzKXXyR5riFGZeaXvHWeQU00QUWFivUZ");
 
-class StripePayment extends React.Component {
+class StripePayment extends Component {
   state = {
     showModal: false
   }

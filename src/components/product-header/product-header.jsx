@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 // Components
@@ -8,7 +8,7 @@ import Slider from 'react-slick';
 // Styles
 import './product-header.sass';
 
-class ProductHeader extends React.Component {
+class ProductHeader extends Component {
 
   state = {
     videoIndex: 0

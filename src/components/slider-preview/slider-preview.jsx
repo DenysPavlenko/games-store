@@ -1,5 +1,4 @@
-import React from 'react';
-// import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import classNames from 'classnames';
 // Components
 import Container from 'layout/container/container';
@@ -11,7 +10,7 @@ import ErrorIndicator from 'components/error-indicator/error-indicator';
 // Styles
 import './slider-preview.sass';
 
-class Banner extends React.Component {
+class Banner extends Component {
 
   static Left = SliderPreview;
   static Right = SliderPreviewRight;

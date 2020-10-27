@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 // Components
@@ -7,7 +7,7 @@ import PlateRight from './plate-right/plate-right';
 // Styles
 import './plate.sass';
 
-class Plate extends React.Component {
+class Plate extends Component {
   static Left = PlateLeft;
   static Right = PlateRight;
   static defaultProps = {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -18,7 +18,7 @@ import Button from 'components/button/button';
 // Styles
 import './categories-page.sass'
 
-class CategoriesPage extends React.Component {
+class CategoriesPage extends Component {
   static propTypes = {
     data: PropTypes.object.isRequired,
     fetchCategoriesData: PropTypes.func.isRequired,

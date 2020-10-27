@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // Components
 import Slider from 'react-slick';
@@ -7,7 +7,7 @@ import SliderArrow from 'components/slider-arrow/slider-arrow';
 // Styles
 import './reviews-list.sass';
 
-class ReviewsList extends React.Component {
+class ReviewsList extends Component {
 
   static propTypes = {
     reviews: PropTypes.array.isRequired,

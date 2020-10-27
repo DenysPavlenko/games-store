@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -17,7 +17,7 @@ import Breadcrumbs from 'components/breadcrumbs/breadcrumbs';
 // Styles
 import './category-page.sass';
 
-class CategoryPage extends React.Component {
+class CategoryPage extends Component {
 
   static propTypes = {
     category: PropTypes.object.isRequired,

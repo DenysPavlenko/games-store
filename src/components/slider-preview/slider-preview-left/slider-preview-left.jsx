@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Slider from 'react-slick';
 // Components
 import Plate from 'components/plate/plate';
 
-class BannerLeft extends React.Component {
+class BannerLeft extends Component {
   sliderLeft = React.createRef();
 
   componentDidMount() {

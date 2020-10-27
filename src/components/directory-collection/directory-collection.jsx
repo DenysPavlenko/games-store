@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { withBreakpoints } from 'react-breakpoints';
 import PropTypes from 'prop-types';
@@ -10,7 +10,7 @@ import Button from 'components/button/button';
 // Styles
 import './directory-collection.sass';
 
-class DirectoryCollection extends React.Component {
+class DirectoryCollection extends Component {
   state = {
     itemsToShow: 5
   }

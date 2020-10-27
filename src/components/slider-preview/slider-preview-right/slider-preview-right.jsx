@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Slider from 'react-slick';
 // Components
 import Plate from 'components/plate/plate';
@@ -7,7 +7,7 @@ import SliderArrow from 'components/slider-arrow/slider-arrow';
 // Styles
 import './slider-preview-right.sass';
 
-class BannerRight extends React.Component {
+class BannerRight extends Component {
   sliderRight = React.createRef();
 
   componentDidMount() {

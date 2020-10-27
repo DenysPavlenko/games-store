@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
@@ -8,7 +8,7 @@ import './modal.sass';
 // Assets
 import { ReactComponent as CloseIcon } from 'assets/images/icons/close.svg';
 
-class Modal extends React.Component {
+class Modal extends Component {
   modalParent = document.createElement('div');
 
   static defaultProps = {

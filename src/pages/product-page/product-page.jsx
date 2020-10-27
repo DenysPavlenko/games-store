@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -35,17 +35,18 @@ const reviews = [
   { id: '4', title: 'Steam', name: 'by John Doe', rating: '7/10', review: 'Kissing gourami hatchetfish featherfin knifefish sharksucker Red salmon daggertooth pike conger. Beaked salmon, smelt porgy zebrafish anglerfish roach, dorab, fingerfish Blacksmelt--striped burrfish pickerel, loosejaw wahoo morwong.' },
   { id: '5', title: 'Easy gaming', name: 'by Sara Johnson', rating: '10/10', review: 'Black mackerel whitetip reef shark--Atlantic herring Rainbow trout four-eyed fish, mooneye Pacific salmon. Gray reef shark perch codling bluntnose knifefish loweye catfish whitefish mud cat loach minnow roundhead. Sargassum fish cornetfish tilapia anglerfish; carpsucker poacher frogfish sheepshead.' },
 ];
+const socials = [
+  { Icon: Twitter, link: 'http://example.com' },
+  { Icon: Discord, link: 'http://example.com' },
+  { Icon: Facebook, link: 'http://example.com' },
+  { Icon: Instagram, link: 'http://example.com' },
+  { Icon: Youtube, link: 'http://example.com' },
+]
 
-class ProductPage extends React.Component {
+class ProductPage extends Component {
   state = {
     reviews,
-    socials: [
-      { Icon: Twitter, link: 'http://example.com' },
-      { Icon: Discord, link: 'http://example.com' },
-      { Icon: Facebook, link: 'http://example.com' },
-      { Icon: Instagram, link: 'http://example.com' },
-      { Icon: Youtube, link: 'http://example.com' },
-    ],
+    socials,
     inCart: false
   }
 

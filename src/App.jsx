@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
@@ -12,21 +12,20 @@ import CategoryPage from 'pages/category-page/category-page';
 import ProductPage from 'pages/product-page/product-page';
 import CheckoutPage from 'pages/checkout-page/checkout-page';
 // Components
+import ErrorBoudry from "components/error-boundry/error-boundry";
 import ScrollToTop from "components/scroll-to-top/scroll-to-top";
 import Navigation from "components/navigation/navigation";
 import Footer from "components/footer/footer";
 import Cart from "components/cart/cart";
 
-class App extends React.Component {
+const App = ({ checkUserSession, location, cartItems }) => {
 
-  componentDidMount() {
-    const { checkUserSession } = this.props;
+  useEffect(() => {
     checkUserSession();
-  }
+  }, [checkUserSession]);
 
-  render() {
-    const { location, cartItems } = this.props;
-    return (
+  return (
+    <ErrorBoudry>
       <div className="app">
         <Navigation />
         <Cart />
@@ -42,8 +41,8 @@ class App extends React.Component {
         </ScrollToTop>
         {location.pathname !== '/checkout' && <Footer />}
       </div>
-    );
-  }
+    </ErrorBoudry>
+  );
 }
 
 const mapStateToProps = createStructuredSelector({

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -22,7 +22,7 @@ const nav = [
   { name: 'Platforms', rootName: '/categories/platforms' },
 ];
 
-class Navigation extends React.Component {
+class Navigation extends Component {
   state = {
     showModal: false,
     register: false,
