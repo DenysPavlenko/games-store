@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-class ScrollToTop extends Component {
+class ScrollToTop extends React.Component {
 
   static propTypes = {
     children: PropTypes.node.isRequired,
