@@ -1,15 +1,18 @@
-@import "~styles/abstract/variables"
-@import "~styles/abstract/grid"
+@import ~styles/abstract/variables
+@import ~styles/abstract/mixins
+@import ~styles/abstract/grid
 
 .footer
   background-color: $footer-bg
   padding: 60px 0 40px
-  &-content
+  &-wrap
     +row()
-    &-left
-      +col(7)
-    &-right
-      +col(5)
+  &-top
+    +col(12)
+    display: flex
+    align-items: center
+    justify-content: space-between
+    margin-bottom: 20px
   &-up
     position: relative
     height: 40px
@@ -31,3 +34,9 @@
       border: 2px solid $c-accent
       svg
         fill: $c-accent
+  &-content
+    +col(7)
+    +media-max($bp-lg)
+      +col(8)
+    +media-max($bp-md)
+      +col(12)
