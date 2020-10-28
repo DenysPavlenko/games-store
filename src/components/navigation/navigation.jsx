@@ -88,7 +88,7 @@ class Navigation extends Component {
           <CartIcon />
           {currentUser ?
             <div className="navigation-user-dropdown">
-              <UserDropdown userName={currentUser.displayName} />
+              <UserDropdown avatar={currentUser.avatar} userName={currentUser.displayName} />
             </div>
             :
             <Button className="navigation-button" onClick={this.toggleModal}>Sign In</Button>
