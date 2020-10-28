@@ -1,0 +1,61 @@
+@import ~styles/abstract/variables
+@import ~styles/abstract/mixins
+
+.cart-item-placeholder
+  display: flex
+  flex-wrap: wrap
+  animation: 1.7s pulse linear infinite
+  &:not(:last-child)
+    margin-bottom: 30px
+  &-image
+    width: 120px
+    height: 120px
+    background-color: $c-primary
+    +media-max($bp-xs)
+      margin-bottom: 22px
+  &-content
+    display: flex
+    flex: 1
+    padding-left: 30px
+    +media-max($bp-xs)
+      padding-left: 0
+      width: 100%
+      flex: auto
+    &-left
+      flex: 1
+      display: flex
+      flex-direction: column
+      justify-content: flex-start
+  &-title
+    width: 200px
+    height: 18px
+    margin-bottom: 15px
+    background-color: $c-primary
+  &-price
+    width: 80px
+    height: 15px
+    background-color: $c-primary
+    margin-bottom: 20px
+
+  &-control
+    &-item
+      height: 25px
+      width: 25px
+      background-color: $c-primary
+      margin-right: 5px
+
+  &-total
+    min-width: 90px
+    display: flex
+    flex-direction: column
+    align-items: flex-end
+    &-title
+      width: 70px
+      height: 15px
+      background-color: $c-primary
+      margin-bottom: 17px
+    &-price
+      width: 50px
+      height: 25px
+      background-color: $c-primary
+      margin-bottom: 10px

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // Redux
 import { hideCart, addItemToCart, removeItemFromCart, clearItemFromCart } from 'redux/cart/cart.actions';
@@ -13,6 +14,8 @@ import CheckoutTable from 'components/checkout-table/checkout-table';
 import './checkout-page.sass';
 
 const CheckoutPage = ({ cartItems, hideCart, removeItemFromCart, addItemToCart, clearItemFromCart, totalCount }) => {
+  if (!cartItems.length) { return <Redirect to="/" /> }
+
   return (
     <div className="checkout-page">
       <Container>

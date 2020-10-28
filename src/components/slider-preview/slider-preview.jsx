@@ -3,7 +3,7 @@ import classNames from 'classnames';
 // Components
 import Container from 'layout/container/container';
 import Plate from 'components/plate/plate';
-import PlatePlaceholder from 'components/plate/plate-placeholder/plate-placeholder';
+import PlatePlaceholder from 'components/placeholders/plate-placeholder/plate-placeholder';
 import SliderPreview from './slider-preview-left/slider-preview-left';
 import SliderPreviewRight from './slider-preview-right/slider-preview-right';
 import ErrorIndicator from 'components/error-indicator/error-indicator';

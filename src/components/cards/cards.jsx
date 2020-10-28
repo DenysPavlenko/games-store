@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // Components
-import CardPlaceholder from 'components/card-placeholder/card-placeholder';
+import CardPlaceholder from 'components/placeholders/card-placeholder/card-placeholder';
 import ErrorIndicator from 'components/error-indicator/error-indicator';
 // Styles
 import './cards.sass';

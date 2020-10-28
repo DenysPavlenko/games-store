@@ -27,6 +27,7 @@ export const createUserProfileDocument = async (userAuth, additionaData) => {
         displayName,
         email,
         createdAt,
+        history: [{id: 3498, image: "https://media.rawg.io/media/games/b11/b115b2bc6a5957a917bc7601f4abdda2.jpg", name: "Grand Theft Auto V", price: 41, quantity: 2}],
         avatar: photoURL,
         ...additionaData
       });

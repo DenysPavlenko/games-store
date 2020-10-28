@@ -18,13 +18,14 @@ const Typography = ({ children, component, variant, className, ...otherProps }) 
 
 };
 
-Typography.propTypes = {
+Typography.defaultProps = {
   component: 'p',
   className: '',
+  children: '',
 };
 
 Typography.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   component: PropTypes.string,
   variant: PropTypes.string,
   className: PropTypes.string,

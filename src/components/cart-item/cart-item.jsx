@@ -10,7 +10,7 @@ import './cart-item.sass';
 // Assets
 import { ReactComponent as TrashIcon } from 'assets/images/icons/trash.svg';
 
-const CartItem = ({ cartItem, hideCart, addItem, removeItem, clearItem, className, inverted }) => {
+const CartItem = ({ cartItem, hideCart, addItem, removeItem, clearItem, className, inverted, control }) => {
   const { id, image, name, price, quantity } = cartItem;
   const classes = classNames({
     'cart-item': true,
@@ -30,11 +30,13 @@ const CartItem = ({ cartItem, hideCart, addItem, removeItem, clearItem, classNam
             <Link to={`/product/${id}`} onClick={hideCart}>{name}</Link>
           </Typography>
           <Typography component="h5" className="text-dark">Price: ${price}</Typography>
-          <div className="cart-item-control">
-            <button className="cart-item-control-item h3" disabled={quantity === 1 && true} onClick={() => removeItem(cartItem)}>-</button>
-            <button className="cart-item-control-item h3" onClick={() => addItem(cartItem)}>+</button>
-            <button className="cart-item-control-item h3" onClick={() => clearItem(cartItem)}><TrashIcon /></button>
-          </div>
+          {control &&
+            <div className="cart-item-control">
+              <button className="cart-item-control-item h3" disabled={quantity === 1 && true} onClick={() => removeItem(cartItem)}>-</button>
+              <button className="cart-item-control-item h3" onClick={() => addItem(cartItem)}>+</button>
+              <button className="cart-item-control-item h3" onClick={() => clearItem(cartItem)}><TrashIcon /></button>
+            </div>
+          }
         </div>
         <div className="cart-item-total">
           <Typography component="h5" className="text-dark">{quantity} {quantity === 1 ? `Copy` : 'Copies'} </Typography>
@@ -50,6 +52,7 @@ CartItem.defaultProps = {
   addItem: () => { },
   removeItem: () => { },
   clearItem: () => { },
+  control: true,
   inverted: false
 };
 
@@ -61,6 +64,7 @@ CartItem.propTypes = {
   clearItem: PropTypes.func,
   className: PropTypes.string,
   inverted: PropTypes.bool,
+  control: PropTypes.bool,
 };
 
 export default CartItem;

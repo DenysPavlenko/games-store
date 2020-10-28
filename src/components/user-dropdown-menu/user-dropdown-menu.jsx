@@ -16,9 +16,9 @@ const UserDropdownMenu = ({ userSignOut }) => {
   return (
     <div className="user-dropdown-menu">
       <div className="user-dropdown-menu-items">
-        <NavLink className="user-dropdown-menu-item" to="/account" exact={'/account' === '/' && true}>
+        <NavLink className="user-dropdown-menu-item" to="/history" exact={'/history' === '/' && true}>
           <Cog className="user-dropdown-menu-icon" />
-          <Typography component="span" variant="p" className="mb-0">Account</Typography>
+          <Typography component="span" variant="p" className="mb-0">History</Typography>
         </NavLink>
         <div className="user-dropdown-menu-item" onClick={userSignOut}>
           <LogOut className="user-dropdown-menu-icon" />

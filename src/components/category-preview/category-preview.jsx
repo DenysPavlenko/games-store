@@ -6,7 +6,7 @@ import Plate from 'components/plate/plate';
 import Figure from 'components/figure/figure';
 import Typography from 'components/typography/typography';
 import Container from 'layout/container/container';
-import PlatePlaceholder from 'components/plate/plate-placeholder/plate-placeholder';
+import PlatePlaceholder from 'components/placeholders/plate-placeholder/plate-placeholder';
 
 const CategoryPreview = ({ data, isLoading, hasError }) => {
 

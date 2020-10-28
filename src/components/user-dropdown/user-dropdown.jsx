@@ -17,7 +17,9 @@ const UserDropdown = ({ userName, avatar }) => {
         <ChevronDown className="user-dropdown-chevron" />
       </Dropdown.Toggle>
       <Dropdown.Box className="user-dropdown-box">
-        <UserDropdownMenu />
+        <Dropdown.Close >
+          <UserDropdownMenu />
+        </Dropdown.Close >
       </Dropdown.Box>
     </Dropdown>
   );

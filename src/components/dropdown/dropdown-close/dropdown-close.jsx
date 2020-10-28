@@ -11,8 +11,8 @@ class DropdownClose extends Component {
   handleCloseClick = () => {
     const close = this.closeRef.current;
     const dropdown = close.closest('.dropdown');
-    const dropdownToggle = dropdown.querySelector('.dropdown__toggle');
-    const dropdownBox = dropdown.querySelector('.dropdown__box');
+    const dropdownToggle = dropdown.querySelector('.dropdown-toggle');
+    const dropdownBox = dropdown.querySelector('.dropdown-box');
     dropdownToggle.classList.remove('is-active');
     dropdownBox.classList.remove('is-expanded');
   }
