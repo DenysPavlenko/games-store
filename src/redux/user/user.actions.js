@@ -21,7 +21,6 @@ export const signInWithGoogle = () => async (dispatch) => {
     const { user } = await auth.signInWithPopup(googleProvider);
     const userRef = await createUserProfileDocument(user);
     userRef.onSnapshot(snapShot => {
-      console.log(snapShot.data());
       dispatch(signInSuccess({
         id: snapShot.id,
         ...snapShot.data()
