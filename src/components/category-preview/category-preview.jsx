@@ -13,6 +13,8 @@ const CategoryPreview = ({ data, isLoading, hasError }) => {
   if (hasError) { return <Container><ErrorIndicator /></Container> }
   if (isLoading) { return <Container><PlatePlaceholder /></Container> }
 
+  const description = data.description.match(/<p>(.*?)<\/p>/) ? data.description.match(/<p>(.*?)<\/p>/)[1] : data.description
+
   return (
     <Container>
       <Plate>
@@ -21,7 +23,7 @@ const CategoryPreview = ({ data, isLoading, hasError }) => {
         </Plate.Left>
         <Plate.Right>
           <Typography component="h4">{data.name} games</Typography>
-          <Typography component="p" className="mb-0">{data.description.match(/<p>(.*?)<\/p>/)[1]}</Typography>
+          <Typography component="p" className="mb-0">{description}</Typography>
         </Plate.Right>
       </Plate>
     </Container>

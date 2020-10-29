@@ -37,7 +37,9 @@ class StripePayment extends Component {
     const { cartItems, user: { currentUser } } = this.props;
     this.setState({ showModal: true });
     // Write items to the purchase history
-    addPurcaseToUserHistory(cartItems, currentUser.id);
+    if (currentUser) {
+      addPurcaseToUserHistory(cartItems, currentUser.id);
+    }
   }
 
   closeModal = () => {
