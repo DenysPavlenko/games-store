@@ -2,7 +2,7 @@ import UserActionTypes from './user.types';
 
 const INITIAL_SATE = {
   currentUser: null,
-  loading: true,
+  loading: false,
   error: null,
 }
 

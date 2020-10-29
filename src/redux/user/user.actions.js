@@ -1,6 +1,6 @@
 import UserActionTypes from './user.types';
 // Firebase
-import { auth, googleProvider, createUserProfileDocument, getCurrentUser } from 'services/firebase/firebase.utils';
+import { auth, googleAuthProvider, createUserProfileDocument, getCurrentUser } from 'services/firebase/firebase.utils';
 
 // Sign In
 export const signInStart = () => ({
@@ -18,7 +18,7 @@ export const signInFailure = error => ({
 export const signInWithGoogle = () => async (dispatch) => {
   try {
     dispatch(signInStart());
-    const { user } = await auth.signInWithPopup(googleProvider);
+    const { user } = await auth.signInWithPopup(googleAuthProvider);
     const userRef = await createUserProfileDocument(user);
     userRef.onSnapshot(snapShot => {
       dispatch(signInSuccess({

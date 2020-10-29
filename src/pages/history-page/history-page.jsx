@@ -1,10 +1,10 @@
-import React from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectCartItems } from 'redux/cart/cart.selectors';
 // Redux
 import { selectUser } from 'redux/user/user.selectors';
+import { fetchUserPurchaseHistory } from 'redux/user-purchase-history/user-purchase-history.actions';
+import { selectUserPurchaseHistory } from 'redux/user-purchase-history/user-purchase-history.selectors';
 // Layout
 import Container from 'layout/container/container';
 import Row from 'layout/row/row';
@@ -17,17 +17,19 @@ import ErrorIndicator from 'components/error-indicator/error-indicator';
 // Styles
 import './history-page.sass';
 
-const HistoryPage = ({ user, cartItems }) => {
+const HistoryPage = ({ user, userPurchaseHistory, fetchUserPurchaseHistory }) => {
   const { currentUser } = user;
-  if (!currentUser) { return <Redirect to="/" /> }
-
   return (
     <div className="history-page">
       <Container>
         <Row className="justify-content-center">
           <Col col lg="8">
-            <Typography component="h2" className="mb-5">My purchase history:</Typography>
-            <HistoryContainer user={user} cartItems={cartItems} />
+            <Typography component="h2" className="mb-5">Your purchase history:</Typography>
+            {currentUser ?
+              <HistoryContainer user={currentUser} history={userPurchaseHistory} getData={fetchUserPurchaseHistory} />
+              :
+              <Typography component="h5">You need to be signed in to see your history...</Typography>
+            }
           </Col>
         </Row>
       </Container>
@@ -35,24 +37,40 @@ const HistoryPage = ({ user, cartItems }) => {
   );
 };
 
-const HistoryContainer = ({ user, cartItems }) => {
-  const { loading, error } = user;
+const HistoryContainer = ({ user, history, getData }) => {
+  const { data, loading, error } = history
+
+  useEffect(() => {
+    if (user) {
+      getData(user.id);
+    }
+  }, [getData, user])
+
   if (loading) {
     return ([...Array(3)].map((el, idx) => <CartItemPlaceholder key={idx} />))
   }
   if (error) { return <ErrorIndicator /> }
+
+  const items = (data.map((item) => (<CartItem key={item.id} cartItem={item} inverted control={false}></CartItem>)));
+
   return (
     <>
-      {cartItems.map((cartItem) => (
-        <CartItem key={cartItem.id} cartItem={cartItem} inverted control={false}></CartItem>
-      ))}
+      {items.length ?
+        items
+        :
+        <Typography component="h5">Your history is empty...</Typography>
+      }
     </>
   )
 }
 
 const mapStateToProps = createStructuredSelector({
-  cartItems: selectCartItems,
+  userPurchaseHistory: selectUserPurchaseHistory,
   user: selectUser
 });
 
-export default connect(mapStateToProps, null)(HistoryPage);
+const mapDispatchToProps = dispatch => ({
+  fetchUserPurchaseHistory: (id) => dispatch(fetchUserPurchaseHistory(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(HistoryPage);

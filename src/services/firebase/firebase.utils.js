@@ -13,6 +13,12 @@ const config = {
   measurementId: "G-ETD2TYG08K"
 };
 
+firebase.initializeApp(config);
+export const auth = firebase.auth();
+export const firestore = firebase.firestore();
+export const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+googleAuthProvider.setCustomParameters({ prompt: 'select_account' });
+
 
 export const createUserProfileDocument = async (userAuth, additionaData) => {
   if (!userAuth) { return; }
@@ -27,7 +33,6 @@ export const createUserProfileDocument = async (userAuth, additionaData) => {
         displayName,
         email,
         createdAt,
-        history: [{id: 3498, image: "https://media.rawg.io/media/games/b11/b115b2bc6a5957a917bc7601f4abdda2.jpg", name: "Grand Theft Auto V", price: 41, quantity: 2}],
         avatar: photoURL,
         ...additionaData
       });
@@ -39,6 +44,33 @@ export const createUserProfileDocument = async (userAuth, additionaData) => {
   return userRef;
 };
 
+export const addPurcaseToUserHistory = async (items, userId) => {
+  const collectionRef = firestore.collection(`users/${userId}/purchase_history`);
+  const batch = firestore.batch();
+  try {
+    items.forEach(async item => {
+      const newDocRef = collectionRef.doc(item.name);
+      batch.set(newDocRef, item);
+    });
+  }
+  catch (error) {
+    return error;
+  }
+  return await batch.commit();
+};
+
+export const getUserPurchaseHistory = async (userId) => {
+  const collectionRef = firestore.collection(`users/${userId}/purchase_history`);
+  const querySnapshot = await collectionRef.get();
+  let data = [];
+  if (!querySnapshot.empty) {
+    querySnapshot.forEach(item => {
+      data.push(item.data())
+    });
+  }
+  return data;
+}
+
 export const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
     const unsubscribe = auth.onAuthStateChanged(auth.onAuthStateChanged(userAuth => {
@@ -47,13 +79,5 @@ export const getCurrentUser = () => {
     }), reject);
   });
 }
-
-firebase.initializeApp(config);
-
-export const auth = firebase.auth();
-export const firestore = firebase.firestore();
-
-export const googleProvider = new firebase.auth.GoogleAuthProvider();
-googleProvider.setCustomParameters({ prompt: 'select_account' });
 
 export default firebase;
