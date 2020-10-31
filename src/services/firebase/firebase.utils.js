@@ -45,31 +45,21 @@ export const createUserProfileDocument = async (userAuth, additionaData) => {
 };
 
 export const addPurcaseToUserHistory = async (items, userId) => {
-  const collectionRef = firestore.collection(`users/${userId}/purchase_history`);
-  const batch = firestore.batch();
-  try {
-    items.forEach(async item => {
-      const newDocRef = collectionRef.doc(item.name);
-      batch.set(newDocRef, item);
-    });
+  const userRef = firestore.doc(`users/${userId}`);
+  const snapShot = await userRef.get();
+  if (snapShot.exists) {
+    console.log('items:', items)
+    try {
+      await userRef.update({
+        purchaseHistory: firebase.firestore.FieldValue.arrayUnion(...items)
+      });
+    }
+    catch (error) {
+      return error;
+    }
   }
-  catch (error) {
-    return error;
-  }
-  return await batch.commit();
+  return userRef;
 };
-
-export const getUserPurchaseHistory = async (userId) => {
-  const collectionRef = firestore.collection(`users/${userId}/purchase_history`);
-  const querySnapshot = await collectionRef.get();
-  let data = [];
-  if (!querySnapshot.empty) {
-    querySnapshot.forEach(item => {
-      data.push(item.data())
-    });
-  }
-  return data;
-}
 
 export const getCurrentUser = () => {
   return new Promise((resolve, reject) => {

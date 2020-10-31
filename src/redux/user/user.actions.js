@@ -54,6 +54,7 @@ export const checkUserSession = () => async (dispatch) => {
   try {
     const userAuth = await getCurrentUser();
     if (!userAuth) { return; }
+    dispatch(signInStart());
     const userRef = await createUserProfileDocument(userAuth);
     userRef.onSnapshot(snapShot => {
       dispatch(signInSuccess({
