@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import validateInput from 'helpers/validate-input';
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
 // Redux
 import { signInWithGoogle, signInWithEmail } from 'redux/user/user.actions';
-import { selectUser } from 'redux/user/user.selectors';
 // Components
 import Input from 'components/input/input';
 import Typography from 'components/typography/typography';
@@ -61,7 +59,7 @@ class SignIn extends Component {
 
   render() {
     const { email, password, emailInvalid, passwordInvalid } = this.state;
-    const { signInWithGoogle, user: { loading, error } } = this.props;
+    const { signInWithGoogle, user: { error } } = this.props;
     return (
       <div className="sign-in">
         <div className="sign-in-description">
@@ -77,7 +75,7 @@ class SignIn extends Component {
             <Typography component="p" className="text-danger">{error}</Typography>
           }
           <div className="sign-in-buttons">
-            <Button type="submit" className="sign-in-button" isLoading={loading}>Sign in</Button>
+            <Button type="submit" className="sign-in-button">Sign in</Button>
             <Button type="button" className="sign-in-button" onClick={signInWithGoogle} isGoogleSignIn>Google sign in</Button>
           </div>
         </form>
@@ -86,13 +84,9 @@ class SignIn extends Component {
   }
 }
 
-const mapStateToProps = createStructuredSelector({
-  user: selectUser
-});
-
 const mapDispatchToProps = dispatch => ({
   signInWithGoogle: () => dispatch(signInWithGoogle()),
   signInWithEmail: (email, password) => dispatch(signInWithEmail({ email, password })),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+export default connect(null, mapDispatchToProps)(SignIn);

@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 import PropTypes from 'prop-types';
+// Components
+import Spinner from 'components/spinner/spinner';
 // Styles
 import './modal.sass';
 // Assets
@@ -13,6 +15,7 @@ class Modal extends Component {
 
   static defaultProps = {
     small: false,
+    loading: false,
   }
 
   static propTypes = {
@@ -20,6 +23,7 @@ class Modal extends Component {
     closeModal: PropTypes.func.isRequired,
     children: PropTypes.node.isRequired,
     small: PropTypes.bool,
+    loading: PropTypes.bool,
     className: PropTypes.string
   }
 
@@ -62,7 +66,7 @@ class Modal extends Component {
   }
 
   render() {
-    const { hidden, closeModal, children, small, className, onExited } = this.props;
+    const { hidden, closeModal, children, small, className, onExited, loading } = this.props;
     const classes = classNames({
       'modal': true,
       'modal-small': small,
@@ -77,6 +81,7 @@ class Modal extends Component {
               <div className="modal-block">
                 <div onClick={closeModal} className="modal-close"><CloseIcon /></div>
                 {children}
+                {loading && <div className="modal-loading"><Spinner lg accent /></div>}
               </div>
             </div>
           </div>

@@ -50,6 +50,7 @@
     margin: 20px auto
     border-radius: 10px
     z-index: 50
+    overflow: hidden
   &-close
     position: absolute
     top: 15px
@@ -64,6 +65,17 @@
     &:hover
       svg
        fill: $c-muted
+  &-loading
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    z-index: 200
+    background: rgba($c-light, 0.9 )
+    display: flex
+    justify-content: center
+    align-items: center
 
 +media-max($bp-xs)
   .modal

@@ -4,9 +4,11 @@ import PropTypes from 'prop-types';
 // Styles
 import './spinner.sass';
 
-const Spinner = ({ className }) => {
+const Spinner = ({ lg, accent, className }) => {
   const classes = classNames({
     'spinner': true,
+    'spinner-lg': lg,
+    'spinner-accent': accent,
     [className]: className
   });
 
@@ -17,10 +19,14 @@ const Spinner = ({ className }) => {
 
 Spinner.defaultProps = {
   className: '',
+  lg: false,
+  accent: false
 };
 
 Spinner.propTypes = {
   className: PropTypes.string,
+  lg: PropTypes.bool,
+  accent: PropTypes.bool
 };
 
 export default Spinner;
