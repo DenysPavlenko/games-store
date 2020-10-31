@@ -23,11 +23,6 @@ const HistoryPage = ({ user }) => {
           <Col col lg="8">
             <Typography component="h2" className="mb-5">Your purchase history:</Typography>
             <HistoryContainer user={user} />
-            {/* <Typography component="h2" className="mb-5">Your purchase history:</Typography>
-            {currentUser ?
-              :
-              <Typography component="h5">You need to be signed in to see your history...</Typography>
-            } */}
           </Col>
         </Row>
       </Container>
@@ -48,7 +43,7 @@ const HistoryContainer = ({ user }) => {
     return <Typography component="h5">You need to be signed in to see your history...</Typography>
   }
 
-  const { purchaseHistory } = currentUser;
+  const { purchaseHistory = [] } = currentUser;
   const items = (purchaseHistory.map((item) => (<CartItem key={item.id} cartItem={item} inverted control={false}></CartItem>)));
 
   return (
