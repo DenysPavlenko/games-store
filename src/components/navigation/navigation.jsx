@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -23,83 +23,64 @@ const nav = [
   { name: 'Platforms', rootName: '/categories/platforms' },
 ];
 
-class Navigation extends Component {
-  burgerRef = React.createRef();
-  navMenuRef = React.createRef();
+const Navigation = ({ user: { currentUser } }) => {
 
-  state = {
-    showModal: false,
-    register: false,
+  const [showModal, setShowModal] = useState(false);
+  const [isMenuOpened, setIsMenuOpened] = useState(false);
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
   }
 
-  static propTypes = {
-    user: PropTypes.object.isRequired,
+  const navMenuToggle = () => {
+    setIsMenuOpened(!isMenuOpened);
   }
 
-  toggleModal = () => {
-    this.setState(({ showModal }) => ({
-      showModal: !showModal,
-      register: false
-    }))
-  }
-
-  navMenuToggle = () => {
-    const burger = this.burgerRef.current;
-    const navMenu = this.navMenuRef.current;
-    burger.classList.toggle('is-active');
-    navMenu.classList.toggle('is-active');
-  }
-
-  navMenuHide = () => {
-    const navMenu = this.navMenuRef.current;
-    const burger = this.burgerRef.current;
-    if (navMenu.classList.contains('is-active')) {
-      burger.classList.remove('is-active');
-      navMenu.classList.remove('is-active');
+  const navMenuHide = () => {
+    if (isMenuOpened) {
+      setIsMenuOpened(false);
     }
   }
 
-  componentDidUpdate(prevProps) {
-    const { user: { currentUser } } = this.props;
-    const { showModal } = this.state;
-    if (prevProps.user.currentUser !== currentUser && showModal) {
-      this.toggleModal();
+  useEffect(() => {
+    if (showModal && currentUser) {
+      setShowModal(false);
     }
-  }
+  }, [currentUser, showModal]);
 
-  render() {
-    const { user: { currentUser } } = this.props;
-    const { showModal } = this.state;
-    return (
-      <div className="navigation">
-        <Link to="/" className="navigation-logo" >
-          <Logo />
-        </Link>
-        <div ref={this.navMenuRef} className="navigation-menu">
-          <ul className="navigation-list">
-            {nav.map(({ name, rootName }, idx) => (
-              <li key={idx} onClick={this.navMenuHide} className="navigation-list-item">
-                <NavLink to={rootName} exact={rootName === '/' && true} className="navigation-list-link">{name}</NavLink>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="navigation-user">
-          <CartIcon />
-          {currentUser ?
-            <div className="navigation-user-dropdown">
-              <UserDropdown avatar={currentUser.avatar} userName={currentUser.displayName} />
-            </div>
-            :
-            <Button className="navigation-button" onClick={this.toggleModal}>Sign In</Button>
-          }
-        </div>
-        <Burger ref={this.burgerRef} className="navigation-burger" onClick={this.navMenuToggle} />
-        <SignInSignUpModal showModal={showModal} closeModal={() => this.setState({ showModal: false })} />
+  return (
+    <div className="navigation">
+      <Link to="/" className="navigation-logo" >
+        <Logo />
+      </Link>
+      <div className={`navigation-menu ${isMenuOpened ? 'is-active' : ''}`}>
+        <ul className="navigation-list">
+          {nav.map(({ name, rootName }, idx) => (
+            <li key={idx} onClick={navMenuHide} className="navigation-list-item">
+              <NavLink to={rootName} exact={rootName === '/' && true} className="navigation-list-link">{name}</NavLink>
+            </li>
+          ))}
+        </ul>
       </div>
-    );
-  }
+      <div className="navigation-user">
+        <CartIcon />
+        {currentUser ?
+          <div className="navigation-user-dropdown">
+            <UserDropdown avatar={currentUser.avatar} userName={currentUser.displayName} />
+          </div>
+          :
+          <Button className="navigation-button" onClick={toggleModal}>Sign In</Button>
+        }
+      </div>
+      <Burger className="navigation-burger" onClick={navMenuToggle} />
+      <SignInSignUpModal showModal={showModal} closeModal={() => setShowModal(false)} />
+    </div>
+  );
 };
+
+Navigation.propTypes = {
+  user: PropTypes.object.isRequired,
+}
 
 const mapStateToProps = createStructuredSelector({
   user: selectUser
