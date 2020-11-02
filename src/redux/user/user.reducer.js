@@ -3,8 +3,8 @@ import UserActionTypes from './user.types';
 const INITIAL_SATE = {
   currentUser: null,
   loading: false,
-  error: null,
-}
+  error: false,
+};
 
 const userReducer = (state = INITIAL_SATE, action) => {
   switch (action.type) {
@@ -12,31 +12,27 @@ const userReducer = (state = INITIAL_SATE, action) => {
     case UserActionTypes.SIGN_OUT_START:
     case UserActionTypes.SIGN_UP_START:
       return {
-        ...state,
         currentUser: null,
         loading: true,
-        error: null
+        error: false
       }
     case UserActionTypes.SIGN_IN_SUCCESS:
     case UserActionTypes.SIGN_UP_SUCCESS:
       return {
-        ...state,
         currentUser: action.payload,
         loading: false,
-        error: null
+        error: false
       }
     case UserActionTypes.SIGN_OUT_SUCCESS:
       return {
-        ...state,
         currentUser: null,
         loading: false,
-        error: null
+        error: false
       }
     case UserActionTypes.SIGN_IN_FAILURE:
     case UserActionTypes.SIGN_UP_FAILURE:
     case UserActionTypes.SIGN_OUT_FAILURE:
       return {
-        ...state,
         currentUser: null,
         loading: false,
         error: action.payload
