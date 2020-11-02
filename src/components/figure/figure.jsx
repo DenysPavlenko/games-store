@@ -4,14 +4,14 @@ import classNames from 'classnames';
 // Styles
 import './figure.sass';
 
-const Figure = ({ image, className }) => {
+const Figure = ({ image, className, ...otherProps }) => {
   const classes = classNames({
     'figure': true,
     [className]: className
   });
 
   return (
-    <figure className={classes} style={image && { backgroundImage: `url(${image})` }}></figure>
+    <figure className={classes} style={image && { backgroundImage: `url(${image})` }} {...otherProps}></figure>
   );
 };
 

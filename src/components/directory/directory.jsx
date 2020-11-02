@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
@@ -11,32 +11,28 @@ import Container from 'layout/container/container';
 // Styles
 import './directory.sass';
 
-class Directory extends Component {
+const Directory = ({ fetchCategoriesData, categories }) => {
 
-  static propTypes = {
-    categories: PropTypes.object.isRequired,
-    fetchCategoriesData: PropTypes.func.isRequired
-  }
-
-  componentDidMount() {
-    const { fetchCategoriesData } = this.props;
+  useEffect(() => {
     fetchCategoriesData('genres');
     fetchCategoriesData('developers');
     fetchCategoriesData('platforms');
-  }
+  }, [fetchCategoriesData]);
 
-  render() {
-    const { categories } = this.props;
-    return (
-      <div className="directory">
-        <Container>
-          {Object.keys(categories).map((category, idx) => (
-            <DirectoryCollection key={idx} rootName={category} title={category} collection={categories[category].collection} isLoading={categories[category].loading} hasError={categories[category].error} />
-          ))}
-        </Container>
-      </div>
-    )
-  }
+  return (
+    <div className="directory">
+      <Container>
+        {Object.keys(categories).map((category, idx) => (
+          <DirectoryCollection key={idx} rootName={category} title={category} collection={categories[category].collection} isLoading={categories[category].loading} hasError={categories[category].error} />
+        ))}
+      </Container>
+    </div>
+  )
+}
+
+Directory.propTypes = {
+  categories: PropTypes.object.isRequired,
+  fetchCategoriesData: PropTypes.func.isRequired
 }
 
 const mapStateToProps = createStructuredSelector({

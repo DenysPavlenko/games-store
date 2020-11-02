@@ -7,7 +7,7 @@ import SliderArrow from 'components/slider-arrow/slider-arrow';
 // Styles
 import './slider-preview-right.sass';
 
-class BannerRight extends Component {
+class SliderPreviewRight extends Component {
   sliderRight = React.createRef();
 
   componentDidMount() {
@@ -20,8 +20,8 @@ class BannerRight extends Component {
     return (
       <Plate.Right className="slider-preview-right">
         <div className="slider-preview-right-slider-control">
-          <SliderArrow onClick={nextSlide} reversed />
-          <SliderArrow onClick={prevSlide} />
+          <SliderArrow onClick={prevSlide} reversed />
+          <SliderArrow onClick={nextSlide} />
         </div>
         <Slider asNavFor={sliderLeft} {...slickSettings} ref={this.sliderRight}>
           {children}
@@ -31,4 +31,4 @@ class BannerRight extends Component {
   }
 };
 
-export default BannerRight;
+export default SliderPreviewRight;

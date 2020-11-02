@@ -4,15 +4,15 @@ import classNames from 'classnames';
 import Container from 'layout/container/container';
 import Plate from 'components/plate/plate';
 import PlatePlaceholder from 'components/placeholders/plate-placeholder/plate-placeholder';
-import SliderPreview from './slider-preview-left/slider-preview-left';
+import SliderPreviewLeft from './slider-preview-left/slider-preview-left';
 import SliderPreviewRight from './slider-preview-right/slider-preview-right';
 import ErrorIndicator from 'components/error-indicator/error-indicator';
 // Styles
 import './slider-preview.sass';
 
-class Banner extends Component {
+class SliderPreview extends Component {
 
-  static Left = SliderPreview;
+  static Left = SliderPreviewLeft;
   static Right = SliderPreviewRight;
 
   state = {
@@ -90,4 +90,4 @@ class Banner extends Component {
   }
 }
 
-export default Banner;
+export default SliderPreview;

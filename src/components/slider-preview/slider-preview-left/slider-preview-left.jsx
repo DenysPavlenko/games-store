@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 // Components
 import Plate from 'components/plate/plate';
 
-class BannerLeft extends Component {
+class SliderPreviewLeft extends Component {
   sliderLeft = React.createRef();
 
   componentDidMount() {
@@ -23,4 +23,4 @@ class BannerLeft extends Component {
   }
 };
 
-export default BannerLeft;
+export default SliderPreviewLeft;
