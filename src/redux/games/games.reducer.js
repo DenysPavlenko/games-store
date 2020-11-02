@@ -1,30 +1,34 @@
 import GamesActionTypes from './games.types';
 
 const INITIAL_STATE = {
-  collection: [],
   loading: true,
-  error: null,
+  collection: [],
+  error: false,
+  errorDetails: null,
 }
 
 const gamesReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case GamesActionTypes.FETCH_GAMES_REQUEST:
       return {
-        collection: [],
         loading: true,
-        error: null,
+        collection: [],
+        error: false,
+        errorDetails: null,
       }
     case GamesActionTypes.FETCH_GAMES_SUCCESS:
       return {
-        collection: action.payload,
         loading: false,
-        error: null,
+        collection: action.payload,
+        error: false,
+        errorDetails: null,
       }
     case GamesActionTypes.FETCH_GAMES_FAILURE:
       return {
         collection: [],
         loading: false,
         error: true,
+        errorDetails: action.payload,
       }
     default:
       return state;

@@ -11,8 +11,9 @@ const categoryLoaded = data => ({
   type: CategoryActionTypes.FETCH_CATEGORY_SUCCESS,
   payload: data
 });
-const categoryError = () => ({
-  type: CategoryActionTypes.FETCH_CATEGORY_FAILURE
+const categoryError = error => ({
+  type: CategoryActionTypes.FETCH_CATEGORY_FAILURE,
+  payload: error
 });
 
 export const fetchCategoryData = (categories, category) => dispatch => {
@@ -38,6 +39,6 @@ export const fetchCategoryData = (categories, category) => dispatch => {
         ids.map(async (id) => (await gamesService.getGameDetails(id)))
       )
     })
-    .then((data) => { dispatch(categoryLoaded(data)) })
-    .catch(() => { dispatch(categoryError()) })
+    .then((data) => dispatch(categoryLoaded(data)))
+    .catch((error) => dispatch(categoryError(error)))
 }

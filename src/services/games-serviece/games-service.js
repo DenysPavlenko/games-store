@@ -2,18 +2,22 @@ export default class GamesService {
   _apiBase = 'https://rawg-video-games-database.p.rapidapi.com';
 
   async getResource(url) {
-    const res = await fetch(`${this._apiBase}${url}`, {
-      "method": "GET",
-      "headers": {
-        "x-rapidapi-host": "rawg-video-games-database.p.rapidapi.com",
-        "x-rapidapi-key": "9598c96e8dmshbf06c0e2380b5cbp102cc7jsnb817c41fdec8"
+    try {
+      const res = await fetch(`${this._apiBase}${url}`, {
+        "method": "GET",
+        "headers": {
+          "x-rapidapi-host": "rawg-video-games-database.p.rapidapi.com",
+          "x-rapidapi-key": "9598c96e8dmshbf06c0e2380b5cbp102cc7jsnb817c41fdec8"
+        }
+      });
+      if (!res.ok) {
+        throw new Error(res.status);
       }
-    });
-    if (!res.ok) {
-      throw new Error(`Could not fetch ${url}, received ${res.status}`)
+      const body = await res.json();
+      return body;
+    } catch (error) {
+      throw error;
     }
-    const body = await res.json();
-    return body;
   }
 
   // Game details

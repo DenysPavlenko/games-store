@@ -4,27 +4,31 @@ const INITIAL_STATE = {
   loading: true,
   collection: [],
   error: false,
-}
+  errorDetails: null
+};
 
 const categoryReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CategoryActionTypes.FETCH_CATEGORY_REQUEST:
       return {
         loading: true,
+        collection: [],
         error: false,
-        collection: []
+        errorDetails: null
       }
     case CategoryActionTypes.FETCH_CATEGORY_SUCCESS:
       return {
         loading: false,
+        collection: action.payload,
         error: false,
-        collection: action.payload
+        errorDetails: null
       }
     case CategoryActionTypes.FETCH_CATEGORY_FAILURE:
       return {
         loading: false,
+        collection: [],
         error: true,
-        collection: []
+        errorDetails: action.payload,
       }
     default:
       return state;

@@ -11,8 +11,9 @@ const categoryDetailsLoaded = data => ({
   type: CategoryDetailsActionTypes.FETCH_CATEGORY_DETAILS_SUCCESS,
   payload: data
 });
-const categoryDetailsError = () => ({
-  type: CategoryDetailsActionTypes.FETCH_CATEGORY_DETAILS_FAILURE
+const categoryDetailsError = (error) => ({
+  type: CategoryDetailsActionTypes.FETCH_CATEGORY_DETAILS_FAILURE,
+  payload: error
 });
 
 export const fetchCategoryDetailsData = (categoryType, category) => (dispatch) => {
@@ -21,5 +22,5 @@ export const fetchCategoryDetailsData = (categoryType, category) => (dispatch) =
     .then((data) => {
       dispatch(categoryDetailsLoaded(data))
     })
-    .catch(() => { dispatch(categoryDetailsError()) })
+    .catch((error) => dispatch(categoryDetailsError(error)))
 }

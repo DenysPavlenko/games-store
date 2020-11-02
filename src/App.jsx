@@ -16,6 +16,7 @@ import ScrollToTop from "components/scroll-to-top/scroll-to-top";
 import Navigation from "components/navigation/navigation";
 import Footer from "components/footer/footer";
 import Cart from "components/cart/cart";
+import PageNotFound from 'pages/404-page/404-page';
 
 const App = ({ checkUserSession, location }) => {
 
@@ -26,7 +27,7 @@ const App = ({ checkUserSession, location }) => {
   return (
     <ErrorBoudry>
       <div className="app">
-        <Navigation />
+        {(location.pathname !== '/404') && <Navigation />}
         <Cart />
         <ScrollToTop>
           <Switch>
@@ -36,10 +37,11 @@ const App = ({ checkUserSession, location }) => {
             <Route path="/product/:gameId" exact component={ProductPage} />
             <Route path="/history" exact component={HistoryPage} />
             <Route path="/checkout" exact component={CheckoutPage} />
-            <Redirect to="/" />
+            <Route path="/404" exact component={PageNotFound} />
+            <Redirect to="/404" />
           </Switch>
         </ScrollToTop>
-        {(location.pathname !== '/checkout' && location.pathname !== '/history') && <Footer />}
+        {(location.pathname !== '/checkout' && location.pathname !== '/history' && location.pathname !== '/404') && <Footer />}
       </div>
     </ErrorBoudry>
   );

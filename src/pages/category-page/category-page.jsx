@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // Redux
 import { fetchCategoryData } from 'redux/category/category.actions';
@@ -33,12 +34,14 @@ class CategoryPage extends Component {
   }
 
   render() {
-    const {
-      category,
-      categoryDetails,
-      match: { params },
-      history
-    } = this.props;
+    const { category, categoryDetails, match: { params }, history } = this.props;
+
+    if (categoryDetails.errorDetails && categoryDetails.errorDetails.message === '404') {
+      return <Redirect to="/404" />
+    }
+    if (category.errorDetails && category.errorDetails.message === '404') {
+      return <Redirect to="/404" />
+    }
 
     return (
       <div className="category-page">
@@ -47,7 +50,6 @@ class CategoryPage extends Component {
         <div className="category-page-header">
           <CategoryPreview isLoading={categoryDetails.loading} hasError={categoryDetails.error} data={categoryDetails.data} />
         </div>
-
         <Container>
           <Cards isLoading={category.loading} hasError={category.error} placeholdersToShow={10}>
             {category.collection.map(({ id, image, name, rating }) => (

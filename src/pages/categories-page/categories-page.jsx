@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
@@ -13,92 +13,80 @@ import Typography from 'components/typography/typography';
 import Cards from 'components/cards/cards';
 import Card from 'components/card/card';
 import Breadcrumbs from 'components/breadcrumbs/breadcrumbs';
-import Banner from 'components/slider-preview/slider-preview';
+import SliderPreview from 'components/slider-preview/slider-preview';
 import Button from 'components/button/button';
 // Styles
-import './categories-page.sass'
+import './categories-page.sass';
 
-class CategoriesPage extends Component {
-  static propTypes = {
-    data: PropTypes.object.isRequired,
-    fetchCategoriesData: PropTypes.func.isRequired,
-  }
+const CategoriesPage = ({ fetchCategoriesData, history, match: { params, url }, data: { loading, collection, error } }) => {
+  const { categoriesRout } = params;
 
-  componentDidMount() {
-    this.fetchData();
-  }
+  const [rootDoesntExist, setRootDoesntExist] = useState(false);
 
-  componentDidUpdate(prevProps) {
-    const { match: { params } } = this.props;
-    if (params.categoriesRout !== prevProps.match.params.categoriesRout) {
-      this.fetchData();
+  useEffect(() => {
+    if (categoriesRout === 'developers' || categoriesRout === 'genres' || categoriesRout === 'platforms') {
+      fetchCategoriesData(categoriesRout);
+    } else {
+      setRootDoesntExist(true);
     }
-  }
+  }, [fetchCategoriesData, categoriesRout]);
 
-  fetchData = () => {
-    const { data, fetchCategoriesData, match } = this.props;
-    if (data.loading || (!data.loading && data.error)) {
-      fetchCategoriesData(match.params.categoriesRout);
-    }
-  }
+  if (rootDoesntExist) { return <Redirect to="/404" /> }
 
-  render() {
-    const {
-      data: { loading, error, collection },
-      match: { params, url },
-      history
-    } = this.props;
+  return (
+    <div className="categories-page">
+      <Breadcrumbs routes={[params.categoriesRout]} />
 
-    return (
-      <div className="categories-page">
-        <Breadcrumbs routes={[params.categoriesRout]} />
-
-        <Banner isLoading={loading} hasErorr={error} className="categories-page-banner">
-          <Banner.Left>
-            {collection.map(({ id, image, rout }) => (
-              <Link to={`${url}/${rout}`} key={id} className="categories-page-banner-image">
-                <Figure image={image} />
-              </Link>
-            ))}
-          </Banner.Left>
-          <Banner.Right>
-            {collection.map(({ id, name, games, rout }) => (
-              <div key={id} className="categories-page-banner-info">
-                <Typography component="h2">{name}</Typography>
-                <Typography component="h6">Most Popular games:</Typography>
-                <div className="categories-page-banner-list">
-                  {games.map(({ id, slug, name }) => (
-                    <Link key={id} className="categories-page-banner-list-item" to={`${url}/${slug}`}>
-                      <Typography component="span" variant="p" className="categories-page-banner-list">{name}</Typography>
-                    </Link>
-                  ))}
-                </div>
-                <Link className="categories-page-banner-button" to={`${url}/${rout}`}>
-                  <Button btnArrow>Learn more</Button>
-                </Link>
+      <SliderPreview isLoading={loading} hasError={error} className="categories-page-banner">
+        <SliderPreview.Left>
+          {collection.map(({ id, image, rout }) => (
+            <Link to={`${url}/${rout}`} key={id} className="categories-page-banner-image">
+              <Figure image={image} />
+            </Link>
+          ))}
+        </SliderPreview.Left>
+        <SliderPreview.Right>
+          {collection.map(({ id, name, games, rout }) => (
+            <div key={id} className="categories-page-banner-info">
+              <Typography component="h2">{name}</Typography>
+              <Typography component="h6">Most Popular games:</Typography>
+              <div className="categories-page-banner-list">
+                {games.map(({ id, slug, name }) => (
+                  <Link key={id} className="categories-page-banner-list-item" to={`${url}/${slug}`}>
+                    <Typography component="span" variant="p" className="categories-page-banner-list">{name}</Typography>
+                  </Link>
+                ))}
               </div>
-            ))}
-          </Banner.Right>
-        </Banner>
+              <Link className="categories-page-banner-button" to={`${url}/${rout}`}>
+                <Button btnArrow>Learn more</Button>
+              </Link>
+            </div>
+          ))}
+        </SliderPreview.Right>
+      </SliderPreview>
 
-        <Container>
-          <Typography component="h2" className="mb-5">All {params.categoriesRout}</Typography>
-          <Cards isLoading={loading} hasError={error} placeholdersToShow={20}>
-            {collection.map(({ id, rout, image, name, total }) => (
-              <Card key={id} onClick={() => history.push(`${url}/${rout}`)} image={image}>
-                <Typography component="h5">{name}</Typography>
-                <Typography component="h6" className="mb-0">Total: {total} games</Typography>
-              </Card>
-            ))}
-          </Cards>
-        </Container>
-      </div >
-    );
-  }
+      <Container>
+        <Typography component="h2" className="mb-5">All {params.categoriesRout}</Typography>
+        <Cards isLoading={loading} hasError={error} placeholdersToShow={20}>
+          {collection.map(({ id, rout, image, name, total }) => (
+            <Card key={id} onClick={() => history.push(`${url}/${rout}`)} image={image}>
+              <Typography component="h5">{name}</Typography>
+              <Typography component="h6" className="mb-0">Total: {total} games</Typography>
+            </Card>
+          ))}
+        </Cards>
+      </Container>
+    </div >
+  );
 };
 
+CategoriesPage.propTypes = {
+  data: PropTypes.object.isRequired,
+  fetchCategoriesData: PropTypes.func.isRequired,
+}
+
 const mapStateToProps = createStructuredSelector({
-  data: selectChosenCategory
+  data: selectChosenCategory,
 });
 
 const mapDispatchToProps = dispatch => ({

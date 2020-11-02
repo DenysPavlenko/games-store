@@ -19,6 +19,6 @@ const gamesError = error => ({
 export const fetchGamesData = () => (dispatch) => {
   dispatch(gamesRequested());
   gamesService.getAllGames()
-    .then((data) => { dispatch(gamesLoaded(data)) })
-    .catch((err) => { dispatch(gamesError(err)) })
-}
+    .then((data) => dispatch(gamesLoaded(data)))
+    .catch((error) => dispatch(gamesError(error)))
+};

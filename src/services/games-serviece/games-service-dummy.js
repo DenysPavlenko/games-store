@@ -10,7 +10,7 @@ export default class GamesServiceDummy {
 
   serverRespond = 1500;
 
-  getData = async (url, transformObj, errorMsg, errorProbability = .99) => {
+  getData = async (url, transformObj, errorMsg, errorProbability = 0.99) => {
     const res = await url.default;
     await new Promise((res, rej) => setTimeout(() => {
       return Math.random() > errorProbability ? rej(new Error(errorMsg)) : res();
@@ -18,24 +18,23 @@ export default class GamesServiceDummy {
     return res.hasOwnProperty('results') ? res.results.map(transformObj) : transformObj(res);
   }
 
-
   getAllGames = async () => {
-    return this.getData(games, this._transformGame, 'error in get All Games')
+    return this.getData(games, this._transformGame, 404)
   }
   getAllGenres = async () => {
-    return this.getData(genres, this._transformCategory, 'error in get All Genres')
+    return this.getData(genres, this._transformCategory, 404)
   }
   getAllDevelopers = async () => {
-    return this.getData(developers, this._transformCategory, 'error in get All Developers')
+    return this.getData(developers, this._transformCategory, 404)
   }
   getAllPlatforms = async () => {
-    return this.getData(platforms, this._transformCategory, 'error in get All Platforms')
+    return this.getData(platforms, this._transformCategory, 404)
   }
   getGameDetails = async () => {
-    return this.getData(game, this._transformGameDetails, 'error in get Game details')
+    return this.getData(game, this._transformGameDetails, 404)
   }
   getCategoryDetails = async () => {
-    return this.getData(categoryDetails, this._transformCategoryDetails, 'error in get Category details')
+    return this.getData(categoryDetails, this._transformCategoryDetails, 404)
   }
 
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 // Components
 import Container from 'layout/container/container';
 import Plate from 'components/plate/plate';
@@ -15,10 +16,17 @@ class SliderPreview extends Component {
   static Left = SliderPreviewLeft;
   static Right = SliderPreviewRight;
 
+  static propTypes = {
+    className: PropTypes.string,
+    children: PropTypes.node.isRequired,
+    isLoading: PropTypes.bool.isRequired,
+    hasError: PropTypes.bool.isRequired,
+  };
+
   state = {
     sliderRight: null,
     sliderLeft: null
-  }
+  };
 
   stopSliders = () => {
     const { sliderRight, sliderLeft } = this.state;

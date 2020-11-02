@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // Redux
 import { fetchGameDetails } from 'redux/game/game.actions';
@@ -66,6 +66,7 @@ class ProductPage extends Component {
     fetchGameDetails(params.gameId);
     this.productInCart(cartItems, +params.gameId);
   }
+
   componentDidUpdate(prevProps) {
     const { cartItems, match: { params } } = this.props;
     if (prevProps.cartItems !== cartItems) {
@@ -79,9 +80,10 @@ class ProductPage extends Component {
   }
 
   render() {
-    const { game: { error, loading, data }, addItemToCart, history } = this.props;
+    const { game: { loading, data, error, errorDetails }, addItemToCart, history } = this.props;
     const { reviews, socials, inCart } = this.state;
 
+    if (errorDetails && errorDetails.message === '404') { return <Redirect to="/404" /> }
     if (error) return (<div className="product"><ErrorIndicator /></div>)
     if (loading) return (<ProductPagePlaceholder />)
     const { id, image, previews, name, price, description, developers, publishers, platforms, genres, released, rating, ratings } = data;
@@ -148,7 +150,6 @@ class ProductPage extends Component {
     );
   }
 };
-
 
 const ProductTableItem = ({ title, property }) => (
   <div className="product-table-item">

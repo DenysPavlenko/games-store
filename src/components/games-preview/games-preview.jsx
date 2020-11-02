@@ -14,7 +14,7 @@ import Button from 'components/button/button';
 // Styles
 import './games-preview.sass';
 
-const GamesPreview = ({ games, games: { collection }, fetchGamesData }) => {
+const GamesPreview = ({ games: { loading, error, collection }, fetchGamesData }) => {
 
   useEffect(() => {
     fetchGamesData();
@@ -22,7 +22,7 @@ const GamesPreview = ({ games, games: { collection }, fetchGamesData }) => {
 
   return (
     <div className="games-preview">
-      <SliderPreview className="games-preview-slider" isLoading={games.loading} hasErrow={games.error}>
+      <SliderPreview className="games-preview-slider" isLoading={loading} hasError={error}>
         <SliderPreview.Left>
           {collection.map(({ id, image }) => (
             <Link key={id} to={`/product/${id}`}>

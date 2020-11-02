@@ -4,6 +4,10 @@ import GamesService from 'services/games-serviece';
 // Games service
 const gamesService = new GamesService();
 
+const categoriesGlobalError = categories => ({
+  type: CategoriesActionTypes.FETCH_CATEGORIES_GLOBAL_FAILURE,
+  payload: categories
+});
 const categoriesRequested = categories => ({
   type: CategoriesActionTypes.FETCH_CATEGORIES_REQUEST,
   payload: categories
@@ -12,9 +16,9 @@ const categoriesLoaded = data => ({
   type: CategoriesActionTypes.FETCH_CATEGORIES_SUCCESS,
   payload: data
 });
-const categoriesError = categories => ({
+const categoriesError = error => ({
   type: CategoriesActionTypes.FETCH_CATEGORIES_FAILURE,
-  payload: categories
+  payload: error
 });
 
 export const fetchCategoriesData = categories => dispatch => {
@@ -25,10 +29,13 @@ export const fetchCategoriesData = categories => dispatch => {
     service = gamesService.getAllDevelopers;
   } else if (categories === 'platforms') {
     service = gamesService.getAllPlatforms;
+  } else {
+    dispatch(categoriesGlobalError())
+    return;
   }
 
-  dispatch(categoriesRequested(categories));
+  dispatch(categoriesRequested({ categories }));
   service()
-    .then((data) => { dispatch(categoriesLoaded({ categories, data })) })
-    .catch(() => { dispatch(categoriesError(categories)) })
+    .then((data) => dispatch(categoriesLoaded({ categories, data })))
+    .catch((error) => dispatch(categoriesError({ categories, error })))
 }

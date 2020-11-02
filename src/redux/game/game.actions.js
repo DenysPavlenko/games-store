@@ -11,13 +11,14 @@ const gamesLoaded = data => ({
   type: GameActionTypes.FETCH_GAME_SUCCESS,
   payload: data
 });
-const gamesError = () => ({
+const gamesError = (error) => ({
   type: GameActionTypes.FETCH_GAME_FAILURE,
+  payload: error
 });
 
 export const fetchGameDetails = (gameId) => (dispatch) => {
   dispatch(gamesRequested());
   gamesService.getGameDetails(gameId)
-    .then((data) => { dispatch(gamesLoaded(data)) })
-    .catch(() => { dispatch(gamesError()) })
+    .then((data) => dispatch(gamesLoaded(data)))
+    .catch((error) => dispatch(gamesError(error)))
 }

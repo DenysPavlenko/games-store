@@ -17,7 +17,7 @@ const initialState = {
   emailInvalid: false,
   passwordInvalid: false,
   formErrors: false
-}
+};
 
 class SignIn extends Component {
   state = {
@@ -37,7 +37,7 @@ class SignIn extends Component {
       [name]: value,
       [`${name}Invalid`]: formErrors && !validateInput(type, value),
     });
-  }
+  };
 
   handleSubmit = async event => {
     event.preventDefault();

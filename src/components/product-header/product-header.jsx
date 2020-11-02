@@ -14,9 +14,11 @@ const ProductHeader = ({ previews, className }) => {
 
   const handleVideo = (currentIndex) => {
     const video = videoRef.current;
-    const idx = videoRef.idx;
-    currentIndex === idx ? video.play() : video.pause();
-  }
+    if (video) {
+      const idx = videoRef.idx;
+      currentIndex === idx ? video.play() : video.pause();
+    }
+  };
 
   const classes = classNames({
     'product-header': true,
@@ -40,50 +42,54 @@ const ProductHeader = ({ previews, className }) => {
     if (videoRef.idx !== i) {
       videoRef = { idx: i, current: ref };
     }
-  }
+  };
 
   return (
     <div className={classes}>
-      <div className="product-header-slider-control">
-        <SliderArrow onClick={() => sliderRef.slickPrev()} arrowAlt reversed />
-        <SliderArrow onClick={() => sliderRef.slickNext()} arrowAlt />
-      </div>
-      <Slider {...slickSettings} ref={slider => sliderRef = slider} >
-        {previews.map((preview, idx) => (
-          (/\.(mp4|ogg)$/i).test(preview) ?
-            (
-              <ProductHeaderVideo key={idx} preview={preview} ref={(ref) => { setVideoRef(ref, idx) }} />
-            )
-            :
-            <ProductHeaderImage key={idx} preview={preview} />
-        ))}
-      </Slider>
+      {previews.length > 1 ?
+        <>
+          <div className="product-header-slider-control">
+            <SliderArrow onClick={() => sliderRef.slickPrev()} arrowAlt reversed />
+            <SliderArrow onClick={() => sliderRef.slickNext()} arrowAlt />
+          </div>
+          <Slider {...slickSettings} ref={slider => sliderRef = slider} >
+            {previews.map((preview, idx) => (
+              <ContentToShow key={idx} preview={preview} ref={(ref) => { setVideoRef(ref, idx) }} />
+            ))}
+          </Slider>
+        </>
+        :
+        <ContentToShow preview={previews[0]} />
+      }
     </div>
   );
 };
 
-
 ProductHeader.defaultProps = {
   className: ''
-}
+};
 
 ProductHeader.propTypes = {
   previews: PropTypes.array.isRequired,
   className: PropTypes.string
-}
+};
 
-const ProductHeaderVideo = forwardRef(({ preview }, ref) => (
-  <div className="product-header-video">
-    <video ref={ref} controls>
-      <source src={preview} type="video/mp4" />
-    </video>
-  </div>
-));
-
-const ProductHeaderImage = ({ preview }) => (
-  <div className="product-header-image">
-    <Figure className="product-header-image" image={preview} />
-  </div>
-);
+const ContentToShow = forwardRef(({ preview }, ref) => {
+  return (
+    <>
+      {(/\.(mp4|ogg)$/i).test(preview) ?
+        <div className="product-header-video">
+          <video ref={ref} controls>
+            <source src={preview} type="video/mp4" />
+          </video>
+        </div>
+        :
+        <div className="product-header-image">
+          <Figure className="product-header-image" image={preview} />
+        </div>
+      }
+    </>
+  )
+});
 
 export default ProductHeader;
