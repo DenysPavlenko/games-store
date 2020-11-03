@@ -18,7 +18,7 @@ const PageNotFound = () => {
         <div className="page-not-found-wrap">
           <Image className="page-not-found-image mb-4" src={img} alt="404" />
           <Typography component="h2" variant="h1" className="mb-2">Oops!</Typography>
-          <Typography component="p" className="mb-3">That page doesn’t exist or is unavailable</Typography>
+          <Typography component="p" className="mb-3">That page doesn't exist or is unavailable</Typography>
           <Link to="/">
             <Button>Back to home</Button>
           </Link>
