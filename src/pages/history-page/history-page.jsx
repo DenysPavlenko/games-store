@@ -14,6 +14,8 @@ import CartItem from 'components/cart-item/cart-item';
 import ErrorIndicator from 'components/error-indicator/error-indicator';
 // Styles
 import './history-page.sass';
+// Assets
+import { ReactComponent as HistoryIcon } from 'assets/images/history/history-is-empty.svg';
 
 const HistoryPage = ({ user }) => {
   return (
@@ -21,7 +23,6 @@ const HistoryPage = ({ user }) => {
       <Container>
         <Row className="justify-content-center">
           <Col col lg="8">
-            <Typography component="h2" className="mb-5">Your purchase history:</Typography>
             <HistoryContainer user={user} />
           </Col>
         </Row>
@@ -40,20 +41,36 @@ const HistoryContainer = ({ user }) => {
     return <ErrorIndicator />
   }
   if (!currentUser) {
-    return <Typography component="h5">You need to be signed in to see your history...</Typography>
+    return <HistoryPageInfo text="You need to be signed in to see your history" />
   }
 
   const { purchaseHistory = [] } = currentUser;
-  const items = (purchaseHistory.map((item) => (<CartItem key={item.id} cartItem={item} inverted control={false}></CartItem>)));
+  const items = (purchaseHistory.map((item) => (
+    <>
+      <Typography component="h2" className="mb-5">Your purchase history:</Typography>
+      <CartItem key={item.id} cartItem={item} inverted control={false}></CartItem>
+    </>
+  )));
 
   return (
     <>
       {items.length ?
         items
         :
-        <Typography component="h5">Your history is empty...</Typography>
+        <HistoryPageInfo text="You haven't bought anything yet" />
       }
     </>
+  )
+};
+
+const HistoryPageInfo = ({ text }) => {
+  return (
+    <div className="history-page-info">
+      <div className="history-page-info-wrap">
+        <HistoryIcon className="history-page-info-icon"></HistoryIcon>
+        <Typography component="h5" className="mb-0">{text}</Typography>
+      </div>
+    </div>
   )
 }
 

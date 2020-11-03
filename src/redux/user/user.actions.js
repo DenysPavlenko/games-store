@@ -14,6 +14,13 @@ export const signInFailure = error => ({
   type: UserActionTypes.SIGN_IN_FAILURE,
   payload: error
 });
+// Check user session
+export const checkUserSessionStart = () => ({
+  type: UserActionTypes.CHECK_USER_SESSION_START
+});
+export const checkUserSessionEnd = () => ({
+  type: UserActionTypes.CHECK_USER_SESSION_END
+});
 
 export const signInWithGoogle = () => async (dispatch) => {
   try {
@@ -52,9 +59,12 @@ export const signInWithEmail = ({ email, password }) => async (dispatch) => {
 // Check user session
 export const checkUserSession = () => async (dispatch) => {
   try {
+    dispatch(checkUserSessionStart());
     const userAuth = await getCurrentUser();
-    if (!userAuth) { return; }
-    dispatch(signInStart());
+    if (!userAuth) {
+      dispatch(checkUserSessionEnd());
+      return;
+    }
     const userRef = await createUserProfileDocument(userAuth);
     userRef.onSnapshot(snapShot => {
       dispatch(signInSuccess({

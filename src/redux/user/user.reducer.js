@@ -2,7 +2,7 @@ import UserActionTypes from './user.types';
 
 const INITIAL_SATE = {
   currentUser: null,
-  loading: false,
+  loading: true,
   error: false,
 };
 
@@ -11,6 +11,7 @@ const userReducer = (state = INITIAL_SATE, action) => {
     case UserActionTypes.SIGN_IN_START:
     case UserActionTypes.SIGN_OUT_START:
     case UserActionTypes.SIGN_UP_START:
+    case UserActionTypes.CHECK_USER_SESSION_START:
       return {
         currentUser: null,
         loading: true,
@@ -36,6 +37,12 @@ const userReducer = (state = INITIAL_SATE, action) => {
         currentUser: null,
         loading: false,
         error: action.payload
+      }
+    case UserActionTypes.CHECK_USER_SESSION_END:
+      return {
+        currentUser: null,
+        loading: false,
+        error: false,
       }
     default:
       return state;
