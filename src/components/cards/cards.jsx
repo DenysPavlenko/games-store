@@ -6,7 +6,7 @@ import ErrorIndicator from 'components/error-indicator/error-indicator';
 // Styles
 import './cards.sass';
 
-const Cards = ({ isLoading, hasError, placeholdersToShow, children }) => {
+const Cards = ({ children, isLoading, hasError, placeholdersToShow }) => {
   if (hasError) {
     return (
       <div className="cards">
