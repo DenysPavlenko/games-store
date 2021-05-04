@@ -11,7 +11,7 @@ import Container from 'layout/container/container';
 // Styles
 import './directory.sass';
 
-const Directory = ({ fetchCategoriesData, categories }) => {
+export const Directory = ({ fetchCategoriesData, categories }) => {
 
   useEffect(() => {
     fetchCategoriesData('genres');
@@ -39,8 +39,8 @@ const mapStateToProps = createStructuredSelector({
   categories: selectCategories
 });
 
-const mapDispatchToProps = dispatch => ({
-  fetchCategoriesData: categories => dispatch(fetchCategoriesData(categories)),
-});
+const mapDispatchToProps = {
+  fetchCategoriesData,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Directory);
