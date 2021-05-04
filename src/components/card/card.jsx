@@ -6,7 +6,7 @@ import Figure from 'components/figure/figure';
 // Styles
 import './card.sass';
 
-const Card = ({ image, children, onClick }) => {
+export const Card = ({ image, children, onClick }) => {
   return (
     <div className="card" onClick={onClick}>
       <Figure className="card-image" image={image} />
@@ -21,6 +21,7 @@ Card.defaultProps = {
 }
 
 Card.propTypes = {
+  image: PropTypes.string,
   children: PropTypes.node.isRequired,
   onClick: PropTypes.func,
 }
