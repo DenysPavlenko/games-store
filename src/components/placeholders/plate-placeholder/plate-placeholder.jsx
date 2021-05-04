@@ -2,7 +2,7 @@ import React from 'react';
 // Styles
 import './plate-placeholder.sass';
 
-const GamesPreviewPlaceholder = () => {
+const PlatePlaceholder = () => {
   return (
     <div className="plate-placeholder">
       <div className="plate-placeholder-left">
@@ -19,4 +19,4 @@ const GamesPreviewPlaceholder = () => {
   )
 }
 
-export default GamesPreviewPlaceholder;
+export default PlatePlaceholder;
