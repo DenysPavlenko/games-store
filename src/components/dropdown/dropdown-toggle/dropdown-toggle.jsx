@@ -1,58 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 // Styles
 import './dropdown-toggle.sass';
 
-class DropdownToggle extends Component {
-  toggleRef = React.createRef();
+const DropdownToggle = ({ children, className, toggleDropdown }) => {
+  const classnames = classNames({
+    'dropdown-toggle': true,
+    [className]: className,
+  });
 
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    className: PropTypes.string
-  };
+  return (
+    <div className={classnames} onClick={toggleDropdown}>
+      {children}
+    </div>
+  );
+};
 
-  componentDidMount() {
-    document.addEventListener('click', this.handleClickOutside);
-  }
+DropdownToggle.defaultProps = {
+  toggleDropdown: () => { },
+};
 
-  componentWillUnmount() {
-    document.removeEventListener('click', this.handleClickOutside);
-  }
-
-  handleClickOutside = (e) => {
-    const toggle = this.toggleRef.current;
-    const dropdown = toggle.closest('.dropdown');
-    const dropdownBox = dropdown.querySelector('.dropdown-box');
-    if (!dropdown.contains(e.target)) {
-      toggle.classList.remove('is-active');
-      dropdownBox.classList.remove('is-expanded');
-    }
-  }
-
-  handleToggleClick = () => {
-    const { disabled } = this.props;
-    if (disabled) { return; }
-    const toggle = this.toggleRef.current;
-    const dropdown = toggle.closest('.dropdown');
-    const dropdownBox = dropdown.querySelector('.dropdown-box');
-    toggle.classList.toggle('is-active');
-    dropdownBox.classList.toggle('is-expanded');
-  }
-
-  render() {
-    const { children, className } = this.props;
-    const classnames = classNames({
-      'dropdown-toggle': true,
-      [className]: className,
-    });
-
-    return (
-      <div ref={this.toggleRef} className={classnames} onClick={this.handleToggleClick}>
-        {children}
-      </div>
-    );
-  }
-}
+DropdownToggle.propTypes = {
+  children: PropTypes.node.isRequired,
+  toggleDropdown: PropTypes.func.isRequired,
+  className: PropTypes.string
+};
 
 export default DropdownToggle;
