@@ -10,7 +10,7 @@ import Button from 'components/button/button';
 // Styles
 import './directory-collection.sass';
 
-const DirectoryCollection = ({ currentBreakpoint, isLoading, hasError, title, collection, rootName, history }) => {
+export const DirectoryCollection = ({ currentBreakpoint, isLoading, hasError, title, collection, rootName, history }) => {
   const [itemsToShow, setItemsToShow] = useState(5);
 
   useEffect(() => {
