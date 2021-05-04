@@ -8,8 +8,7 @@ import Typography from 'components/typography/typography';
 import Container from 'layout/container/container';
 import PlatePlaceholder from 'components/placeholders/plate-placeholder/plate-placeholder';
 
-const CategoryPreview = ({ data, isLoading, hasError }) => {
-
+const CategoryPreview = ({ isLoading, data, hasError }) => {
   if (hasError) { return <Container><ErrorIndicator /></Container> }
   if (isLoading) { return <Container><PlatePlaceholder /></Container> }
 
