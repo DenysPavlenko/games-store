@@ -10,7 +10,7 @@ import { ReactComponent as Cart } from 'assets/images/icons/cart.svg';
 // Styles
 import "./cart-icon.sass";
 
-const CartIcon = ({ showCart, itemCount }) => {
+export const CartIcon = ({ showCart, itemCount }) => {
   return (
     <div className="cart-icon" onClick={showCart}>
       <div className="cart-icon-wrapper">
@@ -34,8 +34,8 @@ const mapStateToProps = createStructuredSelector({
   itemCount: selectCartItemsCount,
 });
 
-const mapDispatchToProps = dispatch => ({
-  showCart: () => dispatch(showCart()),
-});
+const mapDispatchToProps = {
+  showCart
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);
