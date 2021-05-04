@@ -6,7 +6,7 @@ import Container from 'layout/container/container';
 // Styles
 import './breadcrumbs.sass';
 
-const Breadcrumbs = ({ routes, history: { location } }) => {
+export const Breadcrumbs = ({ routes, history: { location } }) => {
   const path = location.pathname;
 
   return (
