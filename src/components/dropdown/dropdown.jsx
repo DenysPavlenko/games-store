@@ -31,7 +31,7 @@ class Dropdown extends Component {
 
   handleClickOutside = e => {
     const dropdown = this.dropdownRef;
-    if (!dropdown.contains(e.target)) {
+    if (dropdown && !dropdown.contains(e.target)) {
       this.setState({ isOpened: false });
     }
   }
