@@ -9,7 +9,7 @@ import './button.sass';
 import { ReactComponent as Arrow } from 'assets/images/icons/arrow.svg';
 import { ReactComponent as GoogleIcon } from 'assets/images/icons/google.svg';
 
-const Button = ({ children, href, btnBordered, btnLarge, btnArrow, btnBorderedLg, isDisabled, className, isLoading, isGoogleSignIn, ...otherProps }) => {
+const Button = ({ children, href, btnBordered, btnLarge, btnArrow, btnBorderedLg, isDisabled, className, isLoading, isGoogleSignIn, onClick, type }) => {
   const classes = classNames({
     'button': true,
     'button-bordered': btnBordered,
@@ -25,7 +25,7 @@ const Button = ({ children, href, btnBordered, btnLarge, btnArrow, btnBorderedLg
   const Tag = href ? 'a' : 'button';
 
   return (
-    <Tag href={href} className={classes} {...otherProps} disabled={!href && (isDisabled || isLoading)}>
+    <Tag href={href} className={classes} disabled={!href && (isDisabled || isLoading)} onClick={onClick} type={type}>
       {isLoading &&
         <>
           <Spinner className="button-spinner" />
@@ -68,6 +68,8 @@ Button.propTypes = {
   isGoogleSignIn: PropTypes.bool,
   className: PropTypes.string,
   href: PropTypes.string,
+  onClick: PropTypes.func,
+  type: PropTypes.string,
 };
 
 export default Button;
