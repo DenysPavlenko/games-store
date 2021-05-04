@@ -17,6 +17,7 @@ const CartItem = ({ cartItem, hideCart, addItem, removeItem, clearItem, classNam
     'cart-item-inverted': inverted,
     [className]: className
   });
+
   return (
     <div className={classes}>
       <div className="cart-item-image">
@@ -39,7 +40,7 @@ const CartItem = ({ cartItem, hideCart, addItem, removeItem, clearItem, classNam
           }
         </div>
         <div className="cart-item-total">
-          <Typography component="h5" className="text-dark">{quantity} {quantity === 1 ? `Copy` : 'Copies'} </Typography>
+          <Typography component="h5" className="cart-item-total-title text-dark">{quantity} {quantity === 1 ? `Copy` : 'Copies'}</Typography>
           <Typography component="h2" className="text-dark">${price * quantity}</Typography>
         </div>
       </div>
