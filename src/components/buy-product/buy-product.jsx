@@ -15,6 +15,7 @@ const BuyProduct = ({ price, name, className, onCartClick, onButtonClick, inCart
     'buy-product': true,
     [className]: className
   });
+
   return (
     <div className={classes}>
       <div className="buy-product-left">
