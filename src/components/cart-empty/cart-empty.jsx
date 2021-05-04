@@ -14,6 +14,7 @@ const CartEmpty = ({ className, inverted }) => {
     'cart-empty-inverted': inverted,
     [className]: className,
   });
+
   return (
     <div className={classes}>
       <CartIcon />
@@ -24,6 +25,7 @@ const CartEmpty = ({ className, inverted }) => {
 
 CartEmpty.propTypes = {
   inverted: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 export default CartEmpty;
