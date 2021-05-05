@@ -8,4 +8,12 @@ Enzyme.configure({
   snapshotSerializers: ['enzyme-to-json/serializer']
 });
 
+window.matchMedia = window.matchMedia || function () {
+  return {
+    matches: false,
+    addListener: () => { },
+    removeListener: () => { }
+  };
+};
+
 global.toJson = toJson;
