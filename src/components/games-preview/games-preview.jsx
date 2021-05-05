@@ -14,8 +14,7 @@ import Button from 'components/button/button';
 // Styles
 import './games-preview.sass';
 
-const GamesPreview = ({ games: { loading, error, collection }, fetchGamesData }) => {
-
+export const GamesPreview = ({ games: { loading, error, collection }, fetchGamesData }) => {
   useEffect(() => {
     fetchGamesData();
   }, [fetchGamesData]);
@@ -59,8 +58,8 @@ const mapStateToProps = createStructuredSelector({
   games: selectGames
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchGamesData: () => dispatch(fetchGamesData()),
-});
+const mapDispatchToProps = {
+  fetchGamesData
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(GamesPreview);
