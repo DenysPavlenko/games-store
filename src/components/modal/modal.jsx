@@ -35,6 +35,7 @@ class Modal extends Component {
   componentDidUpdate(prevProps) {
     const { hidden: oldHidden } = prevProps;
     const { hidden } = this.props;
+    /* istanbul ignore else */
     if (oldHidden !== hidden) {
       this.toggleScroll(hidden);
     }
@@ -60,6 +61,7 @@ class Modal extends Component {
 
   handleClose = (e) => {
     const { closeModal } = this.props;
+    /* istanbul ignore else */
     if (e.target.classList.contains('modal-wrapper')) {
       closeModal();
     }
