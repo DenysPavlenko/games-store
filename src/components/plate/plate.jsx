@@ -10,24 +10,22 @@ import './plate.sass';
 class Plate extends Component {
   static Left = PlateLeft;
   static Right = PlateRight;
-  static defaultProps = {
-    className: '',
-    onClick: () => { }
-  }
   static propTypes = {
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
-  }
+    onMouseOver: PropTypes.func,
+    onMouseOut: PropTypes.func,
+  };
 
   render() {
-    const { children, className, ...otherProps } = this.props;
+    const { children, className, onMouseOver, onMouseOut } = this.props;
     const classes = classNames({
       'plate': true,
       [className]: className
     });
 
     return (
-      <div className={classes} {...otherProps}>
+      <div className={classes} onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
         {React.Children.map(children, child => (
           React.cloneElement(child, {})
         ))}
