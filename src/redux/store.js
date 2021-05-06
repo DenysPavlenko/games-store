@@ -4,7 +4,7 @@ import { persistStore } from 'redux-persist'
 import rootReducer from './root-reducer';
 // import logger from 'redux-logger';
 
-const middlewares = [
+export const middlewares = [
   thunkMiddleware
 ];
 if(process.env.NODE_ENV === 'development'){
