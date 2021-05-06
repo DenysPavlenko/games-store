@@ -20,6 +20,7 @@ const PlateLeft = ({ children, className }) => {
 PlateLeft.defaultProps = {
   className: ''
 };
+
 PlateLeft.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
