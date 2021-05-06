@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 // Redux
 import { selectUser } from 'redux/user/user.selectors';
 // Components
@@ -23,37 +24,33 @@ const nav = [
   { name: 'Platforms', rootName: '/categories/platforms' },
 ];
 
-const Navigation = ({ user: { currentUser } }) => {
+export const UnconnectedNavigation = ({ user, user: { currentUser } }) => {
+  const [showModal, setShowModal] = React.useState(false);
+  const [isMenuOpened, setIsMenuOpened] = React.useState(false);
 
-  const [showModal, setShowModal] = useState(false);
-  const [isMenuOpened, setIsMenuOpened] = useState(false);
+  const toggleModal = () => setShowModal(!showModal);
+  const closeModal = () => setShowModal(false);
+  const navMenuToggle = () => setIsMenuOpened(!isMenuOpened);
+  const navMenuHide = () => isMenuOpened && navMenuToggle();
 
-  const toggleModal = () => {
-    setShowModal(!showModal);
-  }
-
-  const navMenuToggle = () => {
-    setIsMenuOpened(!isMenuOpened);
-  }
-
-  const navMenuHide = () => {
-    if (isMenuOpened) {
-      setIsMenuOpened(false);
-    }
-  }
-
-  useEffect(() => {
+  React.useEffect(() => {
+    /* istanbul ignore else */
     if (showModal && currentUser) {
-      setShowModal(false);
+      closeModal();
     }
   }, [currentUser, showModal]);
+
+  const navMenuClasses = classNames({
+    'navigation-menu': true,
+    'is-active': isMenuOpened,
+  });
 
   return (
     <div className="navigation">
       <Link to="/" className="navigation-logo" >
         <Logo />
       </Link>
-      <div className={`navigation-menu ${isMenuOpened ? 'is-active' : ''}`}>
+      <div className={navMenuClasses}>
         <ul className="navigation-list">
           {nav.map(({ name, rootName }, idx) => (
             <li key={idx} onClick={navMenuHide} className="navigation-list-item">
@@ -73,17 +70,17 @@ const Navigation = ({ user: { currentUser } }) => {
         }
       </div>
       <Burger className="navigation-burger" onClick={navMenuToggle} />
-      <SignInSignUpModal showModal={showModal} closeModal={() => setShowModal(false)} />
+      <SignInSignUpModal showModal={showModal} closeModal={closeModal} />
     </div>
   );
 };
 
-Navigation.propTypes = {
+UnconnectedNavigation.propTypes = {
   user: PropTypes.object.isRequired,
-}
+};
 
 const mapStateToProps = createStructuredSelector({
   user: selectUser
 });
 
-export default connect(mapStateToProps, null)(Navigation);
+export default connect(mapStateToProps)(UnconnectedNavigation);
