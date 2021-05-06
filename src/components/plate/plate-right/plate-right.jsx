@@ -9,6 +9,7 @@ const PlateRight = ({ children, className }) => {
     'plate-right': true,
     [className]: className
   });
+
   return (
     <div className={classes}>
       {children}
@@ -19,6 +20,7 @@ const PlateRight = ({ children, className }) => {
 PlateRight.defaultProps = {
   className: ''
 };
+
 PlateRight.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
