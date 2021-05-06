@@ -1,4 +1,4 @@
-import React, { useRef, forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 // Components
@@ -9,11 +9,12 @@ import Slider from 'react-slick';
 import './product-header.sass';
 
 const ProductHeader = ({ previews, className }) => {
-  let sliderRef = useRef(null);
+  let sliderRef = React.useRef(null);
   let videoRef = {};
 
-  const handleVideo = (currentIndex) => {
+  const handleVideo = currentIndex => {
     const video = videoRef.current;
+    /* istanbul ignore else */
     if (video) {
       const idx = videoRef.idx;
       currentIndex === idx ? video.play() : video.pause();
@@ -54,7 +55,7 @@ const ProductHeader = ({ previews, className }) => {
           </div>
           <Slider {...slickSettings} ref={slider => sliderRef = slider} >
             {previews.map((preview, idx) => (
-              <ContentToShow key={idx} preview={preview} ref={(ref) => { setVideoRef(ref, idx) }} />
+              <ContentToShow key={idx} preview={preview} ref={ref => setVideoRef(ref, idx)} />
             ))}
           </Slider>
         </>
