@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -14,7 +15,7 @@ import Button from 'components/button/button';
 // Styles
 import './checkout-form.sass';
 
-const initialState = {
+export const initialState = {
   name: '',
   email: '',
   address: '',
@@ -27,22 +28,21 @@ const initialState = {
   isLoading: false
 };
 
-class CheckoutForm extends Component {
+export class UnconnectedCheckoutForm extends Component {
   state = {
     ...initialState,
   }
 
-  static defaultProps = {
-    isSuccess: () => { }
-  }
-
   static propTypes = {
     user: PropTypes.object.isRequired,
-    isSuccess: PropTypes.func.isRequired
+    isSuccess: PropTypes.func.isRequired,
+    stripe: PropTypes.object,
+    elements: PropTypes.object,
   }
 
   componentDidMount() {
     const { user: { currentUser } } = this.props;
+    /* istanbul ignore else */
     if (currentUser) {
       this.setState({
         name: currentUser.displayName,
@@ -50,6 +50,7 @@ class CheckoutForm extends Component {
       });
     }
   }
+
   componentDidUpdate(prevProps) {
     const { user: { currentUser } } = this.props;
     if (prevProps.user.currentUser !== currentUser && currentUser) {
@@ -81,6 +82,7 @@ class CheckoutForm extends Component {
       ...validatedInputs
     });
 
+    /* istanbul ignore else */
     if (!stripe || !elements) {
       return;
     }
@@ -114,13 +116,11 @@ class CheckoutForm extends Component {
     const { formErrors } = this.state;
     this.setState({
       [name]: value,
-      [`${name}Invalid`]: formErrors && !validateInput(type, value),
+      [`${name}Invalid`]: formErrors && !validateInput(type, value)
     })
   }
 
-  handleCheck = event => {
-    this.setState({ terms: event.target.checked })
-  }
+  handleCheck = event => this.setState({ terms: event.target.checked });
 
   render() {
     const { stripe } = this.props;
@@ -141,12 +141,17 @@ class CheckoutForm extends Component {
       },
     };
 
+    const CheckoutFormInputClasses = classNames({
+      'checkout-form-input checkout-form-card': true,
+      'checkout-form-card-invalid': cardInvalid
+    });
+
     return (
       <form className="checkout-form" onSubmit={this.handleSubmit} noValidate>
         <Input type="text" name="name" value={name} onChange={this.handleInput} invalid={nameInvalid} className="checkout-form-input" placeholder="Name" />
         <Input type="email" name="email" value={email} onChange={this.handleInput} invalid={emailInvalid} className="checkout-form-input" placeholder="Email" />
         <Input type="text" name="address" value={address} onChange={this.handleInput} invalid={addressInvalid} className="checkout-form-input" placeholder="Address" />
-        <div className={`checkout-form-input checkout-form-card ${cardInvalid && 'checkout-form-card-invalid'}`}>
+        <div className={CheckoutFormInputClasses}>
           <CardElement options={cardElementOpts} onChange={event => {
             this.setState({ cardInvalid: event.error });
           }} />
@@ -162,7 +167,7 @@ class CheckoutForm extends Component {
       </form>
     );
   }
-}
+};
 
 const mapStateToProps = createStructuredSelector({
   user: selectUser
@@ -171,7 +176,7 @@ const mapStateToProps = createStructuredSelector({
 export default connect(mapStateToProps)((props) => (
   <ElementsConsumer>
     {({ elements, stripe }) => (
-      <CheckoutForm {...props} elements={elements} stripe={stripe} />
+      <UnconnectedCheckoutForm {...props} elements={elements} stripe={stripe} />
     )}
   </ElementsConsumer>
 ));
