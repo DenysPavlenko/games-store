@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import './typography.sass';
 
 const Typography = ({ children, component, variant, className, ...otherProps }) => {
-
   const classes = classNames({
     [variant]: variant,
     [className]: className
