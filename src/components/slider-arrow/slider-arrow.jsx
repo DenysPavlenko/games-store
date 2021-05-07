@@ -22,10 +22,8 @@ const SliderArrow = ({ className, reversed, arrowAlt, onClick }) => {
 };
 
 SliderArrow.defaultProps = {
-  className: '',
   reversed: false,
   arrowAlt: false,
-  onClick: () => { }
 };
 
 SliderArrow.propTypes = {
