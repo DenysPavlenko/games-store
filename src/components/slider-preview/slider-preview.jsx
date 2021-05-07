@@ -32,29 +32,29 @@ class SliderPreview extends Component {
     const { sliderRight, sliderLeft } = this.state;
     sliderRight.slickPause();
     sliderLeft.slickPause();
-  }
+  };
 
   startSliders = () => {
     const { sliderRight, sliderLeft } = this.state;
     sliderRight.slickPlay();
     sliderLeft.slickPlay();
-  }
+  };
 
   nextSlide = () => {
     const { sliderRight } = this.state;
     sliderRight.slickNext();
-  }
+  };
 
   prevSlide = () => {
     const { sliderRight } = this.state;
     sliderRight.slickPrev();
-  }
+  };
 
   setRef = (refName, ref) => {
     this.setState({
       [refName]: ref
     });
-  }
+  };
 
   render() {
     const { children, isLoading, hasError, className } = this.props;
@@ -81,7 +81,7 @@ class SliderPreview extends Component {
 
     return (
       <Container>
-        <Plate className={classes} onMouseOver={this.stopSliders} onMouseOut={this.startSliders}>
+        <Plate className={classes} onMouseOver={this.stopSliders} onMouseLeave={this.startSliders}>
           {React.Children.map(children, child => (
             React.cloneElement(child, {
               slickSettings,
