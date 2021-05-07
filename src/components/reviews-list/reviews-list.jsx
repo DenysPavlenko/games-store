@@ -41,7 +41,7 @@ const ReviewsList = ({ reviews }) => {
           <ReviewsListItem title={title} name={name} review={review} rating={rating} key={id} />
         ))}
       </Slider>
-      <div className="reviews-list-slider-control" onMouseOver={() => sliderRef.slickPause()} onMouseOut={() => sliderRef.slickPlay()}>
+      <div className="reviews-list-slider-control" onMouseOver={() => sliderRef.slickPause()} onMouseLeave={() => sliderRef.slickPlay()}>
         <SliderArrow onClick={() => sliderRef.slickPrev()} arrowAlt reversed />
         <SliderArrow onClick={() => sliderRef.slickNext()} arrowAlt />
       </div>
@@ -51,6 +51,6 @@ const ReviewsList = ({ reviews }) => {
 
 ReviewsList.propTypes = {
   reviews: PropTypes.array.isRequired,
-}
+};
 
 export default ReviewsList;
