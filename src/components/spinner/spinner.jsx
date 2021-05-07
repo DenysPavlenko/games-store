@@ -18,7 +18,6 @@ const Spinner = ({ lg, accent, className }) => {
 };
 
 Spinner.defaultProps = {
-  className: '',
   lg: false,
   accent: false
 };
