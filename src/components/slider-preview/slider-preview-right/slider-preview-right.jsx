@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
+import PropTypes from 'prop-types';
 // Components
 import Plate from 'components/plate/plate';
 // Assets
@@ -10,10 +11,14 @@ import './slider-preview-right.sass';
 class SliderPreviewRight extends Component {
   sliderRight = React.createRef();
 
+  static propTypes = {
+    setRef: PropTypes.func
+  };
+
   componentDidMount() {
     const { setRef } = this.props;
     setRef('sliderRight', this.sliderRight.current)
-  }
+  };
 
   render() {
     const { children, slickSettings, nextSlide, sliderLeft, prevSlide } = this.props
