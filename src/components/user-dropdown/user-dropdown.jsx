@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 // Components
 import Avatar from 'components/avatar/avatar';
 import Dropdown from 'components/dropdown/dropdown';
@@ -22,5 +23,10 @@ const UserDropdown = ({ userName, avatar }) => {
     </Dropdown>
   );
 };
+
+UserDropdown.propTypes={
+  userName: PropTypes.string,
+  avatar: PropTypes.string,
+}
 
 export default UserDropdown;
