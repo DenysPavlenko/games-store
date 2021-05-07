@@ -14,18 +14,18 @@ class Plate extends Component {
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
     onMouseOver: PropTypes.func,
-    onMouseOut: PropTypes.func,
+    onMouseLeave: PropTypes.func,
   };
 
   render() {
-    const { children, className, onMouseOver, onMouseOut } = this.props;
+    const { children, className, onMouseOver, onMouseLeave } = this.props;
     const classes = classNames({
       'plate': true,
       [className]: className
     });
 
     return (
-      <div className={classes} onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
+      <div className={classes} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
         {React.Children.map(children, child => (
           React.cloneElement(child, {})
         ))}

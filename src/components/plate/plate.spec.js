@@ -7,7 +7,7 @@ const props = {
   children: <span></span>,
   className: 'test-class',
   onMouseOver: () => { },
-  onMouseOut: () => { },
+  onMouseLeave: () => { },
 }
 const setup = (props = {}) => {
   return shallow(<Plage {...props} />)
