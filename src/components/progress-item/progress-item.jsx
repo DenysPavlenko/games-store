@@ -21,8 +21,7 @@ const ProgressItem = ({ title, percents, radius }) => {
 };
 
 ProgressItem.defaultProps = {
-  radius: 36,
-  title: ''
+  radius: 36
 };
 
 ProgressItem.propTypes = {
