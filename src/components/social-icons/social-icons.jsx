@@ -19,10 +19,6 @@ const SocialIcons = ({ socials, className }) => {
   );
 };
 
-SocialIcons.defaultProps = {
-  className: '',
-};
-
 SocialIcons.propTypes = {
   socials: PropTypes.array.isRequired,
   className: PropTypes.string,
