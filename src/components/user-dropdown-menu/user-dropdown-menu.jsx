@@ -12,11 +12,11 @@ import { ReactComponent as LogOut } from 'assets/images/icons/sign-out.svg';
 // Styles
 import './user-dropdown-menu.sass';
 
-const UserDropdownMenu = ({ userSignOut }) => {
+export const UserDropdownMenu = ({ userSignOut }) => {
   return (
     <div className="user-dropdown-menu">
       <div className="user-dropdown-menu-items">
-        <NavLink className="user-dropdown-menu-item" to="/history" exact={'/history' === '/' && true}>
+        <NavLink className="user-dropdown-menu-item" to="/history" exact={true}>
           <Cog className="user-dropdown-menu-icon" />
           <Typography component="span" variant="p" className="mb-0">History</Typography>
         </NavLink>
@@ -31,10 +31,10 @@ const UserDropdownMenu = ({ userSignOut }) => {
 
 UserDropdownMenu.propTypes = {
   userSignOut: PropTypes.func.isRequired,
-}
+};
 
-const mapDispatchToProps = dispatch => ({
-  userSignOut: () => dispatch(userSignOut())
-});
+const mapDispatchToProps = {
+  userSignOut
+};
 
 export default connect(null, mapDispatchToProps)(UserDropdownMenu);
