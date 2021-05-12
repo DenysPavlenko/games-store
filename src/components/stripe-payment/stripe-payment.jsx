@@ -19,39 +19,37 @@ import './stripe-payment.sass';
 
 const stripePromise = loadStripe("pk_test_hISzKXXyR5riFGZeaXvHWeQU00QUWFivUZ");
 
-class StripePayment extends Component {
+export class StripePayment extends Component {
   state = {
     showModal: false
-  }
-
-  static defaultProps = {
-    clearCart: () => { }
-  }
+  };
 
   static propTypes = {
     cartItems: PropTypes.array.isRequired,
-    clearCart: PropTypes.func,
-  }
+    clearCart: PropTypes.func.isRequired,
+    user: PropTypes.object,
+  };
 
   isSuccess = () => {
     const { cartItems, user: { currentUser } } = this.props;
     this.setState({ showModal: true });
     // Write items to the purchase history
+    /* istanbul ignore else */
     if (currentUser) {
       addPurcaseToUserHistory(cartItems, currentUser.id);
     }
-  }
+  };
 
   closeModal = () => {
     const { cartItems, clearCart } = this.props;
     clearCart(cartItems);
     this.setState({ showModal: false });
-  }
+  };
 
   render() {
     const { showModal } = this.state;
     return (
-      <Elements stripe={stripePromise} >
+      <Elements stripe={stripePromise}>
         <CheckoutForm isSuccess={this.isSuccess} />
         <Modal hidden={!showModal} closeModal={this.closeModal}>
           <div className="stripe-payment-modal-wrap">
@@ -69,8 +67,8 @@ const mapStateToProps = createStructuredSelector({
   user: selectUser
 });
 
-const mapDispatchToProps = dispatch => ({
-  clearCart: (cartItem) => dispatch(clearCart(cartItem)),
-});
+const mapDispatchToProps = {
+  clearCart
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(StripePayment);
