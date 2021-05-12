@@ -21,7 +21,7 @@ const setup = (props = {}) => {
   return shallow(<SignIn {...props} />)
 };
 
-describe('PropTypes', () => {
+describe('SignIn', () => {
   test('renders without errors', () => {
     const wrapper = setup({ ...props });
     expect(wrapper).not.toBeNull();

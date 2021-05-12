@@ -12,7 +12,7 @@ const setup = (props = {}) => {
   return mount(<ScrollToTop {...props} />)
 };
 
-describe('PropTypes', () => {
+describe('ScrollToTop', () => {
   test('renders without errors', () => {
     const wrapper = setup({ ...props });
     expect(wrapper).not.toBeNull();
