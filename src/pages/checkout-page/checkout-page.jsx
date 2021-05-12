@@ -13,7 +13,7 @@ import CheckoutTable from 'components/checkout-table/checkout-table';
 // Styles
 import './checkout-page.sass';
 
-const CheckoutPage = ({ cartItems, hideCart, removeItemFromCart, addItemToCart, clearItemFromCart, totalCount }) => {
+export const CheckoutPage = ({ cartItems, hideCart, removeItemFromCart, addItemToCart, clearItemFromCart, totalCount }) => {
   if (!cartItems.length) { return <Redirect to="/" /> }
 
   return (
@@ -34,7 +34,7 @@ const CheckoutPage = ({ cartItems, hideCart, removeItemFromCart, addItemToCart, 
   );
 };
 
-CheckoutPage.propTypes = {
+CheckoutPage.defaultProps = {
   hideCart: () => { },
   removeItemFromCart: () => { },
   addItemToCart: () => { },
@@ -56,11 +56,11 @@ const mapStateToProps = createStructuredSelector({
   totalCount: selectCartTotalCount
 });
 
-const mapDispatchToProps = dispatch => ({
-  hideCart: () => dispatch(hideCart()),
-  addItemToCart: (cartItem) => dispatch(addItemToCart(cartItem)),
-  removeItemFromCart: (cartItem) => dispatch(removeItemFromCart(cartItem)),
-  clearItemFromCart: (cartItem) => dispatch(clearItemFromCart(cartItem)),
-});
+const mapDispatchToProps = {
+  hideCart,
+  addItemToCart,
+  removeItemFromCart,
+  clearItemFromCart,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckoutPage);
