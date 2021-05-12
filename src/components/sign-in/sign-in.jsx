@@ -19,7 +19,7 @@ const initialState = {
   formErrors: false
 };
 
-class SignIn extends Component {
+export class SignIn extends Component {
   state = {
     ...initialState
   };
@@ -51,7 +51,7 @@ class SignIn extends Component {
     this.setState({
       ...validatedInputs
     });
-
+    /* istanbul ignore else */
     if (validatedInputs.formErrors) { return; }
     signInWithEmail(email, password);
   };
@@ -74,6 +74,7 @@ class SignIn extends Component {
           {error &&
             <Typography component="p" className="text-danger">{error}</Typography>
           }
+
           <div className="sign-in-buttons">
             <Button type="submit" className="sign-in-button">Sign in</Button>
             <Button type="button" className="sign-in-button" onClick={signInWithGoogle} isGoogleSignIn>Google sign in</Button>
@@ -84,9 +85,9 @@ class SignIn extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  signInWithGoogle: () => dispatch(signInWithGoogle()),
-  signInWithEmail: (email, password) => dispatch(signInWithEmail({ email, password })),
-});
+const mapDispatchToProps = {
+  signInWithGoogle,
+  signInWithEmail,
+};
 
 export default connect(null, mapDispatchToProps)(SignIn);
