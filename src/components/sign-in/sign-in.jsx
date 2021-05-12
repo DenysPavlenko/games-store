@@ -53,9 +53,8 @@ export class SignIn extends Component {
     });
     /* istanbul ignore else */
     if (validatedInputs.formErrors) { return; }
-    signInWithEmail(email, password);
+    signInWithEmail({ email, password });
   };
-
 
   render() {
     const { email, password, emailInvalid, passwordInvalid } = this.state;

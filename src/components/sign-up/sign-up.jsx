@@ -60,7 +60,7 @@ export class SignUp extends Component {
     });
 
     if (validatedInputs.formErrors) { return; }
-    signUpWithEmail(name, email, password);
+    signUpWithEmail({ name, email, password });
   };
 
   render() {
