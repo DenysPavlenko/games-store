@@ -4,7 +4,6 @@ import toJson from 'enzyme-to-json';
 
 Enzyme.configure({
   adapter: new EnzymeAdapter(),
-  disableLifecycleMethods: true,
   snapshotSerializers: ['enzyme-to-json/serializer']
 });
 
