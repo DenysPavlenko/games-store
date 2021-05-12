@@ -8,9 +8,6 @@ export default (type, value) => {
     case 'email':
       regx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return regx.test(strValue);
-    case 'phone':
-      regx = /^(1\s?)?((\([0-9]{3}\))|[0-9]{3})[\s-]?[\0-9]{3}[\s-]?[0-9]{4}$/g;
-      return regx.test(strValue);
     case 'number':
       regx = /^[0-9]+$/;
       return regx.test(strValue);
