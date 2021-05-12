@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -18,12 +18,12 @@ import Button from 'components/button/button';
 // Styles
 import './categories-page.sass';
 
-const CategoriesPage = ({ fetchCategoriesData, history, match: { params, url }, data: { loading, collection, error } }) => {
+export const CategoriesPage = ({ fetchCategoriesData, history, match: { params, url }, data: { loading, collection, error } }) => {
   const { categoriesRout } = params;
 
-  const [rootDoesntExist, setRootDoesntExist] = useState(false);
+  const [rootDoesntExist, setRootDoesntExist] = React.useState(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (categoriesRout === 'developers' || categoriesRout === 'genres' || categoriesRout === 'platforms') {
       fetchCategoriesData(categoriesRout);
     } else {
@@ -31,6 +31,7 @@ const CategoriesPage = ({ fetchCategoriesData, history, match: { params, url }, 
     }
   }, [fetchCategoriesData, categoriesRout]);
 
+  /* istanbul ignore else */
   if (rootDoesntExist) { return <Redirect to="/404" /> }
 
   return (
@@ -83,14 +84,16 @@ const CategoriesPage = ({ fetchCategoriesData, history, match: { params, url }, 
 CategoriesPage.propTypes = {
   data: PropTypes.object.isRequired,
   fetchCategoriesData: PropTypes.func.isRequired,
-}
+  history: PropTypes.object,
+  match: PropTypes.object,
+};
 
 const mapStateToProps = createStructuredSelector({
   data: selectChosenCategory,
 });
 
-const mapDispatchToProps = dispatch => ({
-  fetchCategoriesData: categories => dispatch(fetchCategoriesData(categories)),
-});
+const mapDispatchToProps = {
+  fetchCategoriesData
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoriesPage);
