@@ -87,9 +87,9 @@ describe('SignUp', () => {
       expect(mockSignUpWithEmail.mock.calls.length).toBe(1);
     });
   });
-  // test('does not throw warning with expected props', () => {
-  //   const expectedProps = { ...props };
-  //   const propsError = checkProps(SignUp, expectedProps);
-  //   expect(propsError).toBeUndefined();
-  // });
+  test('does not throw warning with expected props', () => {
+    const expectedProps = { ...props };
+    const propsError = checkProps(SignUp, expectedProps);
+    expect(propsError).toBeUndefined();
+  });
 });
