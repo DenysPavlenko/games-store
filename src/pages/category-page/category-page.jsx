@@ -18,14 +18,13 @@ import Breadcrumbs from 'components/breadcrumbs/breadcrumbs';
 // Styles
 import './category-page.sass';
 
-class CategoryPage extends Component {
-
+export class CategoryPage extends Component {
   static propTypes = {
     category: PropTypes.object.isRequired,
     categoryDetails: PropTypes.object.isRequired,
     fetchCategoryData: PropTypes.func.isRequired,
     fetchCategoryDetailsData: PropTypes.func.isRequired,
-  }
+  };
 
   componentDidMount() {
     const { fetchCategoryData, fetchCategoryDetailsData, match: { params } } = this.props;
@@ -70,9 +69,9 @@ const mapStateToProps = createStructuredSelector({
   categoryDetails: selectCategoryDetails,
 });
 
-const mapDispatchToProps = dispatch => ({
-  fetchCategoryData: (categories, category) => dispatch(fetchCategoryData(categories, category)),
-  fetchCategoryDetailsData: (categoryType, category) => dispatch(fetchCategoryDetailsData(categoryType, category)),
-});
+const mapDispatchToProps ={
+  fetchCategoryData,
+  fetchCategoryDetailsData
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryPage);
