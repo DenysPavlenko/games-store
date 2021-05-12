@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import PropTypes from 'prop-types';
 // Redux
 import { selectUser } from 'redux/user/user.selectors';
 // Components
@@ -11,28 +12,24 @@ import Typography from 'components/typography/typography';
 // Styles
 import './sign-in-sign-up-modal.sass';
 
-const SignInSignUpModal = ({ showModal, closeModal, user }) => {
+export const SignInSignUpModal = ({ showModal, closeModal, user }) => {
+  const [register, setRegister] = React.useState(false);
 
-  const [register, setRegister] = useState(false);
-
-  const switchForm = () => setRegister(!register);
-
-  const handleRegister = () => {
-    setRegister(false);
-  }
+  const toggleForm = () => setRegister(register => !register);
+  const resetForm = () => setRegister(false)
 
   const { loading } = user;
 
   return (
-    <Modal hidden={!showModal} closeModal={closeModal} onExited={handleRegister} loading={loading} small>
+    <Modal hidden={!showModal} closeModal={closeModal} onExited={resetForm} loading={loading} small>
       <div className="sign-in-sign-up-modal">
-        {!register ?
-          <SignIn user={user}/>
-          :
+        {register ?
           <SignUp />
+          :
+          <SignIn user={user} />
         }
-        <div className="sign-in-sign-up-modal-switch">
-          <Typography component="span" variant="p" className="text-accent sign-in-sign-up-modal-title mb-0" onClick={switchForm}>
+        <div className="sign-in-sign-up-modal-toggle">
+          <Typography component="span" variant="p" className="text-accent sign-in-sign-up-modal-title mb-0" onClick={toggleForm}>
             {!register ?
               'Create a new account'
               :
@@ -43,7 +40,17 @@ const SignInSignUpModal = ({ showModal, closeModal, user }) => {
       </div>
     </Modal>
   );
-}
+};
+
+SignInSignUpModal.defaultProps = {
+  showModal: false,
+};
+
+SignInSignUpModal.propTypes = {
+  showModal: PropTypes.bool,
+  closeModal: PropTypes.func,
+  user: PropTypes.object
+};
 
 const mapStateToProps = createStructuredSelector({
   user: selectUser
