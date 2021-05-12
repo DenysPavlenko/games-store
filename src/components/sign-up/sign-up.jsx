@@ -23,15 +23,16 @@ const initialState = {
   passwordInvalid: false,
   confirmPasswordInvalid: false,
   formErrors: false,
-}
+};
 
-class SignUp extends Component {
+export class SignUp extends Component {
   state = {
     ...initialState
   };
 
   static propTypes = {
     signUpWithEmail: PropTypes.func.isRequired,
+    user: PropTypes.object,
   };
 
   handleInput = event => {
@@ -41,7 +42,7 @@ class SignUp extends Component {
       [name]: value,
       [`${name}Invalid`]: formErrors && !validateInput(type, value),
     })
-  }
+  };
 
   handleSubmit = async event => {
     event.preventDefault();
@@ -95,8 +96,8 @@ class SignUp extends Component {
 const mapStateToProps = createStructuredSelector({
   user: selectUser
 });
-const mapDispatchToProps = dispatch => ({
-  signUpWithEmail: (name, email, password) => dispatch(signUpWithEmail({ name, email, password }))
-});
+const mapDispatchToProps = {
+  signUpWithEmail
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
