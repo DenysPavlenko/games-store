@@ -2,9 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { StripePayment } from './stripe-payment';
 import { checkProps } from 'test-utils/index';
-// import * as dependency from '../dependency';
 import * as firebaseUtils from 'services/firebase/firebase.utils';
-
 
 const props = {
   cartItems: [],
