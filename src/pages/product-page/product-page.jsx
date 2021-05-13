@@ -43,22 +43,18 @@ const socials = [
   { Icon: Youtube, link: 'http://example.com' },
 ]
 
-class ProductPage extends Component {
+export class ProductPage extends Component {
   state = {
     reviews,
     socials,
     inCart: false
   }
 
-  static defaultProps = {
-    addItemToCart: () => { }
-  }
-
   static propTypes = {
     game: PropTypes.object.isRequired,
     cartItems: PropTypes.array.isRequired,
     fetchGameDetails: PropTypes.func.isRequired,
-    addItemToCart: PropTypes.func,
+    addItemToCart: PropTypes.func.isRequired,
   }
 
   componentDidMount() {
@@ -151,23 +147,25 @@ class ProductPage extends Component {
   }
 };
 
-const ProductTableItem = ({ title, property }) => (
-  <div className="product-table-item">
-    <Typography component="h5" className="text-muted">
-      {property.length > 1 ? `${title}s` : title}
-    </Typography>
-    <Typography component="h6" className="mb-0">{typeof property === 'object' ? property.join(', ') : property}</Typography>
-  </div>
-)
+export const ProductTableItem = ({ title, property }) => {
+  return (
+    <div className="product-table-item">
+      <Typography component="h5" className="text-muted">
+        {typeof property === 'object' && property.length > 1 ? `${title}s` : title}
+      </Typography>
+      <Typography component="h6" className="mb-0">{typeof property === 'object' ? property.join(', ') : property}</Typography>
+    </div>
+  )
+};
 
 const mapStateToProps = createStructuredSelector({
   game: selectGame,
   cartItems: selectCartItems
 });
 
-const mapDispatchToProps = dispatch => ({
-  fetchGameDetails: (gameId) => dispatch(fetchGameDetails(gameId)),
-  addItemToCart: (item) => dispatch(addItemToCart(item))
-});
+const mapDispatchToProps = {
+  fetchGameDetails,
+  addItemToCart
+};
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProductPage));
