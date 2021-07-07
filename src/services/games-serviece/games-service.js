@@ -1,15 +1,10 @@
 export default class GamesService {
-  _apiBase = 'https://rawg-video-games-database.p.rapidapi.com';
+  _apiBase = 'https://api.rawg.io/api';
+  _apiKey = '?key=0090c8b092db40f3bc459c993c4306a2';
 
   async getResource(url) {
     try {
-      const res = await fetch(`${this._apiBase}${url}`, {
-        "method": "GET",
-        "headers": {
-          "x-rapidapi-host": "rawg-video-games-database.p.rapidapi.com",
-          "x-rapidapi-key": "9598c96e8dmshbf06c0e2380b5cbp102cc7jsnb817c41fdec8"
-        }
-      });
+      const res = await fetch(`${this._apiBase}${url}`);
       if (!res.ok) {
         throw new Error(res.status);
       }
@@ -22,32 +17,32 @@ export default class GamesService {
 
   // Game details
   getGameDetails = async (gameId) => {
-    const res = await this.getResource(`/games/${gameId}`);
+    const res = await this.getResource(`/games/${gameId}${this._apiKey}`);
     return this._transformGameDetails(res);
   }
   // Games
   getAllGames = async () => {
-    const res = await this.getResource(`/games`);
+    const res = await this.getResource(`/games${this._apiKey}`);
     return res.results.map(this._transformGame);
   }
   // Genres
   getAllGenres = async () => {
-    const res = await this.getResource(`/genres`);
+    const res = await this.getResource(`/genres${this._apiKey}`);
     return res.results.map(this._transformCategory);
   }
   // Developers
   getAllDevelopers = async () => {
-    const res = await this.getResource(`/developers`);
+    const res = await this.getResource(`/developers${this._apiKey}`);
     return res.results.map(this._transformCategory);
   }
   // Platforms
   getAllPlatforms = async () => {
-    const res = await this.getResource(`/platforms`);
+    const res = await this.getResource(`/platforms${this._apiKey}`);
     return res.results.map(this._transformCategory);
   }
   // Category Details
   getCategoryDetails = async (categoryType, category) => {
-    const res = await this.getResource(`/${categoryType}/${category}`);
+    const res = await this.getResource(`/${categoryType}/${category}${this._apiKey}`);
     return this._transformCategoryDetails(res);
   }
 
