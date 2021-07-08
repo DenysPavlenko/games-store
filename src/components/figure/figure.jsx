@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -6,18 +7,26 @@ import './figure.sass';
 
 const Figure = ({ image, className, ...otherProps }) => {
   const classes = classNames({
-    'figure': true,
-    [className]: className
+    figure: true,
+    [className]: className,
   });
 
   return (
-    <figure className={classes} style={image && { backgroundImage: `url(${image})` }} {...otherProps}></figure>
+    <figure
+      className={classes}
+      style={image && { backgroundImage: `url(${image})` }}
+      {...otherProps}
+    />
   );
 };
 
-Image.propTypes = {
-  image: PropTypes.string,
-  className: PropTypes.string
-}
+Figure.defaultProps = {
+  className: '',
+};
+
+Figure.propTypes = {
+  image: PropTypes.string.isRequired,
+  className: PropTypes.string,
+};
 
 export default Figure;

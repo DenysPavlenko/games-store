@@ -18,13 +18,14 @@ const DropdownToggle = ({ children, className, toggleDropdown }) => {
 };
 
 DropdownToggle.defaultProps = {
-  toggleDropdown: () => { },
+  toggleDropdown: () => {},
+  className: '',
 };
 
 DropdownToggle.propTypes = {
   children: PropTypes.node.isRequired,
-  toggleDropdown: PropTypes.func.isRequired,
-  className: PropTypes.string
+  toggleDropdown: PropTypes.func,
+  className: PropTypes.string,
 };
 
 export default DropdownToggle;

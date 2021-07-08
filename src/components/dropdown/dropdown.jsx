@@ -8,17 +8,14 @@ import DropdownBox from './dropdown-box/dropdown-box';
 import './dropdown.sass';
 
 class Dropdown extends Component {
+  static Toggle = DropdownToggle;
+
+  static Box = DropdownBox;
+
   dropdownRef = React.createRef();
 
-  static Toggle = DropdownToggle;
-  static Box = DropdownBox;
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    className: PropTypes.string
-  };
-
   state = {
-    isOpened: false
+    isOpened: false,
   };
 
   componentDidMount() {
@@ -29,33 +26,49 @@ class Dropdown extends Component {
     document.removeEventListener('click', this.handleClickOutside);
   }
 
-  handleClickOutside = e => {
+  handleClickOutside = (e) => {
     const dropdown = this.dropdownRef;
     if (dropdown && !dropdown.contains(e.target)) {
       this.setState({ isOpened: false });
     }
-  }
+  };
 
-  toggleDropdown = () => this.setState(({ isOpened }) => ({ isOpened: !isOpened }));
+  toggleDropdown = () =>
+    this.setState(({ isOpened }) => ({ isOpened: !isOpened }));
 
   render() {
     const { children, className } = this.props;
+    const { isOpened } = this.state;
     const classnames = classNames({
-      'dropdown': true,
+      dropdown: true,
       [className]: className,
     });
 
     return (
-      <div className={classnames} ref={ref => this.dropdownRef = ref}>
-        {React.Children.map(children, child => (
+      <div
+        className={classnames}
+        ref={(ref) => {
+          this.dropdownRef = ref;
+        }}
+      >
+        {React.Children.map(children, (child) =>
           React.cloneElement(child, {
             toggleDropdown: this.toggleDropdown,
-            isOpened: this.state.isOpened
+            isOpened,
           })
-        ))}
+        )}
       </div>
     );
   }
 }
+
+Dropdown.defaultProps = {
+  className: '',
+};
+
+Dropdown.propTypes = {
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+};
 
 export default Dropdown;

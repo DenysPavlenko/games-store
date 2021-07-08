@@ -13,7 +13,7 @@ import UserDropdown from 'components/user-dropdown/user-dropdown';
 import SignInSignUpModal from 'components/sign-in-sign-up-modal/sign-in-sign-up-modal';
 import CartIcon from 'components/cart-icon/cart-icon';
 // Styles
-import "./navigation.sass";
+import './navigation.sass';
 // Assets
 import { ReactComponent as Logo } from 'assets/images/logo.svg';
 
@@ -24,7 +24,7 @@ const nav = [
   { name: 'Platforms', rootName: '/categories/platforms' },
 ];
 
-export const UnconnectedNavigation = ({ user, user: { currentUser } }) => {
+export const UnconnectedNavigation = ({ user: { currentUser } }) => {
   const [showModal, setShowModal] = React.useState(false);
   const [isMenuOpened, setIsMenuOpened] = React.useState(false);
 
@@ -47,27 +47,42 @@ export const UnconnectedNavigation = ({ user, user: { currentUser } }) => {
 
   return (
     <div className="navigation">
-      <Link to="/" className="navigation-logo" >
+      <Link to="/" className="navigation-logo">
         <Logo />
       </Link>
       <div className={navMenuClasses}>
         <ul className="navigation-list">
-          {nav.map(({ name, rootName }, idx) => (
-            <li key={idx} onClick={navMenuHide} className="navigation-list-item">
-              <NavLink to={rootName} exact={rootName === '/' && true} className="navigation-list-link">{name}</NavLink>
+          {nav.map(({ name, rootName }) => (
+            <li
+              key={rootName}
+              onClick={navMenuHide}
+              className="navigation-list-item"
+            >
+              <NavLink
+                to={rootName}
+                exact={rootName === '/' && true}
+                className="navigation-list-link"
+              >
+                {name}
+              </NavLink>
             </li>
           ))}
         </ul>
       </div>
       <div className="navigation-user">
         <CartIcon />
-        {currentUser ?
+        {currentUser ? (
           <div className="navigation-user-dropdown">
-            <UserDropdown avatar={currentUser.avatar} userName={currentUser.displayName} />
+            <UserDropdown
+              avatar={currentUser.avatar}
+              userName={currentUser.displayName}
+            />
           </div>
-          :
-          <Button className="navigation-button" onClick={toggleModal}>Sign In</Button>
-        }
+        ) : (
+          <Button className="navigation-button" onClick={toggleModal}>
+            Sign In
+          </Button>
+        )}
       </div>
       <Burger className="navigation-burger" onClick={navMenuToggle} />
       <SignInSignUpModal showModal={showModal} closeModal={closeModal} />
@@ -80,7 +95,7 @@ UnconnectedNavigation.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  user: selectUser
+  user: selectUser,
 });
 
 export default connect(mapStateToProps)(UnconnectedNavigation);

@@ -23,30 +23,47 @@ const ReviewsList = ({ reviews }) => {
         breakpoint: 991,
         settings: {
           slidesToShow: 2,
-        }
+        },
       },
       {
         breakpoint: 575,
         settings: {
           slidesToShow: 1,
-        }
-      }
-    ]
+        },
+      },
+    ],
   };
 
   return (
     <div className="reviews-list">
-      <Slider ref={slider => sliderRef = slider} {...slickSettings} >
+      <Slider
+        ref={(slider) => {
+          sliderRef = slider;
+        }}
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...slickSettings}
+      >
         {reviews.map(({ id, title, name, rating, review }) => (
-          <ReviewsListItem title={title} name={name} review={review} rating={rating} key={id} />
+          <ReviewsListItem
+            title={title}
+            name={name}
+            review={review}
+            rating={rating}
+            key={id}
+          />
         ))}
       </Slider>
-      <div className="reviews-list-slider-control" onMouseOver={() => sliderRef.slickPause()} onMouseLeave={() => sliderRef.slickPlay()}>
+      <div
+        className="reviews-list-slider-control"
+        onMouseOver={() => sliderRef.slickPause()}
+        onMouseLeave={() => sliderRef.slickPlay()}
+        onFocus={() => {}}
+      >
         <SliderArrow onClick={() => sliderRef.slickPrev()} arrowAlt reversed />
         <SliderArrow onClick={() => sliderRef.slickNext()} arrowAlt />
       </div>
     </div>
-  )
+  );
 };
 
 ReviewsList.propTypes = {

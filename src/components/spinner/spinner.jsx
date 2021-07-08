@@ -6,26 +6,25 @@ import './spinner.sass';
 
 const Spinner = ({ lg, accent, className }) => {
   const classes = classNames({
-    'spinner': true,
+    spinner: true,
     'spinner-lg': lg,
     'spinner-accent': accent,
-    [className]: className
+    [className]: className,
   });
 
-  return (
-    <div className={classes}></div>
-  );
+  return <div className={classes} />;
 };
 
 Spinner.defaultProps = {
   lg: false,
-  accent: false
+  accent: false,
+  className: '',
 };
 
 Spinner.propTypes = {
   className: PropTypes.string,
   lg: PropTypes.bool,
-  accent: PropTypes.bool
+  accent: PropTypes.bool,
 };
 
 export default Spinner;

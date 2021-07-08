@@ -12,25 +12,22 @@ const DropdownBox = ({ children, className, isOpened, toggleDropdown }) => {
 
   return (
     <div className={classnames} onClick={toggleDropdown}>
-      {isOpened ?
-        children
-        :
-        null
-      }
+      {isOpened ? children : null}
     </div>
   );
 };
 
 DropdownBox.defaultProps = {
   isOpened: false,
-  toggleDropdown: () => { },
+  toggleDropdown: () => {},
+  className: '',
 };
 
 DropdownBox.propTypes = {
   children: PropTypes.node.isRequired,
-  isOpened: PropTypes.bool.isRequired,
-  toggleDropdown: PropTypes.func.isRequired,
-  className: PropTypes.string
+  isOpened: PropTypes.bool,
+  toggleDropdown: PropTypes.func,
+  className: PropTypes.string,
 };
 
 export default DropdownBox;

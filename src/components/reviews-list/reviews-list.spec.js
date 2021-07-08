@@ -1,35 +1,35 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { mount } from 'enzyme';
-import ReviewsList from './reviews-list';
 import { checkProps } from 'test-utils/index';
+import ReviewsList from './reviews-list';
 
-const props = {
+const defProps = {
   reviews: [
     {
       id: '1',
       title: 'Game Informer',
       name: 'by Matt Miller',
       rating: '8/10',
-      review: 'Electric catfish leaffish boga flabby whalefish whiting Black mackerel whitetip reef shark--Atlantic herring Rainbow trout four-eyed fish, mooneye Pacific salmon. Gray reef shark perch codling bluntnose knifefish loweye catfish whitefish mud cat loach minnow roundhead. Sargassum fish cornetfish tilapia anglerfish; carpsucker poacher frogfish sheepshead.'
-    }
-  ]
+      review:
+        'Electric catfish leaffish boga flabby whalefish whiting Black mackerel whitetip reef shark--Atlantic herring Rainbow trout four-eyed fish, mooneye Pacific salmon. Gray reef shark perch codling bluntnose knifefish loweye catfish whitefish mud cat loach minnow roundhead. Sargassum fish cornetfish tilapia anglerfish; carpsucker poacher frogfish sheepshead.',
+    },
+  ],
 };
-const setup = (props = {}) => {
-  return mount(<ReviewsList {...props} />)
-};
+const setup = (props = {}) => mount(<ReviewsList {...props} />);
 
 describe('ReviewsList', () => {
   test('renders without errors', () => {
-    const wrapper = setup({ ...props });
+    const wrapper = setup({ ...defProps });
     expect(wrapper).not.toBeNull();
   });
   test('renders reviews', () => {
-    const wrapper = setup({ ...props });
+    const wrapper = setup({ ...defProps });
     const reviews = wrapper.find('ReviewsListItem');
     expect(reviews.length).toBeGreaterThanOrEqual(1);
   });
   test('Pouses slider on mouse hover', () => {
-    const wrapper = setup({ ...props });
+    const wrapper = setup({ ...defProps });
     const control = wrapper.find('.reviews-list-slider-control');
     const slider = wrapper.find('Slider');
     const mockSlickPause = jest.fn();
@@ -38,7 +38,7 @@ describe('ReviewsList', () => {
     expect(mockSlickPause.mock.calls.length).toBe(1);
   });
   test('Plays slider on mouse out', () => {
-    const wrapper = setup({ ...props });
+    const wrapper = setup({ ...defProps });
     const control = wrapper.find('.reviews-list-slider-control');
     const slider = wrapper.find('Slider');
     const mockSlickPlay = jest.fn();
@@ -47,7 +47,7 @@ describe('ReviewsList', () => {
     expect(mockSlickPlay.mock.calls.length).toBe(1);
   });
   test('shows previous slide on prev button click', () => {
-    const wrapper = setup({ ...props });
+    const wrapper = setup({ ...defProps });
     const prevButton = wrapper.find('.reviews-list-slider-control').childAt(0);
     const slider = wrapper.find('Slider');
     const mockSlickPrev = jest.fn();
@@ -56,7 +56,7 @@ describe('ReviewsList', () => {
     expect(mockSlickPrev.mock.calls.length).toBe(1);
   });
   test('shows next slide on nest button click', () => {
-    const wrapper = setup({ ...props });
+    const wrapper = setup({ ...defProps });
     const nextButton = wrapper.find('.reviews-list-slider-control').childAt(1);
     const slider = wrapper.find('Slider');
     const mockSlickNext = jest.fn();
@@ -65,7 +65,7 @@ describe('ReviewsList', () => {
     expect(mockSlickNext.mock.calls.length).toBe(1);
   });
   test('does not throw warning with expected props', () => {
-    const expectedProps = { ...props };
+    const expectedProps = { ...defProps };
     const propsError = checkProps(ReviewsList, expectedProps);
     expect(propsError).toBeUndefined();
   });

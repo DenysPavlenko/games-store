@@ -10,18 +10,22 @@ const ReviewsListItem = ({ title, name, rating, review }) => {
     <div className="reviews-list-item">
       <div className="reviews-list-item-heading">
         <Typography component="h5">{title}</Typography>
-        <Typography component="h6" className="text-muted">{name}</Typography>
+        <Typography component="h6" className="text-muted">
+          {name}
+        </Typography>
       </div>
       <Typography component="h6">{rating}</Typography>
-      <Typography component="p" className="mb-0 text-muted">{review}</Typography>
+      <Typography component="p" className="mb-0 text-muted">
+        {review}
+      </Typography>
     </div>
   );
 };
 
 ReviewsListItem.propTypes = {
-  title: PropTypes.string,
-  name: PropTypes.string,
-  rating: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  rating: PropTypes.string.isRequired,
 };
 
 export default ReviewsListItem;

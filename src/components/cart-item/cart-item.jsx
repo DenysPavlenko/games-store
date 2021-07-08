@@ -10,12 +10,21 @@ import './cart-item.sass';
 // Assets
 import { ReactComponent as TrashIcon } from 'assets/images/icons/trash.svg';
 
-const CartItem = ({ cartItem, hideCart, addItem, removeItem, clearItem, className, inverted, control }) => {
+const CartItem = ({
+  cartItem,
+  hideCart,
+  addItem,
+  removeItem,
+  clearItem,
+  className,
+  inverted,
+  control,
+}) => {
   const { id, image, name, price, quantity } = cartItem;
   const classes = classNames({
     'cart-item': true,
     'cart-item-inverted': inverted,
-    [className]: className
+    [className]: className,
   });
 
   return (
@@ -28,20 +37,50 @@ const CartItem = ({ cartItem, hideCart, addItem, removeItem, clearItem, classNam
       <div className="cart-item-content">
         <div className="cart-item-title">
           <Typography component="h3" className="text-dark">
-            <Link to={`/product/${id}`} onClick={hideCart}>{name}</Link>
+            <Link to={`/product/${id}`} onClick={hideCart}>
+              {name}
+            </Link>
           </Typography>
-          <Typography component="h5" className="text-dark">Price: ${price}</Typography>
-          {control &&
+          <Typography component="h5" className="text-dark">
+            Price: ${price}
+          </Typography>
+          {control && (
             <div className="cart-item-control">
-              <button className="cart-item-control-item h3" disabled={quantity === 1 && true} onClick={() => removeItem(cartItem)}>-</button>
-              <button className="cart-item-control-item h3" onClick={() => addItem(cartItem)}>+</button>
-              <button className="cart-item-control-item h3" onClick={() => clearItem(cartItem)}><TrashIcon /></button>
+              <button
+                type="button"
+                className="cart-item-control-item h3"
+                disabled={quantity === 1 && true}
+                onClick={() => removeItem(cartItem)}
+              >
+                -
+              </button>
+              <button
+                type="button"
+                className="cart-item-control-item h3"
+                onClick={() => addItem(cartItem)}
+              >
+                +
+              </button>
+              <button
+                type="button"
+                className="cart-item-control-item h3"
+                onClick={() => clearItem(cartItem)}
+              >
+                <TrashIcon />
+              </button>
             </div>
-          }
+          )}
         </div>
         <div className="cart-item-total">
-          <Typography component="h5" className="cart-item-total-title text-dark">{quantity} {quantity === 1 ? `Copy` : 'Copies'}</Typography>
-          <Typography component="h2" className="text-dark">${price * quantity}</Typography>
+          <Typography
+            component="h5"
+            className="cart-item-total-title text-dark"
+          >
+            {quantity} {quantity === 1 ? `Copy` : 'Copies'}
+          </Typography>
+          <Typography component="h2" className="text-dark">
+            ${price * quantity}
+          </Typography>
         </div>
       </div>
     </div>
@@ -49,12 +88,13 @@ const CartItem = ({ cartItem, hideCart, addItem, removeItem, clearItem, classNam
 };
 
 CartItem.defaultProps = {
-  hideCart: () => { },
-  addItem: () => { },
-  removeItem: () => { },
-  clearItem: () => { },
+  hideCart: () => {},
+  addItem: () => {},
+  removeItem: () => {},
+  clearItem: () => {},
   control: true,
-  inverted: false
+  className: '',
+  inverted: false,
 };
 
 CartItem.propTypes = {

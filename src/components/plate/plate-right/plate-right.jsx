@@ -7,18 +7,14 @@ import './plate-right.sass';
 const PlateRight = ({ children, className }) => {
   const classes = classNames({
     'plate-right': true,
-    [className]: className
+    [className]: className,
   });
 
-  return (
-    <div className={classes}>
-      {children}
-    </div>
-  );
+  return <div className={classes}>{children}</div>;
 };
 
 PlateRight.defaultProps = {
-  className: ''
+  className: '',
 };
 
 PlateRight.propTypes = {

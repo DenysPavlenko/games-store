@@ -6,7 +6,8 @@ import { Card } from './card';
 
 const defProps = {
   children: <span />,
-  onClick: () => { },
+  image: 'assets/images/image.jpg',
+  onClick: () => {},
 };
 
 const setup = (props = {}) => shallow(<Card {...props} />);

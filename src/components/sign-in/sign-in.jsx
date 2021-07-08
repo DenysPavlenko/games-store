@@ -16,12 +16,12 @@ const initialState = {
   password: '',
   emailInvalid: false,
   passwordInvalid: false,
-  formErrors: false
+  formErrors: false,
 };
 
-export class SignIn extends Component {
+export class SignInComponent extends Component {
   state = {
-    ...initialState
+    ...initialState,
   };
 
   static propTypes = {
@@ -30,7 +30,7 @@ export class SignIn extends Component {
     user: PropTypes.object.isRequired,
   };
 
-  handleInput = event => {
+  handleInput = (event) => {
     const { name, type, value } = event.target;
     const { formErrors } = this.state;
     this.setState({
@@ -39,44 +39,83 @@ export class SignIn extends Component {
     });
   };
 
-  handleSubmit = async event => {
+  handleSubmit = async (event) => {
     event.preventDefault();
     const { signInWithEmail } = this.props;
     const { email, password } = this.state;
     const validatedInputs = {
       emailInvalid: !validateInput('email', email),
       passwordInvalid: !validateInput('password', password),
-      formErrors: !validateInput('password', password) || !validateInput('email', email)
-    }
+      formErrors:
+        !validateInput('password', password) || !validateInput('email', email),
+    };
     this.setState({
-      ...validatedInputs
+      ...validatedInputs,
     });
     /* istanbul ignore else */
-    if (validatedInputs.formErrors) { return; }
+    if (validatedInputs.formErrors) {
+      return;
+    }
     signInWithEmail({ email, password });
   };
 
   render() {
     const { email, password, emailInvalid, passwordInvalid } = this.state;
-    const { signInWithGoogle, user: { error } } = this.props;
+    const {
+      signInWithGoogle,
+      user: { error },
+    } = this.props;
     return (
       <div className="sign-in">
         <div className="sign-in-description">
-          <Typography component="h2" className="text-dark">I already have an account</Typography>
-          <Typography component="span" variant="p" className="text-dark mb-0">Sign in with your email and password</Typography>
+          <Typography component="h2" className="text-dark">
+            I already have an account
+          </Typography>
+          <Typography component="span" variant="p" className="text-dark mb-0">
+            Sign in with your email and password
+          </Typography>
         </div>
         <form className="sign-in-form" onSubmit={this.handleSubmit} noValidate>
           <div className="sign-in-inputs">
-            <Input isDark type="email" name="email" value={email} onChange={this.handleInput} invalid={emailInvalid} className="sign-in-input" placeholder="Your email" />
-            <Input isDark type="password" name="password" value={password} onChange={this.handleInput} invalid={passwordInvalid} className="sign-in-input" placeholder="Your password" />
+            <Input
+              isDark
+              type="email"
+              name="email"
+              value={email}
+              onChange={this.handleInput}
+              invalid={emailInvalid}
+              className="sign-in-input"
+              placeholder="Your email"
+            />
+            <Input
+              isDark
+              type="password"
+              name="password"
+              value={password}
+              onChange={this.handleInput}
+              invalid={passwordInvalid}
+              className="sign-in-input"
+              placeholder="Your password"
+            />
           </div>
-          {error &&
-            <Typography component="p" className="text-danger">{error}</Typography>
-          }
+          {error && (
+            <Typography component="p" className="text-danger">
+              {error}
+            </Typography>
+          )}
 
           <div className="sign-in-buttons">
-            <Button type="submit" className="sign-in-button">Sign in</Button>
-            <Button type="button" className="sign-in-button" onClick={signInWithGoogle} isGoogleSignIn>Google sign in</Button>
+            <Button type="submit" className="sign-in-button">
+              Sign in
+            </Button>
+            <Button
+              type="button"
+              className="sign-in-button"
+              onClick={signInWithGoogle}
+              isGoogleSignIn
+            >
+              Google sign in
+            </Button>
           </div>
         </form>
       </div>
@@ -89,4 +128,4 @@ const mapDispatchToProps = {
   signInWithEmail,
 };
 
-export default connect(null, mapDispatchToProps)(SignIn);
+export default connect(null, mapDispatchToProps)(SignInComponent);

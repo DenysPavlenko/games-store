@@ -1,11 +1,12 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { shallow } from 'enzyme';
-import { SignInSignUpModal } from './sign-in-sign-up-modal';
 import { checkProps } from 'test-utils/index';
+import { SignInSignUpModal } from './sign-in-sign-up-modal';
 
 const props = {
   showModal: false,
-  closeModal: () => { },
+  closeModal: () => {},
   user: {
     currentUser: {
       displayName: 'John Doe',
@@ -13,13 +14,12 @@ const props = {
       avatar: 'https://avatar.jpg',
     },
     loading: false,
-    error: null
+    error: null,
   },
 };
 
-const setup = (props = {}) => {
-  return shallow(<SignInSignUpModal {...props} />)
-};
+const setup = (props = {}) =>
+  shallow(<SignInSignUpModal {...props} />);
 
 describe('SignInSignUpModal', () => {
   test('renders without errors', () => {
@@ -48,7 +48,7 @@ describe('SignInSignUpModal', () => {
   test('shows signIn on modal close', () => {
     const wrapper = setup({ ...props });
     const modal = wrapper.find('Modal');
-    modal.prop('onExited')()
+    modal.prop('onExited')();
     const signIn = wrapper.find('Connect(SignIn)');
     expect(signIn.length).toBe(1);
   });

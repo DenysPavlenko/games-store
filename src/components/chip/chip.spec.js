@@ -1,25 +1,24 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { shallow } from 'enzyme';
-import Chip from './chip';
 import { checkProps } from 'test-utils/index';
+import Chip from './chip';
 
-const props = {
-  children: <span></span>,
+const defProps = {
+  children: <span />,
   className: 'test-class',
 };
 
-const setup = (props = {}) => {
-  return shallow(<Chip {...props} />)
-};
+const setup = (props = {}) => shallow(<Chip {...props} />);
 
 describe('Chip', () => {
   test('renders without errors', () => {
-    const wrapper = setup({ ...props });
+    const wrapper = setup({ ...defProps });
     const component = wrapper.find('.chip');
     expect(component.length).toBe(1);
   });
   test('does not throw warning with expected props', () => {
-    const expectedProps = { ...props };
+    const expectedProps = { ...defProps };
     const propsError = checkProps(Chip, expectedProps);
     expect(propsError).toBeUndefined();
   });

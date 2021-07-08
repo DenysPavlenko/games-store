@@ -9,29 +9,46 @@ import Container from 'grid/container/container';
 import PlatePlaceholder from 'components/placeholders/plate-placeholder/plate-placeholder';
 
 const CategoryPreview = ({ isLoading, data, hasError }) => {
-  if (hasError) { return <Container><ErrorIndicator /></Container> }
-  if (isLoading) { return <Container><PlatePlaceholder /></Container> }
+  if (hasError) {
+    return (
+      <Container>
+        <ErrorIndicator />
+      </Container>
+    );
+  }
+  if (isLoading) {
+    return (
+      <Container>
+        <PlatePlaceholder />
+      </Container>
+    );
+  }
 
-  const description = data.description.match(/<p>(.*?)<\/p>/) ? data.description.match(/<p>(.*?)<\/p>/)[1] : data.description
+  const description = data.description.match(/<p>(.*?)<\/p>/)
+    ? data.description.match(/<p>(.*?)<\/p>/)[1]
+    : data.description;
 
   return (
     <Container>
       <Plate>
         <Plate.Left>
-          <Figure image={data.image}></Figure>
+          <Figure image={data.image} />
         </Plate.Left>
         <Plate.Right>
           <Typography component="h4">{data.name} games</Typography>
-          <Typography component="p" className="mb-0">{description}</Typography>
+          <Typography component="p" className="mb-0">
+            {description}
+          </Typography>
         </Plate.Right>
       </Plate>
     </Container>
-  )
+  );
 };
 
 CategoryPreview.defaultProps = {
   isLoading: false,
   hasError: false,
+  data: null,
 };
 
 CategoryPreview.propTypes = {

@@ -11,7 +11,7 @@ const SliderArrow = ({ className, reversed, arrowAlt, onClick }) => {
     'slider-arrow': true,
     'slider-arrow-reversed': reversed,
     'slider-arrow-alt': arrowAlt,
-    [className]: className
+    [className]: className,
   });
 
   return (
@@ -24,13 +24,15 @@ const SliderArrow = ({ className, reversed, arrowAlt, onClick }) => {
 SliderArrow.defaultProps = {
   reversed: false,
   arrowAlt: false,
+  className: '',
+  onClick: () => {},
 };
 
 SliderArrow.propTypes = {
   className: PropTypes.string,
   reversed: PropTypes.bool,
   arrowAlt: PropTypes.bool,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
 };
 
 export default SliderArrow;

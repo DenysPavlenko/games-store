@@ -18,9 +18,20 @@ const CartEmpty = ({ className, inverted }) => {
   return (
     <div className={classes}>
       <CartIcon />
-      <Typography component="span" variant="h2" className="cart-empty-title mb-0">Your Cart is empty</Typography>
+      <Typography
+        component="span"
+        variant="h2"
+        className="cart-empty-title mb-0"
+      >
+        Your Cart is empty
+      </Typography>
     </div>
   );
+};
+
+CartEmpty.defaultProps = {
+  inverted: false,
+  className: '',
 };
 
 CartEmpty.propTypes = {

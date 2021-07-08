@@ -9,29 +9,40 @@ import './plate.sass';
 
 class Plate extends Component {
   static Left = PlateLeft;
+
   static Right = PlateRight;
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    className: PropTypes.string,
-    onMouseOver: PropTypes.func,
-    onMouseLeave: PropTypes.func,
-  };
 
   render() {
     const { children, className, onMouseOver, onMouseLeave } = this.props;
     const classes = classNames({
-      'plate': true,
-      [className]: className
+      plate: true,
+      [className]: className,
     });
 
     return (
-      <div className={classes} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
-        {React.Children.map(children, child => (
-          React.cloneElement(child, {})
-        ))}
+      <div
+        className={classes}
+        onMouseOver={onMouseOver}
+        onMouseLeave={onMouseLeave}
+        onFocus={() => {}}
+      >
+        {React.Children.map(children, (child) => React.cloneElement(child, {}))}
       </div>
-    )
+    );
   }
+}
+
+Plate.defaultProps = {
+  className: '',
+  onMouseOver: () => {},
+  onMouseLeave: () => {},
+};
+
+Plate.propTypes = {
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  onMouseOver: PropTypes.func,
+  onMouseLeave: PropTypes.func,
 };
 
 export default Plate;

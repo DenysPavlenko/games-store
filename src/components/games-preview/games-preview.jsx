@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import React, { useEffect } from 'react';
 import { createStructuredSelector } from 'reselect';
 import { Link } from 'react-router-dom';
@@ -14,31 +15,46 @@ import Button from 'components/button/button';
 // Styles
 import './games-preview.sass';
 
-export const GamesPreview = ({ games: { loading, error, collection }, fetchGamesData }) => {
+export const GamesPreview = ({
+  games: { loading, error, collection },
+  fetchGamesData,
+}) => {
   useEffect(() => {
     fetchGamesData();
   }, [fetchGamesData]);
 
   return (
     <div className="games-preview">
-      <SliderPreview className="games-preview-slider" isLoading={loading} hasError={error}>
+      <SliderPreview
+        className="games-preview-slider"
+        isLoading={loading}
+        hasError={error}
+      >
         <SliderPreview.Left>
           {collection.map(({ id, image }) => (
             <Link key={id} to={`/product/${id}`}>
-              <Figure image={image}></Figure>
+              <Figure image={image} />
             </Link>
           ))}
         </SliderPreview.Left>
         <SliderPreview.Right>
           {collection.map(({ id, released, name, rating, platforms }) => (
             <div key={id} className="games-preview-slider-info">
-              <Typography component="h6" className="text-muted">Release data: {released}</Typography>
+              <Typography component="h6" className="text-muted">
+                Release data: {released}
+              </Typography>
               <Typography component="h2">{name}</Typography>
               <Typography component="h6" className="text-muted mb-4">
-                Supported platforms: <br /> {platforms.map(({ platform }) => `${platform.name}, `)}
+                Supported platforms: <br />{' '}
+                {platforms.map(({ platform }) => `${platform.name}, `)}
               </Typography>
-              <Typography component="h6" className="text-muted">Rating: <span className="text-light">{rating}</span></Typography>
-              <Link className="games-preview-slider-info-button" to={`/product/${id}`}>
+              <Typography component="h6" className="text-muted">
+                Rating: <span className="text-light">{rating}</span>
+              </Typography>
+              <Link
+                className="games-preview-slider-info-button"
+                to={`/product/${id}`}
+              >
                 <Button btnArrow>Learn more</Button>
               </Link>
             </div>
@@ -47,19 +63,19 @@ export const GamesPreview = ({ games: { loading, error, collection }, fetchGames
       </SliderPreview>
     </div>
   );
-}
+};
 
 GamesPreview.propTypes = {
   games: PropTypes.object.isRequired,
-  fetchGamesData: PropTypes.func.isRequired
-}
+  fetchGamesData: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = createStructuredSelector({
-  games: selectGames
+  games: selectGames,
 });
 
 const mapDispatchToProps = {
-  fetchGamesData
+  fetchGamesData,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(GamesPreview);

@@ -6,14 +6,13 @@ import Figure from 'components/figure/figure';
 // Styles
 import './card.sass';
 
-export const Card = ({ image, children, onClick }) => {
-  return (
-    <div className="card" onClick={onClick}>
-      <Figure className="card-image" image={image} />
-      <div className="card-info">{children}</div>
-    </div>
-  );
-};
+export const Card = ({ image, children, onClick }) => (
+  <div className="card" onClick={onClick}>
+    <Figure className="card-image" image={image} />
+    <div className="card-info">{children}</div>
+  </div>
+);
+
 Card.defaultProps = {
   onClick: () => {},
 };

@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -17,21 +18,18 @@ import Typography from 'components/typography/typography';
 // Styles
 import './stripe-payment.sass';
 
-const stripePromise = loadStripe("pk_test_hISzKXXyR5riFGZeaXvHWeQU00QUWFivUZ");
+const stripePromise = loadStripe('pk_test_hISzKXXyR5riFGZeaXvHWeQU00QUWFivUZ');
 
-export class StripePayment extends Component {
+export class StripePaymentComponent extends Component {
   state = {
-    showModal: false
-  };
-
-  static propTypes = {
-    cartItems: PropTypes.array.isRequired,
-    clearCart: PropTypes.func.isRequired,
-    user: PropTypes.object,
+    showModal: false,
   };
 
   isSuccess = () => {
-    const { cartItems, user: { currentUser } } = this.props;
+    const {
+      cartItems,
+      user: { currentUser },
+    } = this.props;
     this.setState({ showModal: true });
     // Write items to the purchase history
     /* istanbul ignore else */
@@ -53,22 +51,41 @@ export class StripePayment extends Component {
         <CheckoutForm isSuccess={this.isSuccess} />
         <Modal hidden={!showModal} closeModal={this.closeModal}>
           <div className="stripe-payment-modal-wrap">
-            <Typography component="h3" variant="h2" className="text-dark text-center">Thank you for your order!</Typography>
-            <Typography component="h6" className="text-dark text-center mb-0">We will send you a notification within 5 days when it ships. <br />If you have any questions feel free to contact us</Typography>
+            <Typography
+              component="h3"
+              variant="h2"
+              className="text-dark text-center"
+            >
+              Thank you for your order!
+            </Typography>
+            <Typography component="h6" className="text-dark text-center mb-0">
+              We will send you a notification within 5 days when it ships.{' '}
+              <br />
+              If you have any questions feel free to contact us
+            </Typography>
           </div>
         </Modal>
       </Elements>
     );
   }
+}
+
+StripePaymentComponent.propTypes = {
+  cartItems: PropTypes.array.isRequired,
+  clearCart: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
-  user: selectUser
+  user: selectUser,
 });
 
 const mapDispatchToProps = {
-  clearCart
+  clearCart,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(StripePayment);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(StripePaymentComponent);

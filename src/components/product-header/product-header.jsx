@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/media-has-caption */
 import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -12,18 +13,22 @@ const ProductHeader = ({ previews, className }) => {
   let sliderRef = React.useRef(null);
   let videoRef = {};
 
-  const handleVideo = currentIndex => {
+  const handleVideo = (currentIndex) => {
     const video = videoRef.current;
     /* istanbul ignore else */
     if (video) {
-      const idx = videoRef.idx;
-      currentIndex === idx ? video.play() : video.pause();
+      const { idx } = videoRef;
+      if (currentIndex === idx) {
+        video.play();
+      } else {
+        video.pause();
+      }
     }
   };
 
   const classes = classNames({
     'product-header': true,
-    [className]: className
+    [className]: className,
   });
 
   const slickSettings = {
@@ -36,7 +41,7 @@ const ProductHeader = ({ previews, className }) => {
     dots: false,
     afterChange: (currentIndex) => {
       handleVideo(currentIndex);
-    }
+    },
   };
 
   const setVideoRef = (ref, i) => {
@@ -47,50 +52,66 @@ const ProductHeader = ({ previews, className }) => {
 
   return (
     <div className={classes}>
-      {previews.length > 1 ?
+      {previews.length > 1 ? (
         <>
           <div className="product-header-slider-control">
-            <SliderArrow onClick={() => sliderRef.slickPrev()} arrowAlt reversed />
+            <SliderArrow
+              onClick={() => sliderRef.slickPrev()}
+              arrowAlt
+              reversed
+            />
             <SliderArrow onClick={() => sliderRef.slickNext()} arrowAlt />
           </div>
-          <Slider {...slickSettings} ref={slider => sliderRef = slider} >
+          <Slider
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...slickSettings}
+            ref={(slider) => {
+              sliderRef = slider;
+            }}
+          >
             {previews.map((preview, idx) => (
-              <ContentToShow key={idx} preview={preview} ref={ref => setVideoRef(ref, idx)} />
+              <ContentToShow
+                // eslint-disable-next-line react/no-array-index-key
+                key={idx}
+                preview={preview}
+                ref={(ref) => setVideoRef(ref, idx)}
+              />
             ))}
           </Slider>
         </>
-        :
+      ) : (
         <ContentToShow preview={previews[0]} />
-      }
+      )}
     </div>
   );
 };
 
 ProductHeader.defaultProps = {
-  className: ''
+  className: '',
 };
 
 ProductHeader.propTypes = {
   previews: PropTypes.array.isRequired,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
+// eslint-disable-next-line react/prop-types
 const ContentToShow = forwardRef(({ preview }, ref) => {
   return (
     <>
-      {(/\.(mp4|ogg)$/i).test(preview) ?
+      {/\.(mp4|ogg)$/i.test(preview) ? (
         <div className="product-header-video">
           <video ref={ref} controls>
             <source src={preview} type="video/mp4" />
           </video>
         </div>
-        :
+      ) : (
         <div className="product-header-image">
           <Figure className="product-header-image" image={preview} />
         </div>
-      }
+      )}
     </>
-  )
+  );
 });
 
 export default ProductHeader;

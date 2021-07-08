@@ -13,25 +13,12 @@ import { ReactComponent as CloseIcon } from 'assets/images/icons/close.svg';
 class Modal extends Component {
   modalParent = document.createElement('div');
 
-  static defaultProps = {
-    small: false,
-    loading: false,
-  }
-
-  static propTypes = {
-    hidden: PropTypes.bool.isRequired,
-    closeModal: PropTypes.func.isRequired,
-    children: PropTypes.node.isRequired,
-    small: PropTypes.bool,
-    loading: PropTypes.bool,
-    className: PropTypes.string
-  }
-
   componentDidMount() {
     const { hidden } = this.props;
     document.body.appendChild(this.modalParent);
-    this.toggleScroll(hidden)
+    this.toggleScroll(hidden);
   }
+
   componentDidUpdate(prevProps) {
     const { hidden: oldHidden } = prevProps;
     const { hidden } = this.props;
@@ -40,6 +27,7 @@ class Modal extends Component {
       this.toggleScroll(hidden);
     }
   }
+
   componentWillUnmount() {
     this.toggleScroll();
     document.body.removeChild(this.modalParent);
@@ -57,7 +45,7 @@ class Modal extends Component {
       html.style.overflowY = 'auto';
       html.style.paddingRight = 0;
     }
-  }
+  };
 
   handleClose = (e) => {
     const { closeModal } = this.props;
@@ -65,25 +53,45 @@ class Modal extends Component {
     if (e.target.classList.contains('modal-wrapper')) {
       closeModal();
     }
-  }
+  };
 
   render() {
-    const { hidden, closeModal, children, small, className, onExited, loading } = this.props;
+    const {
+      hidden,
+      closeModal,
+      children,
+      small,
+      className,
+      onExited,
+      loading,
+    } = this.props;
     const classes = classNames({
-      'modal': true,
+      modal: true,
       'modal-small': small,
-      [className]: className
+      [className]: className,
     });
 
     return ReactDOM.createPortal(
-      <CSSTransition in={!hidden} onExited={onExited} timeout={300} unmountOnExit classNames="modal-animation">
+      <CSSTransition
+        in={!hidden}
+        onExited={onExited}
+        timeout={300}
+        unmountOnExit
+        classNames="modal-animation"
+      >
         <div className={classes} onClick={this.handleClose}>
           <div className="modal-container">
             <div className="modal-wrapper">
               <div className="modal-block">
-                <div onClick={closeModal} className="modal-close"><CloseIcon /></div>
+                <div onClick={closeModal} className="modal-close">
+                  <CloseIcon />
+                </div>
                 {children}
-                {loading && <div className="modal-loading"><Spinner lg accent /></div>}
+                {loading && (
+                  <div className="modal-loading">
+                    <Spinner lg accent />
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -93,5 +101,22 @@ class Modal extends Component {
     );
   }
 }
+
+Modal.defaultProps = {
+  small: false,
+  loading: false,
+  className: '',
+  onExited: () => {},
+};
+
+Modal.propTypes = {
+  hidden: PropTypes.bool.isRequired,
+  closeModal: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
+  onExited: PropTypes.func,
+  small: PropTypes.bool,
+  loading: PropTypes.bool,
+  className: PropTypes.string,
+};
 
 export default Modal;

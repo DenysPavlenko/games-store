@@ -1,24 +1,23 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { shallow } from 'enzyme';
-import ProgressItem from './progress-item';
 import { checkProps } from 'test-utils/index';
+import ProgressItem from './progress-item';
 
-const props = {
+const defProps = {
   title: 'test title',
   radius: 36,
   percents: 50,
-}
-const setup = (props = {}) => {
-  return shallow(<ProgressItem {...props} />)
 };
+const setup = (props = {}) => shallow(<ProgressItem {...props} />);
 
 describe('ProgressItem', () => {
   test('renders without errors', () => {
-    const wrapper = setup({ ...props });
+    const wrapper = setup({ ...defProps });
     expect(wrapper).not.toBeNull();
   });
   test('does not throw warning with expected props', () => {
-    const expectedProps = { ...props };
+    const expectedProps = { ...defProps };
     const propsError = checkProps(ProgressItem, expectedProps);
     expect(propsError).toBeUndefined();
   });

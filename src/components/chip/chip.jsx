@@ -6,14 +6,14 @@ import './chip.sass';
 
 const Chip = ({ children, className }) => {
   const classes = classNames({
-    'chip': true,
-    [className]: className
+    chip: true,
+    [className]: className,
   });
-  return (
-    <div className={classes}>
-      {children}
-    </div>
-  );
+  return <div className={classes}>{children}</div>;
+};
+
+Chip.defaultProps = {
+  className: '',
 };
 
 Chip.propTypes = {

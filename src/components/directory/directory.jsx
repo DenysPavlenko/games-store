@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -12,7 +13,6 @@ import Container from 'grid/container/container';
 import './directory.sass';
 
 export const Directory = ({ fetchCategoriesData, categories }) => {
-
   useEffect(() => {
     fetchCategoriesData('genres');
     fetchCategoriesData('developers');
@@ -22,21 +22,28 @@ export const Directory = ({ fetchCategoriesData, categories }) => {
   return (
     <div className="directory">
       <Container>
-        {Object.keys(categories).map((category, idx) => (
-          <DirectoryCollection key={idx} rootName={category} title={category} collection={categories[category].collection} isLoading={categories[category].loading} hasError={categories[category].error} />
+        {Object.keys(categories).map((category) => (
+          <DirectoryCollection
+            key={category}
+            rootName={category}
+            title={category}
+            collection={categories[category].collection}
+            isLoading={categories[category].loading}
+            hasError={categories[category].error}
+          />
         ))}
       </Container>
     </div>
-  )
-}
+  );
+};
 
 Directory.propTypes = {
   categories: PropTypes.object.isRequired,
-  fetchCategoriesData: PropTypes.func.isRequired
-}
+  fetchCategoriesData: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = createStructuredSelector({
-  categories: selectCategories
+  categories: selectCategories,
 });
 
 const mapDispatchToProps = {

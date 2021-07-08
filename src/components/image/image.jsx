@@ -6,19 +6,21 @@ import './image.sass';
 
 const Image = ({ src, alt, className }) => {
   const classes = classNames({
-    'image': true,
-    [className]: className
+    image: true,
+    [className]: className,
   });
 
-  return (
-    <img src={src} alt={alt} className={classes} />
-  );
+  return <img src={src} alt={alt} className={classes} />;
+};
+
+Image.defaultProps = {
+  className: '',
 };
 
 Image.propTypes = {
   src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
   className: PropTypes.string,
-}
+};
 
 export default Image;

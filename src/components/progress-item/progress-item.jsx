@@ -9,25 +9,49 @@ const ProgressItem = ({ title, percents, radius }) => {
   return (
     <div className="progress-item">
       <div className="progress-item-bar">
-        <svg viewBox="0 0 75 75" height="75" width="75" version="1.1" className="progress-item-svg">
-          <circle strokeWidth="3" cx="50%" cy="50%" r={radius} className="progress-item-circle-bottom"></circle>
-          <circle strokeWidth="3" cx="50%" cy="50%" r={radius} className="progress-item-circle-top" strokeDasharray={`${circle}, ${circle}`} strokeDashoffset={circle * ((100 - percents) / 100)}></circle>
+        <svg
+          viewBox="0 0 75 75"
+          height="75"
+          width="75"
+          version="1.1"
+          className="progress-item-svg"
+        >
+          <circle
+            strokeWidth="3"
+            cx="50%"
+            cy="50%"
+            r={radius}
+            className="progress-item-circle-bottom"
+          />
+          <circle
+            strokeWidth="3"
+            cx="50%"
+            cy="50%"
+            r={radius}
+            className="progress-item-circle-top"
+            strokeDasharray={`${circle}, ${circle}`}
+            strokeDashoffset={circle * ((100 - percents) / 100)}
+          />
         </svg>
-        <Typography component="h6" className="progress-item-percents mb-0">{percents}%</Typography>
+        <Typography component="h6" className="progress-item-percents mb-0">
+          {percents}%
+        </Typography>
       </div>
-      <Typography component="h5" className="progress-item-title mb-0">{title}</Typography>
+      <Typography component="h5" className="progress-item-title mb-0">
+        {title}
+      </Typography>
     </div>
   );
 };
 
 ProgressItem.defaultProps = {
-  radius: 36
+  radius: 36,
 };
 
 ProgressItem.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  percents: PropTypes.number.isRequired,
   radius: PropTypes.number,
-  percents: PropTypes.number,
 };
 
 export default ProgressItem;

@@ -15,26 +15,29 @@ import './sign-in-sign-up-modal.sass';
 export const SignInSignUpModal = ({ showModal, closeModal, user }) => {
   const [register, setRegister] = React.useState(false);
 
-  const toggleForm = () => setRegister(register => !register);
-  const resetForm = () => setRegister(false)
+  const toggleForm = () => setRegister((register) => !register);
+  const resetForm = () => setRegister(false);
 
   const { loading } = user;
 
   return (
-    <Modal hidden={!showModal} closeModal={closeModal} onExited={resetForm} loading={loading} small>
+    <Modal
+      hidden={!showModal}
+      closeModal={closeModal}
+      onExited={resetForm}
+      loading={loading}
+      small
+    >
       <div className="sign-in-sign-up-modal">
-        {register ?
-          <SignUp />
-          :
-          <SignIn user={user} />
-        }
+        {register ? <SignUp /> : <SignIn user={user} />}
         <div className="sign-in-sign-up-modal-toggle">
-          <Typography component="span" variant="p" className="text-accent sign-in-sign-up-modal-title mb-0" onClick={toggleForm}>
-            {!register ?
-              'Create a new account'
-              :
-              'Use an existing account'
-            }
+          <Typography
+            component="span"
+            variant="p"
+            className="text-accent sign-in-sign-up-modal-title mb-0"
+            onClick={toggleForm}
+          >
+            {!register ? 'Create a new account' : 'Use an existing account'}
           </Typography>
         </div>
       </div>
@@ -49,11 +52,11 @@ SignInSignUpModal.defaultProps = {
 SignInSignUpModal.propTypes = {
   showModal: PropTypes.bool,
   closeModal: PropTypes.func,
-  user: PropTypes.object
+  user: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
-  user: selectUser
+  user: selectUser,
 });
 
 export default connect(mapStateToProps, null)(SignInSignUpModal);
