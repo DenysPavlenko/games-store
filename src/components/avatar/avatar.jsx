@@ -8,7 +8,7 @@ import './avatar.sass';
 
 const Avatar = ({ image, className }) => {
   const classnames = classNames({
-    'avatar': true,
+    avatar: true,
     [className]: className,
   });
 
@@ -19,9 +19,13 @@ const Avatar = ({ image, className }) => {
   );
 };
 
+Avatar.defaultProps = {
+  className: '',
+};
+
 Avatar.propTypes = {
-  image: PropTypes.string,
-  className: PropTypes.string
+  image: PropTypes.string.isRequired,
+  className: PropTypes.string,
 };
 
 export default Avatar;
