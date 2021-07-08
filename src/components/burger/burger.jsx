@@ -6,20 +6,24 @@ import './burger.sass';
 
 const Burger = ({ className, onClick }) => {
   const classnames = classNames({
-    'burger': true,
+    burger: true,
     [className]: className,
   });
 
   return (
-    <div className={classnames} onClick={onClick}>
-      <span></span>
-    </div>
+    <button type="button" className={classnames} onClick={onClick}>
+      <span />
+    </button>
   );
 };
 
+Burger.defaultProps = {
+  className: '',
+};
+
 Burger.propTypes = {
+  onClick: PropTypes.func.isRequired,
   className: PropTypes.string,
-  onClick: PropTypes.func
 };
 
 export default Burger;

@@ -1,25 +1,24 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { shallow } from 'enzyme';
-import Burger from './burger';
 import { checkProps } from 'test-utils/index';
+import Burger from './burger';
 
-const props = {
+const defaultProps = {
   className: 'test-class',
-  onClick: () => { }
+  onClick: () => { },
 };
 
-const setup = (props = {}) => {
-  return shallow(<Burger {...props} />)
-};
+const setup = (props = {}) => shallow(<Burger {...props} />);
 
 describe('burger', () => {
   test('renders without errors', () => {
-    const wrapper = setup({ ...props });
+    const wrapper = setup({ ...defaultProps });
     const component = wrapper.find('.burger');
     expect(component.length).toBe(1);
   });
   test('does not throw warning with expected props', () => {
-    const expectedProps = { ...props };
+    const expectedProps = { ...defaultProps };
     const propsError = checkProps(Burger, expectedProps);
     expect(propsError).toBeUndefined();
   });
