@@ -22,10 +22,6 @@ describe('CartIcon', () => {
     const component = wrapper.find('.cart-icon-count');
     expect(component.length).toBe(1);
   });
-  test('defaultProp showCart return undefined', () => {
-    const { showCart } = CartIcon.defaultProps;
-    expect(showCart()).toBeUndefined();
-  });
   test('does not throw warning with expected props', () => {
     const expectedProps = { ...defProps };
     const propsError = checkProps(CartIcon, expectedProps);
