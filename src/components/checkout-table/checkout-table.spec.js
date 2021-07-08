@@ -1,25 +1,24 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { shallow } from 'enzyme';
-import CheckoutTable from './checkout-table';
 import { checkProps } from 'test-utils/index';
+import CheckoutTable from './checkout-table';
 
-const props = {
-  total: 50
+const defProps = {
+  total: 50,
 };
 
-const setup = (props = {}) => {
-  return shallow(<CheckoutTable {...props} />)
-};
+const setup = (props = {}) => shallow(<CheckoutTable {...props} />);
 
 describe('CheckoutTable', () => {
   test('renders without errors', () => {
-    const wrapper = setup({ ...props });
+    const wrapper = setup({ ...defProps });
     const component = wrapper.find('.checkout-table');
     expect(component.length).toBe(1);
   });
 
   test('does not throw warning with expected props', () => {
-    const expectedProps = { ...props };
+    const expectedProps = { ...defProps };
     const propsError = checkProps(CheckoutTable, expectedProps);
     expect(propsError).toBeUndefined();
   });
