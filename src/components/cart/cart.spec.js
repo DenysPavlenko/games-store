@@ -19,6 +19,7 @@ const defProps = {
   addItemToCart: () => {},
   removeItemFromCart: () => {},
   clearItemFromCart: () => {},
+  history: {},
   totalCount: 2,
 };
 
@@ -52,16 +53,6 @@ describe('Cart', () => {
     component.simulate('click');
     expect(mockHideCart.mock.calls.length).toBe(1);
     expect(mockHistory.push.mock.calls.length).toBe(1);
-  });
-  test('defaultProps hideCart, onButtonClick, removeItemFromCart and clearItemFromCart return undefined', () => {
-    const { hideCart } = Cart.defaultProps;
-    expect(hideCart()).toBeUndefined();
-    const { addItemToCart } = Cart.defaultProps;
-    expect(addItemToCart()).toBeUndefined();
-    const { removeItemFromCart } = Cart.defaultProps;
-    expect(removeItemFromCart()).toBeUndefined();
-    const { clearItemFromCart } = Cart.defaultProps;
-    expect(clearItemFromCart()).toBeUndefined();
   });
   test('does not throw warning with expected props', () => {
     const expectedProps = { ...defProps };
