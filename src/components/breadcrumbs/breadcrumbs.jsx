@@ -13,19 +13,19 @@ export const Breadcrumbs = ({ routes, history: { location } }) => {
     <div className="breadcrumbs">
       <Container>
         <Link className="breadcrumbs-link h6 mb-0" to="/">Back to store</Link>
-        {routes.map((route, idx) => (
-          <Link key={idx} className="breadcrumbs-link h6 mb-0" to={`${path.substring(0, path.indexOf(route) + route.length)}`} >
+        {routes.map((route) => (
+          <Link key={route} className="breadcrumbs-link h6 mb-0" to={`${path.substring(0, path.indexOf(route) + route.length)}`}>
             {route.replace(/^\w/, l => l.toUpperCase())}
           </Link>
         ))}
       </Container>
-    </div >
+    </div>
   );
 };
 
 Breadcrumbs.propTypes = {
   routes: PropTypes.array.isRequired,
-  history: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
 };
 
 export default withRouter(Breadcrumbs);

@@ -1,29 +1,28 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Breadcrumbs } from './breadcrumbs';
 import { checkProps } from 'test-utils/index';
+import { Breadcrumbs } from './breadcrumbs';
 
-const props = {
+const defaultProps = {
   routes: ['genres'],
   history: {
     location: {
-      pathname: '/categories/genres'
+      pathname: '/categories/genres',
     },
-  }
+  },
 };
 
-const setup = (props = {}) => {
-  return shallow(<Breadcrumbs {...props} />)
-};
+const setup = (props = {}) => shallow(<Breadcrumbs {...props} />);
 
 describe('Breadcrumbs', () => {
   test('renders without errors', () => {
-    const wrapper = setup({ ...props });
+    const wrapper = setup({ ...defaultProps });
     const component = wrapper.find('.breadcrumbs');
     expect(component.length).toBe(1);
   });
   test('does not throw warning with expected props', () => {
-    const expectedProps = { ...props };
+    const expectedProps = { ...defaultProps };
     const propsError = checkProps(Breadcrumbs, expectedProps);
     expect(propsError).toBeUndefined();
   });
