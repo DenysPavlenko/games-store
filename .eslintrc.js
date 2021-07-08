@@ -28,6 +28,7 @@ module.exports = {
     'arrow-parens': 0,
     'arrow-body-style': 1,
     'react/forbid-prop-types': 0,
+    'max-len': 0,
   },
   settings: {
     'import/resolver': {
