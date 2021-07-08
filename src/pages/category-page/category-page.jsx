@@ -9,7 +9,7 @@ import { fetchCategoryDetailsData } from 'redux/category-details/category-detail
 import { selectCategory } from 'redux/category/category.selectors';
 import { selectCategoryDetails } from 'redux/category-details/category-details.selectors';
 // Components
-import Container from 'layout/container/container';
+import Container from 'grid/container/container';
 import CategoryPreview from 'components/category-preview/category-preview';
 import Typography from 'components/typography/typography';
 import Cards from 'components/cards/cards';
@@ -69,7 +69,7 @@ const mapStateToProps = createStructuredSelector({
   categoryDetails: selectCategoryDetails,
 });
 
-const mapDispatchToProps ={
+const mapDispatchToProps = {
   fetchCategoryData,
   fetchCategoryDetailsData
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 // Layout
-import Container from 'layout/container/container';
+import Container from 'grid/container/container';
 // Styles
 import './breadcrumbs.sass';
 

@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { hideCart, addItemToCart, removeItemFromCart, clearItemFromCart } from 'redux/cart/cart.actions';
 import { selectCartItems, selectCartHidden, selectCartTotalCount } from 'redux/cart/cart.selectors';
 // Components
-import Container from 'layout/container/container';
+import Container from 'grid/container/container';
 import CartItem from 'components/cart-item/cart-item';
 import CheckoutTable from 'components/checkout-table/checkout-table';
 // Styles

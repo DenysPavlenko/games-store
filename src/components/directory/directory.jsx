@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
 // Redux
-import { fetchCategoriesData } from '../../redux/categories/categories.actions';
-import { selectCategories } from '../../redux/categories/categories.selectors';
+import { fetchCategoriesData } from 'redux/categories/categories.actions';
+import { selectCategories } from 'redux/categories/categories.selectors';
 // Components
 import DirectoryCollection from 'components/directory-collection/directory-collection';
-import Container from 'layout/container/container';
+import Container from 'grid/container/container';
 // Styles
 import './directory.sass';
 

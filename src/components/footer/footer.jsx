@@ -1,8 +1,8 @@
 import React from 'react';
 // Laytou
-import Container from 'layout/container/container';
-import Row from 'layout/row/row';
-import Col from 'layout/col/col';
+import Container from 'grid/container/container';
+import Row from 'grid/row/row';
+import Col from 'grid/col/col';
 // Components
 import SocialIcons from 'components/social-icons/social-icons';
 import Typography from 'components/typography/typography';

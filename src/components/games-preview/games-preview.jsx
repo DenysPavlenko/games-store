@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // Redux
 import { connect } from 'react-redux';
-import { fetchGamesData } from '../../redux/games/games.actions';
-import { selectGames } from '../../redux/games/games.selectors';
+import { fetchGamesData } from 'redux/games/games.actions';
+import { selectGames } from 'redux/games/games.selectors';
 // Components
 import SliderPreview from 'components/slider-preview/slider-preview';
 import Figure from 'components/figure/figure';

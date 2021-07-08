@@ -4,9 +4,9 @@ import { createStructuredSelector } from 'reselect';
 // Redux
 import { selectUser } from 'redux/user/user.selectors';
 // Layout
-import Container from 'layout/container/container';
-import Row from 'layout/row/row';
-import Col from 'layout/col/col';
+import Container from 'grid/container/container';
+import Row from 'grid/row/row';
+import Col from 'grid/col/col';
 // Components
 import Typography from 'components/typography/typography';
 import CartItemPlaceholder from 'components/placeholders/cart-item-placeholder/cart-item-placeholder';

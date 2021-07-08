@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
 // Redux actions
-import { fetchCategoriesData } from '../../redux/categories/categories.actions';
-import { selectChosenCategory } from '../../redux/categories/categories.selectors';
+import { fetchCategoriesData } from 'redux/categories/categories.actions';
+import { selectChosenCategory } from 'redux/categories/categories.selectors';
 // Components
-import Container from 'layout/container/container';
+import Container from 'grid/container/container';
 import Figure from 'components/figure/figure';
 import Typography from 'components/typography/typography';
 import Cards from 'components/cards/cards';

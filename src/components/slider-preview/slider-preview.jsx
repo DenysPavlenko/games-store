@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 // Components
-import Container from 'layout/container/container';
+import Container from 'grid/container/container';
 import Plate from 'components/plate/plate';
 import PlatePlaceholder from 'components/placeholders/plate-placeholder/plate-placeholder';
 import SliderPreviewLeft from './slider-preview-left/slider-preview-left';

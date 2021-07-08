@@ -11,7 +11,7 @@ import { selectCartItems } from 'redux/cart/cart.selectors';
 // Components
 import ProductPagePlaceholder from './product-page-placeholder/product-page-placeholder';
 import ErrorIndicator from 'components/error-indicator/error-indicator';
-import Container from 'layout/container/container';
+import Container from 'grid/container/container';
 import ProductHeader from 'components/product-header/product-header';
 import Typography from 'components/typography/typography';
 import ProgressItem from 'components/progress-item/progress-item';

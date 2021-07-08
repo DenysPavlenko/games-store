@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 // Layout
-import Container from 'layout/container/container';
+import Container from 'grid/container/container';
 // Components
 import Typography from 'components/typography/typography';
 import Button from 'components/button/button';

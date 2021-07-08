@@ -5,7 +5,7 @@ import ErrorIndicator from 'components/error-indicator/error-indicator';
 import Plate from 'components/plate/plate';
 import Figure from 'components/figure/figure';
 import Typography from 'components/typography/typography';
-import Container from 'layout/container/container';
+import Container from 'grid/container/container';
 import PlatePlaceholder from 'components/placeholders/plate-placeholder/plate-placeholder';
 
 const CategoryPreview = ({ isLoading, data, hasError }) => {
