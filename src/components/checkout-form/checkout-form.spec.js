@@ -68,8 +68,8 @@ describe('CheckoutForm', () => {
   test('sets user name and email on signIn', () => {
     const wrapper = setup({ ...defProps });
     wrapper.instance().componentDidUpdate({ user: { currentUser: null } });
-    expect(wrapper.state().name).toEqual(props.user.currentUser.displayName);
-    expect(wrapper.state().email).toEqual(props.user.currentUser.email);
+    expect(wrapper.state().name).toEqual(defProps.user.currentUser.displayName);
+    expect(wrapper.state().email).toEqual(defProps.user.currentUser.email);
   });
   test('clears user name and email on signOut', () => {
     const wrapper = setup({ ...defProps, user: { currentUser: null } });
