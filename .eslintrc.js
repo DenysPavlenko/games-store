@@ -25,8 +25,8 @@ module.exports = {
   rules: {
     'linebreak-style': 0,
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
-    // 'arrow-parens': 0,
-    'arrow-body-style': 0,
+    'arrow-parens': 0,
+    'arrow-body-style': 1,
     'react/forbid-prop-types': 0,
   },
   settings: {
