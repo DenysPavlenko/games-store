@@ -1,9 +1,10 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { shallow } from 'enzyme';
-import BuyProduct from './buy-product';
 import { checkProps } from 'test-utils/index';
+import BuyProduct from './buy-product';
 
-const props = {
+const defProps = {
   price: 100,
   name: 'test name',
   inCart: false,
@@ -12,34 +13,32 @@ const props = {
   onButtonClick: () => { },
 };
 
-const setup = (props = {}) => {
-  return shallow(<BuyProduct {...props} />)
-};
+const setup = (props = {}) => shallow(<BuyProduct {...props} />);
 
 describe('BuyProduct', () => {
   test('renders without errors', () => {
-    const wrapper = setup({ ...props });
+    const wrapper = setup({ ...defProps });
     const component = wrapper.find('.buy-product');
     expect(component.length).toBe(1);
   });
   test('renders <Chip/> if product is in the cart', () => {
-    const wrapper = setup({ ...props, inCart: true });
+    const wrapper = setup({ ...defProps, inCart: true });
     const component = wrapper.find('Chip');
     expect(component.length).toBe(1);
   });
   test('renders purchase details if product is not in the cart', () => {
-    const wrapper = setup({ ...props, inCart: false });
+    const wrapper = setup({ ...defProps, inCart: false });
     const component = wrapper.find('.buy-product-price');
     expect(component.length).toBe(1);
   });
   test('onCartClick and onButtonClick return undefined on click', () => {
-    const onCartClick = BuyProduct.defaultProps.onCartClick;
+    const { onCartClick } = BuyProduct.defaultProps;
     expect(onCartClick()).toBeUndefined();
-    const onButtonClick = BuyProduct.defaultProps.onButtonClick;
+    const { onButtonClick } = BuyProduct.defaultProps;
     expect(onButtonClick()).toBeUndefined();
   });
   test('does not throw warning with expected props', () => {
-    const expectedProps = { ...props };
+    const expectedProps = { ...defProps };
     const propsError = checkProps(BuyProduct, expectedProps);
     expect(propsError).toBeUndefined();
   });

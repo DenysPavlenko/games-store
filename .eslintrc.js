@@ -5,8 +5,8 @@ module.exports = {
     jest: true,
   },
   extends: [
-    'plugin:react/recommended',
     'airbnb',
+    'plugin:prettier/recommended',
   ],
   globals: {
     Atomics: 'readonly',
@@ -29,6 +29,8 @@ module.exports = {
     'arrow-body-style': 1,
     'react/forbid-prop-types': 0,
     'max-len': 0,
+    'jsx-a11y/no-static-element-interactions': 0,
+    'jsx-a11y/click-events-have-key-events': 0,
   },
   settings: {
     'import/resolver': {

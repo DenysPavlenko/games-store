@@ -15,7 +15,7 @@ const defProps = {
   isGoogleSignIn: false,
   className: 'test-class',
   href: undefined,
-  onClick: () => { },
+  onClick: () => {},
   type: 'button',
 };
 

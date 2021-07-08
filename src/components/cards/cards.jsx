@@ -18,20 +18,21 @@ const Cards = ({ children, isLoading, hasError, placeholdersToShow }) => {
   if (isLoading) {
     return (
       <div className="cards">
-        {[...Array(placeholdersToShow)].map((elem, idx) => <CardPlaceholder key={idx} />)}
+        {[...Array(placeholdersToShow)].map((elem, idx) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <CardPlaceholder key={idx} />
+        ))}
       </div>
     );
   }
 
-  return (
-    <div className="cards">
-      {children}
-    </div >
-  );
+  return <div className="cards">{children}</div>;
 };
 
 Cards.defaultProps = {
-  placeholdersToShow: 5
+  placeholdersToShow: 5,
+  isLoading: false,
+  hasError: false,
 };
 
 Cards.propTypes = {

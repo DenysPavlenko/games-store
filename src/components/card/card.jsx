@@ -10,20 +10,18 @@ export const Card = ({ image, children, onClick }) => {
   return (
     <div className="card" onClick={onClick}>
       <Figure className="card-image" image={image} />
-      <div className="card-info">
-        {children}
-      </div>
+      <div className="card-info">{children}</div>
     </div>
-  )
-}
+  );
+};
 Card.defaultProps = {
-  onClick: () => { }
-}
+  onClick: () => {},
+};
 
 Card.propTypes = {
-  image: PropTypes.string,
+  image: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   onClick: PropTypes.func,
-}
+};
 
 export default withRouter(Card);

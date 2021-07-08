@@ -6,7 +6,7 @@ import Burger from './burger';
 
 const defaultProps = {
   className: 'test-class',
-  onClick: () => { },
+  onClick: () => {},
 };
 
 const setup = (props = {}) => shallow(<Burger {...props} />);
