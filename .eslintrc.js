@@ -1,4 +1,5 @@
 module.exports = {
+  parser: 'babel-eslint',
   env: {
     browser: true,
     es6: true,
@@ -31,6 +32,7 @@ module.exports = {
     'max-len': 0,
     'jsx-a11y/no-static-element-interactions': 0,
     'jsx-a11y/click-events-have-key-events': 0,
+    'react/jsx-one-expression-per-line': 0,
   },
   settings: {
     'import/resolver': {
