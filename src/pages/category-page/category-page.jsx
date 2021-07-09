@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import React, { Component } from 'react';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
@@ -19,27 +20,32 @@ import Breadcrumbs from 'components/breadcrumbs/breadcrumbs';
 import './category-page.sass';
 
 export class CategoryPage extends Component {
-  static propTypes = {
-    category: PropTypes.object.isRequired,
-    categoryDetails: PropTypes.object.isRequired,
-    fetchCategoryData: PropTypes.func.isRequired,
-    fetchCategoryDetailsData: PropTypes.func.isRequired,
-  };
-
   componentDidMount() {
-    const { fetchCategoryData, fetchCategoryDetailsData, match: { params } } = this.props;
+    const {
+      fetchCategoryData,
+      fetchCategoryDetailsData,
+      match: { params },
+    } = this.props;
     fetchCategoryData(params.categoriesRout, params.categoryRout);
-    fetchCategoryDetailsData(params.categoriesRout, params.categoryRout)
+    fetchCategoryDetailsData(params.categoriesRout, params.categoryRout);
   }
 
   render() {
-    const { category, categoryDetails, match: { params }, history } = this.props;
+    const {
+      category,
+      categoryDetails,
+      match: { params },
+      history,
+    } = this.props;
 
-    if (categoryDetails.errorDetails && categoryDetails.errorDetails.message === '404') {
-      return <Redirect to="/404" />
+    if (
+      categoryDetails.errorDetails &&
+      categoryDetails.errorDetails.message === '404'
+    ) {
+      return <Redirect to="/404" />;
     }
     if (category.errorDetails && category.errorDetails.message === '404') {
-      return <Redirect to="/404" />
+      return <Redirect to="/404" />;
     }
 
     return (
@@ -47,14 +53,28 @@ export class CategoryPage extends Component {
         <Breadcrumbs routes={[params.categoriesRout, params.categoryRout]} />
 
         <div className="category-page-header">
-          <CategoryPreview isLoading={categoryDetails.loading} hasError={categoryDetails.error} data={categoryDetails.data} />
+          <CategoryPreview
+            isLoading={categoryDetails.loading}
+            hasError={categoryDetails.error}
+            data={categoryDetails.data}
+          />
         </div>
         <Container>
-          <Cards isLoading={category.loading} hasError={category.error} placeholdersToShow={10}>
+          <Cards
+            isLoading={category.loading}
+            hasError={category.error}
+            placeholdersToShow={10}
+          >
             {category.collection.map(({ id, image, name, rating }) => (
-              <Card key={id} onClick={() => history.push(`/product/${id}`)} image={image}>
+              <Card
+                key={id}
+                onClick={() => history.push(`/product/${id}`)}
+                image={image}
+              >
                 <Typography component="h5">{name}</Typography>
-                <Typography component="h6" className="mb-0">Rating {rating}</Typography>
+                <Typography component="h6" className="mb-0">
+                  Rating {rating}
+                </Typography>
               </Card>
             ))}
           </Cards>
@@ -62,6 +82,15 @@ export class CategoryPage extends Component {
       </div>
     );
   }
+}
+
+CategoryPage.propTypes = {
+  category: PropTypes.object.isRequired,
+  categoryDetails: PropTypes.object.isRequired,
+  fetchCategoryData: PropTypes.func.isRequired,
+  fetchCategoryDetailsData: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -71,7 +100,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = {
   fetchCategoryData,
-  fetchCategoryDetailsData
+  fetchCategoryDetailsData,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryPage);

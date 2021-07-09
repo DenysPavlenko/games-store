@@ -6,7 +6,8 @@ export default (type, value) => {
       regx = /^[a-zA-Z ]{2,30}$/;
       return regx.test(strValue);
     case 'email':
-      regx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      regx =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return regx.test(strValue);
     case 'number':
       regx = /^[0-9]+$/;
@@ -15,6 +16,6 @@ export default (type, value) => {
       regx = /(.*[a-z0-9]){6}/i;
       return regx.test(strValue);
     default:
-      break;
+      return undefined;
   }
-}
+};

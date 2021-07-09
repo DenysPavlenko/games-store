@@ -3,15 +3,13 @@ import React from 'react';
 import GamesPreview from 'components/games-preview/games-preview';
 import Directory from 'components/directory/directory';
 // Styles
-import './home-page.sass'
+import './home-page.sass';
 
-const HomePage = () => {
-  return (
-    <div className="home-page">
-      <GamesPreview />
-      <Directory />
-    </div>
-  )
-}
+const HomePage = () => (
+  <div className="home-page">
+    <GamesPreview />
+    <Directory />
+  </div>
+);
 
 export default HomePage;
