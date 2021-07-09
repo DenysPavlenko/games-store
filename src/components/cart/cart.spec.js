@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import { checkProps } from 'test-utils/index';
 import { Cart } from './cart';
 
-const defProps = {
+const dummyProps = {
   cartHidden: false,
   cartItems: [
     {
@@ -27,17 +27,17 @@ const setup = (props = {}) => shallow(<Cart {...props} />);
 
 describe('Cart', () => {
   test('renders without errors', () => {
-    const wrapper = setup({ ...defProps });
+    const wrapper = setup({ ...dummyProps });
     const component = wrapper.find('.cart');
     expect(component.length).toBe(1);
   });
   test('renders <CartEmpty/> if cart is empty', () => {
-    const wrapper = setup({ ...defProps, cartItems: [] });
+    const wrapper = setup({ ...dummyProps, cartItems: [] });
     const component = wrapper.find('CartEmpty');
     expect(component.length).toBe(1);
   });
   test('renders cart content if cart is not empty', () => {
-    const wrapper = setup({ ...defProps });
+    const wrapper = setup({ ...dummyProps });
     const component = wrapper.find('.cart-content');
     expect(component.length).toBe(1);
   });
@@ -45,7 +45,7 @@ describe('Cart', () => {
     const mockHistory = { push: jest.fn() };
     const mockHideCart = jest.fn();
     const wrapper = setup({
-      ...defProps,
+      ...dummyProps,
       history: mockHistory,
       hideCart: mockHideCart,
     });
@@ -55,7 +55,7 @@ describe('Cart', () => {
     expect(mockHistory.push.mock.calls.length).toBe(1);
   });
   test('does not throw warning with expected props', () => {
-    const expectedProps = { ...defProps };
+    const expectedProps = { ...dummyProps };
     const propsError = checkProps(Cart, expectedProps);
     expect(propsError).toBeUndefined();
   });

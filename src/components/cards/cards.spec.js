@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import { checkProps } from 'test-utils/index';
 import Cards from './cards';
 
-const defProps = {
+const dummyProps = {
   children: <span />,
   isLoading: false,
   hasError: false,
@@ -15,18 +15,18 @@ const setup = (props = {}) => shallow(<Cards {...props} />);
 
 describe('Cards', () => {
   test('renders without errors', () => {
-    const wrapper = setup({ ...defProps });
+    const wrapper = setup({ ...dummyProps });
     const component = wrapper.find('.cards');
     expect(component.length).toBe(1);
   });
   test('renders <ErrorIndicator/> on error', () => {
-    const wrapper = setup({ ...defProps, hasError: true });
+    const wrapper = setup({ ...dummyProps, hasError: true });
     const component = wrapper.find('ErrorIndicator');
     expect(component.length).toBe(1);
   });
   test('renders <CardPlaceholder/> on loading', () => {
     const wrapper = setup({
-      ...defProps,
+      ...dummyProps,
       isLoading: true,
       placeholdersToShow: 2,
     });
@@ -34,7 +34,7 @@ describe('Cards', () => {
     expect(component.length).toBe(2);
   });
   test('does not throw warning with expected props', () => {
-    const expectedProps = { ...defProps };
+    const expectedProps = { ...dummyProps };
     const propsError = checkProps(Cards, expectedProps);
     expect(propsError).toBeUndefined();
   });

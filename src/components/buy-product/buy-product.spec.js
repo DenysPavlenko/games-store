@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import { checkProps } from 'test-utils/index';
 import BuyProduct from './buy-product';
 
-const defProps = {
+const dummyProps = {
   price: 100,
   name: 'test name',
   inCart: false,
@@ -17,17 +17,17 @@ const setup = (props = {}) => shallow(<BuyProduct {...props} />);
 
 describe('BuyProduct', () => {
   test('renders without errors', () => {
-    const wrapper = setup({ ...defProps });
+    const wrapper = setup({ ...dummyProps });
     const component = wrapper.find('.buy-product');
     expect(component.length).toBe(1);
   });
   test('renders <Chip/> if product is in the cart', () => {
-    const wrapper = setup({ ...defProps, inCart: true });
+    const wrapper = setup({ ...dummyProps, inCart: true });
     const component = wrapper.find('Chip');
     expect(component.length).toBe(1);
   });
   test('renders purchase details if product is not in the cart', () => {
-    const wrapper = setup({ ...defProps, inCart: false });
+    const wrapper = setup({ ...dummyProps, inCart: false });
     const component = wrapper.find('.buy-product-price');
     expect(component.length).toBe(1);
   });
@@ -38,7 +38,7 @@ describe('BuyProduct', () => {
     expect(onButtonClick()).toBeUndefined();
   });
   test('does not throw warning with expected props', () => {
-    const expectedProps = { ...defProps };
+    const expectedProps = { ...dummyProps };
     const propsError = checkProps(BuyProduct, expectedProps);
     expect(propsError).toBeUndefined();
   });
