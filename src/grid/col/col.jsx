@@ -1,7 +1,8 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import classNames from 'classnames';
 // Styles
-import './col.sass'
+import './col.sass';
 
 const Col = (props) => {
   const colProps = { ...props };
@@ -12,8 +13,10 @@ const Col = (props) => {
   const orders = [];
   DEVICE_SIZES.forEach((brkPoint) => {
     const propValue = colProps[brkPoint];
-    if (!propValue) { return };
-    delete colProps[brkPoint]
+    if (!propValue) {
+      return;
+    }
+    delete colProps[brkPoint];
     let span;
     let offset;
     let order;
@@ -26,11 +29,11 @@ const Col = (props) => {
     if (span) {
       spans.push(span === true ? `col${infix}` : `col${infix}-${span}`);
     }
-    if (offset !== null && offset !== undefined) {
+    if (offset) {
       offsets.push(`offset${infix}-${offset}`);
     }
-    if (order !== null && order !== undefined) {
-      order && orders.push(`order${infix}-${order}`);
+    if (order) {
+      orders.push(`order${infix}-${order}`);
     }
   });
 
