@@ -4,7 +4,7 @@ import { mount } from 'enzyme';
 import { checkProps } from 'test-utils/index';
 import ReviewsList from './reviews-list';
 
-const defProps = {
+const dummyProps = {
   reviews: [
     {
       id: '1',
@@ -20,16 +20,16 @@ const setup = (props = {}) => mount(<ReviewsList {...props} />);
 
 describe('ReviewsList', () => {
   test('renders without errors', () => {
-    const wrapper = setup({ ...defProps });
+    const wrapper = setup({ ...dummyProps });
     expect(wrapper).not.toBeNull();
   });
   test('renders reviews', () => {
-    const wrapper = setup({ ...defProps });
+    const wrapper = setup({ ...dummyProps });
     const reviews = wrapper.find('ReviewsListItem');
     expect(reviews.length).toBeGreaterThanOrEqual(1);
   });
   test('Pouses slider on mouse hover', () => {
-    const wrapper = setup({ ...defProps });
+    const wrapper = setup({ ...dummyProps });
     const control = wrapper.find('.reviews-list-slider-control');
     const slider = wrapper.find('Slider');
     const mockSlickPause = jest.fn();
@@ -38,7 +38,7 @@ describe('ReviewsList', () => {
     expect(mockSlickPause.mock.calls.length).toBe(1);
   });
   test('Plays slider on mouse out', () => {
-    const wrapper = setup({ ...defProps });
+    const wrapper = setup({ ...dummyProps });
     const control = wrapper.find('.reviews-list-slider-control');
     const slider = wrapper.find('Slider');
     const mockSlickPlay = jest.fn();
@@ -47,7 +47,7 @@ describe('ReviewsList', () => {
     expect(mockSlickPlay.mock.calls.length).toBe(1);
   });
   test('shows previous slide on prev button click', () => {
-    const wrapper = setup({ ...defProps });
+    const wrapper = setup({ ...dummyProps });
     const prevButton = wrapper.find('.reviews-list-slider-control').childAt(0);
     const slider = wrapper.find('Slider');
     const mockSlickPrev = jest.fn();
@@ -56,7 +56,7 @@ describe('ReviewsList', () => {
     expect(mockSlickPrev.mock.calls.length).toBe(1);
   });
   test('shows next slide on nest button click', () => {
-    const wrapper = setup({ ...defProps });
+    const wrapper = setup({ ...dummyProps });
     const nextButton = wrapper.find('.reviews-list-slider-control').childAt(1);
     const slider = wrapper.find('Slider');
     const mockSlickNext = jest.fn();
@@ -65,7 +65,7 @@ describe('ReviewsList', () => {
     expect(mockSlickNext.mock.calls.length).toBe(1);
   });
   test('does not throw warning with expected props', () => {
-    const expectedProps = { ...defProps };
+    const expectedProps = { ...dummyProps };
     const propsError = checkProps(ReviewsList, expectedProps);
     expect(propsError).toBeUndefined();
   });

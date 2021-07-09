@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { shallow } from 'enzyme';
@@ -18,8 +19,7 @@ const props = {
   },
 };
 
-const setup = (props = {}) =>
-  shallow(<SignInSignUpModal {...props} />);
+const setup = (props = {}) => shallow(<SignInSignUpModal {...props} />);
 
 describe('SignInSignUpModal', () => {
   test('renders without errors', () => {

@@ -5,7 +5,7 @@ import { mount } from 'enzyme';
 import { checkProps } from 'test-utils/index';
 import { GamesPreview } from './games-preview';
 
-const defProps = {
+const dummyProps = {
   games: {
     loading: false,
     collection: [
@@ -46,12 +46,11 @@ const setup = (props = {}) =>
 
 describe('GamesPreview', () => {
   test('renders without errors', () => {
-    const wrapper = setup({ ...defProps });
+    const wrapper = setup({ ...dummyProps });
     expect(wrapper).not.toBeNull();
   });
-
   test('does not throw warning with expected props', () => {
-    const expectedProps = { ...defProps };
+    const expectedProps = { ...dummyProps };
     const propsError = checkProps(GamesPreview, expectedProps);
     expect(propsError).toBeUndefined();
   });

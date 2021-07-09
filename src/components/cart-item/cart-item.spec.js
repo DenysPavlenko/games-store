@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import { checkProps } from 'test-utils/index';
 import CartItem from './cart-item';
 
-const defProps = {
+const dummyProps = {
   cartItem: {
     id: 3498,
     image: 'https://test.jpg',
@@ -25,48 +25,48 @@ const setup = (props = {}) => shallow(<CartItem {...props} />);
 
 describe('CartItem', () => {
   test('renders without errors', () => {
-    const wrapper = setup({ ...defProps });
+    const wrapper = setup({ ...dummyProps });
     const component = wrapper.find('.cart-item');
     expect(component.length).toBe(1);
   });
   test('renders cart item control if "control" prop is true', () => {
-    const wrapper = setup({ ...defProps, control: true });
+    const wrapper = setup({ ...dummyProps, control: true });
     const component = wrapper.find('.cart-item-control');
     expect(component.length).toBe(1);
   });
   test('first control button calls removeItem on click', () => {
     const mockFn = jest.fn();
-    const wrapper = setup({ ...defProps, control: true, removeItem: mockFn });
+    const wrapper = setup({ ...dummyProps, control: true, removeItem: mockFn });
     const component = wrapper.find('.cart-item-control').childAt(0);
     component.simulate('click');
     expect(mockFn.mock.calls.length).toBe(1);
   });
   test('second control button calls addItem on click', () => {
     const mockFn = jest.fn();
-    const wrapper = setup({ ...defProps, control: true, addItem: mockFn });
+    const wrapper = setup({ ...dummyProps, control: true, addItem: mockFn });
     const component = wrapper.find('.cart-item-control').childAt(1);
     component.simulate('click');
     expect(mockFn.mock.calls.length).toBe(1);
   });
   test('third control button calss clearItem on click', () => {
     const mockFn = jest.fn();
-    const wrapper = setup({ ...defProps, control: true, clearItem: mockFn });
+    const wrapper = setup({ ...dummyProps, control: true, clearItem: mockFn });
     const component = wrapper.find('.cart-item-control').childAt(2);
     component.simulate('click');
     expect(mockFn.mock.calls.length).toBe(1);
   });
   test('total prints "Copy" if quantity === 1', () => {
     const wrapper = setup({
-      ...defProps,
-      cartItem: { ...defProps.cartItem, quantity: 1 },
+      ...dummyProps,
+      cartItem: { ...dummyProps.cartItem, quantity: 1 },
     });
     const component = wrapper.find('.cart-item-total-title').dive();
     expect(component.text()).toBe('1 Copy');
   });
   test('total prints "Copies" if quantity > 1', () => {
     const wrapper = setup({
-      ...defProps,
-      cartItem: { ...defProps.cartItem, quantity: 2 },
+      ...dummyProps,
+      cartItem: { ...dummyProps.cartItem, quantity: 2 },
     });
     const component = wrapper.find('.cart-item-total-title').dive();
     expect(component.text()).toBe('2 Copies');
@@ -82,7 +82,7 @@ describe('CartItem', () => {
     expect(clearItem()).toBeUndefined();
   });
   test('does not throw warning with expected props', () => {
-    const expectedProps = { ...defProps };
+    const expectedProps = { ...dummyProps };
     const propsError = checkProps(CartItem, expectedProps);
     expect(propsError).toBeUndefined();
   });

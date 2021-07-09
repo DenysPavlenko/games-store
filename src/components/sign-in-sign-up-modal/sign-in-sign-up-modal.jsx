@@ -15,7 +15,7 @@ import './sign-in-sign-up-modal.sass';
 export const SignInSignUpModal = ({ showModal, closeModal, user }) => {
   const [register, setRegister] = React.useState(false);
 
-  const toggleForm = () => setRegister((register) => !register);
+  const toggleForm = () => setRegister((reg) => !reg);
   const resetForm = () => setRegister(false);
 
   const { loading } = user;
@@ -45,14 +45,10 @@ export const SignInSignUpModal = ({ showModal, closeModal, user }) => {
   );
 };
 
-SignInSignUpModal.defaultProps = {
-  showModal: false,
-};
-
 SignInSignUpModal.propTypes = {
-  showModal: PropTypes.bool,
-  closeModal: PropTypes.func,
-  user: PropTypes.object,
+  showModal: PropTypes.bool.isRequired,
+  closeModal: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

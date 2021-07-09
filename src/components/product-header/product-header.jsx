@@ -96,22 +96,20 @@ ProductHeader.propTypes = {
 };
 
 // eslint-disable-next-line react/prop-types
-const ContentToShow = forwardRef(({ preview }, ref) => {
-  return (
-    <>
-      {/\.(mp4|ogg)$/i.test(preview) ? (
-        <div className="product-header-video">
-          <video ref={ref} controls>
-            <source src={preview} type="video/mp4" />
-          </video>
-        </div>
-      ) : (
-        <div className="product-header-image">
-          <Figure className="product-header-image" image={preview} />
-        </div>
-      )}
-    </>
-  );
-});
+const ContentToShow = forwardRef(({ preview }, ref) => (
+  <>
+    {/\.(mp4|ogg)$/i.test(preview) ? (
+      <div className="product-header-video">
+        <video ref={ref} controls>
+          <source src={preview} type="video/mp4" />
+        </video>
+      </div>
+    ) : (
+      <div className="product-header-image">
+        <Figure className="product-header-image" image={preview} />
+      </div>
+    )}
+  </>
+));
 
 export default ProductHeader;

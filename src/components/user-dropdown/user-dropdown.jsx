@@ -14,7 +14,9 @@ const UserDropdown = ({ userName, avatar }) => {
     <Dropdown className="user-dropdown">
       <Dropdown.Toggle className="user-dropdown-toggle">
         <Avatar className="user-dropdown-avatar" image={avatar} />
-        <Typography component="h6" className="user-dropdown-name mb-0">{userName}</Typography>
+        <Typography component="h6" className="user-dropdown-name mb-0">
+          {userName}
+        </Typography>
         <ChevronDown className="user-dropdown-chevron" />
       </Dropdown.Toggle>
       <Dropdown.Box className="user-dropdown-box">
@@ -24,9 +26,9 @@ const UserDropdown = ({ userName, avatar }) => {
   );
 };
 
-UserDropdown.propTypes={
-  userName: PropTypes.string,
-  avatar: PropTypes.string,
-}
+UserDropdown.propTypes = {
+  userName: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
+};
 
 export default UserDropdown;

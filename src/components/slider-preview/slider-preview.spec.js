@@ -6,7 +6,7 @@ import SliderPreview from './slider-preview';
 
 const PreviewComponent = () => <div />;
 
-const defProps = {
+const dummyProps = {
   className: 'test-class',
   children: <PreviewComponent />,
   isLoading: false,
@@ -17,21 +17,21 @@ const setup = (props = {}) => mount(<SliderPreview {...props} />);
 
 describe('SliderPreview', () => {
   test('renders without errors', () => {
-    const wrapper = setup({ ...defProps });
+    const wrapper = setup({ ...dummyProps });
     expect(wrapper).not.toBeNull();
   });
   test('renders error indicator on error', () => {
-    const wrapper = setup({ ...defProps, hasError: true });
+    const wrapper = setup({ ...dummyProps, hasError: true });
     const errorIndicator = wrapper.find('ErrorIndicator');
     expect(errorIndicator.length).toBe(1);
   });
   test('renders placeholder on loading', () => {
-    const wrapper = setup({ ...defProps, isLoading: true });
+    const wrapper = setup({ ...dummyProps, isLoading: true });
     const platePlaceholder = wrapper.find('PlatePlaceholder');
     expect(platePlaceholder.length).toBe(1);
   });
   test('pauses sliders on mouseOver', () => {
-    const wrapper = setup({ ...defProps });
+    const wrapper = setup({ ...dummyProps });
     const mockSlickPause = jest.fn();
     wrapper.setState({
       sliderRight: { slickPause: mockSlickPause },
@@ -42,7 +42,7 @@ describe('SliderPreview', () => {
     expect(mockSlickPause.mock.calls.length).toBe(2);
   });
   test('starts sliders on mouseleave', () => {
-    const wrapper = setup({ ...defProps });
+    const wrapper = setup({ ...dummyProps });
     const mockSlickPlay = jest.fn();
     wrapper.setState({
       sliderRight: { slickPlay: mockSlickPlay },
@@ -53,7 +53,7 @@ describe('SliderPreview', () => {
     expect(mockSlickPlay.mock.calls.length).toBe(2);
   });
   test('shows next slide', () => {
-    const wrapper = setup({ ...defProps });
+    const wrapper = setup({ ...dummyProps });
     const mockSlickNext = jest.fn();
     wrapper.setState({
       sliderRight: { slickNext: mockSlickNext },
@@ -62,7 +62,7 @@ describe('SliderPreview', () => {
     expect(mockSlickNext.mock.calls.length).toBe(1);
   });
   test('shows previous slide', () => {
-    const wrapper = setup({ ...defProps });
+    const wrapper = setup({ ...dummyProps });
     const mockSlickNext = jest.fn();
     wrapper.setState({
       sliderRight: { slickPrev: mockSlickNext },
@@ -71,7 +71,7 @@ describe('SliderPreview', () => {
     expect(mockSlickNext.mock.calls.length).toBe(1);
   });
   test('does not throw warning with expected props', () => {
-    const expectedProps = { ...defProps };
+    const expectedProps = { ...dummyProps };
     const propsError = checkProps(SliderPreview, expectedProps);
     expect(propsError).toBeUndefined();
   });

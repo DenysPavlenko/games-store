@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -24,7 +25,6 @@ class Plate extends Component {
         className={classes}
         onMouseOver={onMouseOver}
         onMouseLeave={onMouseLeave}
-        onFocus={() => {}}
       >
         {React.Children.map(children, (child) => React.cloneElement(child, {}))}
       </div>

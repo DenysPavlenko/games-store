@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import React, { Component } from 'react';
 import validateInput from 'helpers/validate-input';
 import { connect } from 'react-redux';
@@ -19,15 +20,9 @@ const initialState = {
   formErrors: false,
 };
 
-export class SignInComponent extends Component {
+export class SignIn extends Component {
   state = {
     ...initialState,
-  };
-
-  static propTypes = {
-    signInWithEmail: PropTypes.func.isRequired,
-    signInWithGoogle: PropTypes.func.isRequired,
-    user: PropTypes.object.isRequired,
   };
 
   handleInput = (event) => {
@@ -123,9 +118,15 @@ export class SignInComponent extends Component {
   }
 }
 
+SignIn.propTypes = {
+  signInWithEmail: PropTypes.func.isRequired,
+  signInWithGoogle: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
+};
+
 const mapDispatchToProps = {
   signInWithGoogle,
   signInWithEmail,
 };
 
-export default connect(null, mapDispatchToProps)(SignInComponent);
+export default connect(null, mapDispatchToProps)(SignIn);

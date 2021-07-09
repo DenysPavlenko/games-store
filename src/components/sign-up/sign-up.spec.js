@@ -11,7 +11,7 @@ const state = {
   confirmPassword: '123321',
 };
 
-const defProps = {
+const dummyProps = {
   signUpWithEmail: () => {},
   user: {
     currentUser: {
@@ -28,11 +28,11 @@ const setup = (props = {}) => shallow(<SignUp {...props} />);
 
 describe('SignUp', () => {
   test('renders without errors', () => {
-    const wrapper = setup({ ...defProps });
+    const wrapper = setup({ ...dummyProps });
     expect(wrapper).not.toBeNull();
   });
   test('shows message "Passwords don`t match" message if passwords do not match', () => {
-    const wrapper = setup({ ...defProps });
+    const wrapper = setup({ ...dummyProps });
     wrapper.setState({
       ...state,
       password: '123',
@@ -44,8 +44,8 @@ describe('SignUp', () => {
   });
   test('shows error message on user authentication error', () => {
     const wrapper = setup({
-      ...defProps,
-      user: { ...defProps.user, error: 'error message' },
+      ...dummyProps,
+      user: { ...dummyProps.user, error: 'error message' },
     });
     const p = wrapper.find('.sign-up-form .text-danger');
     expect(p.dive().text()).toEqual('error message');
@@ -55,7 +55,7 @@ describe('SignUp', () => {
     let wrapper;
     let instance;
     beforeEach(() => {
-      wrapper = setup({ ...defProps });
+      wrapper = setup({ ...dummyProps });
       instance = wrapper.instance();
     });
     test('handleInput sets input`s value to the state', () => {
@@ -100,7 +100,7 @@ describe('SignUp', () => {
     });
   });
   test('does not throw warning with expected props', () => {
-    const expectedProps = { ...defProps };
+    const expectedProps = { ...dummyProps };
     const propsError = checkProps(SignUp, expectedProps);
     expect(propsError).toBeUndefined();
   });

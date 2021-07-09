@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 // Components
@@ -57,7 +58,6 @@ const ReviewsList = ({ reviews }) => {
         className="reviews-list-slider-control"
         onMouseOver={() => sliderRef.slickPause()}
         onMouseLeave={() => sliderRef.slickPlay()}
-        onFocus={() => {}}
       >
         <SliderArrow onClick={() => sliderRef.slickPrev()} arrowAlt reversed />
         <SliderArrow onClick={() => sliderRef.slickNext()} arrowAlt />

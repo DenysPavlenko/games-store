@@ -5,7 +5,7 @@ import { mount } from 'enzyme';
 import { checkProps } from 'test-utils/index';
 import { DirectoryCollection } from './directory-collection';
 
-const defProps = {
+const dummyProps = {
   collection: [
     {
       id: 18893,
@@ -38,12 +38,12 @@ const setup = (props = {}) =>
 
 describe('DirectoryCollection', () => {
   test('renders without errors', () => {
-    const wrapper = setup({ ...defProps });
+    const wrapper = setup({ ...dummyProps });
     expect(wrapper).not.toBeNull();
   });
   test('renders 5 placeholders on "xl" resolution', () => {
     const wrapper = setup({
-      ...defProps,
+      ...dummyProps,
       currentBreakpoint: 'xl',
       isLoading: true,
     });
@@ -52,7 +52,7 @@ describe('DirectoryCollection', () => {
   });
   test('renders 4 placeholders on "lg" resolution', () => {
     const wrapper = setup({
-      ...defProps,
+      ...dummyProps,
       currentBreakpoint: 'lg',
       isLoading: true,
     });
@@ -61,7 +61,7 @@ describe('DirectoryCollection', () => {
   });
   test('renders 3 placeholders on "md" resolution', () => {
     const wrapper = setup({
-      ...defProps,
+      ...dummyProps,
       currentBreakpoint: 'md',
       isLoading: true,
     });
@@ -70,7 +70,7 @@ describe('DirectoryCollection', () => {
   });
   test('renders 4 placeholders on "sm" resolution', () => {
     const wrapper = setup({
-      ...defProps,
+      ...dummyProps,
       currentBreakpoint: 'sm',
       isLoading: true,
     });
@@ -79,20 +79,20 @@ describe('DirectoryCollection', () => {
   });
   test('calls fetchCategoriesData', () => {
     const mockHistory = { push: jest.fn() };
-    const wrapper = setup({ ...defProps, history: mockHistory });
+    const wrapper = setup({ ...dummyProps, history: mockHistory });
     const button = wrapper.find('.directory-collection-heading Button');
     button.simulate('click');
     expect(mockHistory.push.mock.calls.length).toBe(1);
   });
   test('calls fetchCategoriesData', () => {
     const mockHistory = { push: jest.fn() };
-    const wrapper = setup({ ...defProps, history: mockHistory });
+    const wrapper = setup({ ...dummyProps, history: mockHistory });
     const card = wrapper.find('.directory-collection Card').childAt(0);
     card.simulate('click');
     expect(mockHistory.push.mock.calls.length).toBe(1);
   });
   test('does not throw warning with expected props', () => {
-    const expectedProps = { ...defProps };
+    const expectedProps = { ...dummyProps };
     const propsError = checkProps(DirectoryCollection, expectedProps);
     expect(propsError).toBeUndefined();
   });

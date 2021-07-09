@@ -4,9 +4,10 @@ import { shallow } from 'enzyme';
 import { checkProps } from 'test-utils/index';
 import Modal from './modal';
 
-const defProps = {
+const dummyProps = {
   hidden: false,
   closeModal: () => {},
+  onExited: () => {},
   children: <span />,
   small: false,
   loading: false,
@@ -17,23 +18,23 @@ const setup = (props = {}) => shallow(<Modal {...props} />);
 
 describe('Modal', () => {
   test('renders without errors', () => {
-    const wrapper = setup({ ...defProps });
+    const wrapper = setup({ ...dummyProps });
     expect(wrapper).not.toBeNull();
   });
   test('shows spinner on loading', () => {
-    const wrapper = setup({ ...defProps, loading: true });
+    const wrapper = setup({ ...dummyProps, loading: true });
     const spinner = wrapper.find('Spinner');
     expect(spinner.length).toBe(1);
   });
   test('hides scroll and shows up on componentDidMount', () => {
     document.body.appendChild = jest.fn();
-    const wrapper = setup({ ...defProps });
+    const wrapper = setup({ ...dummyProps });
     const instance = wrapper.instance();
     instance.componentDidMount();
     expect(document.body.appendChild).toHaveBeenCalled();
   });
   test('toggles scroll on componentDidUpdate', () => {
-    const wrapper = setup({ ...defProps });
+    const wrapper = setup({ ...dummyProps });
     wrapper.setProps({ hidden: true });
     const instance = wrapper.instance();
     const mockFn = jest.fn();
@@ -43,13 +44,13 @@ describe('Modal', () => {
   });
   test('shows scroll and removes itself from dom on componentWillUnmount', () => {
     document.body.removeChild = jest.fn();
-    const wrapper = setup({ ...defProps });
+    const wrapper = setup({ ...dummyProps });
     const instance = wrapper.instance();
     instance.componentWillUnmount();
     expect(document.body.removeChild).toHaveBeenCalled();
   });
   test('closes on overlay click', () => {
-    const wrapper = setup({ ...defProps });
+    const wrapper = setup({ ...dummyProps });
     const close = wrapper.find('.modal');
     const mockFn = jest.fn();
     wrapper.setProps({ closeModal: mockFn });
@@ -58,8 +59,12 @@ describe('Modal', () => {
     });
     expect(mockFn.mock.calls.length).toBe(1);
   });
+  test('defaultProp onExited returns undefined on click', () => {
+    const { onExited } = Modal.defaultProps;
+    expect(onExited()).toBeUndefined();
+  });
   test('does not throw warning with expected props', () => {
-    const expectedProps = { ...defProps };
+    const expectedProps = { ...dummyProps };
     const propsError = checkProps(Modal, expectedProps);
     expect(propsError).toBeUndefined();
   });

@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import { checkProps } from 'test-utils/index';
 import Input from './input';
 
-const defProps = {
+const dummyProps = {
   invalid: false,
   isDark: false,
   className: 'test-class',
@@ -18,7 +18,7 @@ const setup = (props = {}) => shallow(<Input {...props} />);
 
 describe('Input', () => {
   test('renders without errors', () => {
-    const wrapper = setup({ ...defProps });
+    const wrapper = setup({ ...dummyProps });
     expect(wrapper).not.toBeNull();
   });
   test('defaultProp onChange returns undefined on click', () => {
@@ -26,7 +26,7 @@ describe('Input', () => {
     expect(onChange()).toBeUndefined();
   });
   test('does not throw warning with expected props', () => {
-    const expectedProps = { ...defProps };
+    const expectedProps = { ...dummyProps };
     const propsError = checkProps(Input, expectedProps);
     expect(propsError).toBeUndefined();
   });

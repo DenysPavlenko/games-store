@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import { checkProps } from 'test-utils/index';
 import Figure from './figure';
 
-const defProps = {
+const dummyProps = {
   image: 'http://example.com',
   className: 'test-class',
 };
@@ -12,11 +12,11 @@ const setup = (props = {}) => shallow(<Figure {...props} />);
 
 describe('Figure', () => {
   test('renders without errors', () => {
-    const wrapper = setup({ ...defProps });
+    const wrapper = setup({ ...dummyProps });
     expect(wrapper).not.toBeNull();
   });
   test('does not throw warning with expected props', () => {
-    const expectedProps = { ...defProps };
+    const expectedProps = { ...dummyProps };
     const propsError = checkProps(Figure, expectedProps);
     expect(propsError).toBeUndefined();
   });

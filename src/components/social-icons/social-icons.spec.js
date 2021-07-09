@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { checkProps } from 'test-utils/index';
 import SocialIcons from './social-icons';
 
-const defProps = {
+const dummyProps = {
   socials: [
     {
       Icon: '<span></span>',
@@ -18,11 +18,11 @@ const setup = (props = {}) => shallow(<SocialIcons {...props} />);
 
 describe('SocialIcons', () => {
   test('renders without errors', () => {
-    const wrapper = setup({ ...defProps });
+    const wrapper = setup({ ...dummyProps });
     expect(wrapper).not.toBeNull();
   });
   test('does not throw warning with expected props', () => {
-    const expectedProps = { ...defProps };
+    const expectedProps = { ...dummyProps };
     const propsError = checkProps(SocialIcons, expectedProps);
     expect(propsError).toBeUndefined();
   });

@@ -1,24 +1,33 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 // Styles
 import './typography.sass';
 
-const Typography = ({ children, component, variant, className, ...otherProps }) => {
+const Typography = ({
+  children,
+  component,
+  variant,
+  className,
+  ...otherProps
+}) => {
   const classes = classNames({
     [variant]: variant,
-    [className]: className
-  })
+    [className]: className,
+  });
 
   const Tag = component;
   return (
-    <Tag className={classes || null} {...otherProps}>{children}</Tag>
+    <Tag className={classes || null} {...otherProps}>
+      {children}
+    </Tag>
   );
-
 };
 
 Typography.defaultProps = {
   component: 'p',
+  variant: '',
   className: '',
   children: '',
 };

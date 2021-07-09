@@ -5,7 +5,7 @@ import { mount } from 'enzyme';
 import { checkProps } from 'test-utils/index';
 import { Directory } from './directory';
 
-const defProps = {
+const dummyProps = {
   categories: {
     genres: {
       loading: true,
@@ -26,16 +26,16 @@ const setup = (props = {}) =>
 
 describe('Directory', () => {
   test('renders without errors', () => {
-    const wrapper = setup({ ...defProps });
+    const wrapper = setup({ ...dummyProps });
     expect(wrapper).not.toBeNull();
   });
   test('calls fetchCategoriesData', () => {
     const mockFn = jest.fn();
-    setup({ ...defProps, fetchCategoriesData: mockFn });
+    setup({ ...dummyProps, fetchCategoriesData: mockFn });
     expect(mockFn.mock.calls.length).toBe(3);
   });
   test('does not throw warning with expected props', () => {
-    const expectedProps = { ...defProps };
+    const expectedProps = { ...dummyProps };
     const propsError = checkProps(Directory, expectedProps);
     expect(propsError).toBeUndefined();
   });

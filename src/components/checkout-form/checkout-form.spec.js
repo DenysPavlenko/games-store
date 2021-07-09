@@ -12,7 +12,7 @@ import CheckoutForm, {
   initialState,
 } from './checkout-form';
 
-const defProps = {
+const dummyProps = {
   user: {
     currentUser: {
       displayName: 'John Doe',
@@ -62,32 +62,32 @@ const connectedSetup = (props = {}) =>
 
 describe('CheckoutForm', () => {
   test('renders without errors', () => {
-    const wrapper = connectedSetup({ ...defProps });
+    const wrapper = connectedSetup({ ...dummyProps });
     expect(wrapper).not.toBeNull();
   });
   test('sets user name and email on signIn', () => {
-    const wrapper = setup({ ...defProps });
+    const wrapper = setup({ ...dummyProps });
     wrapper.instance().componentDidUpdate({ user: { currentUser: null } });
-    expect(wrapper.state().name).toEqual(defProps.user.currentUser.displayName);
-    expect(wrapper.state().email).toEqual(defProps.user.currentUser.email);
+    expect(wrapper.state().name).toEqual(dummyProps.user.currentUser.displayName);
+    expect(wrapper.state().email).toEqual(dummyProps.user.currentUser.email);
   });
   test('clears user name and email on signOut', () => {
-    const wrapper = setup({ ...defProps, user: { currentUser: null } });
+    const wrapper = setup({ ...dummyProps, user: { currentUser: null } });
     wrapper.instance().componentDidUpdate({
-      user: { currentUser: { ...defProps.user.currentUser } },
+      user: { currentUser: { ...dummyProps.user.currentUser } },
     });
     expect(wrapper.state().name).toEqual('');
     expect(wrapper.state().email).toEqual('');
   });
   test('does not throw warning with expected props', () => {
-    const expectedProps = { ...defProps };
+    const expectedProps = { ...dummyProps };
     const propsError = checkProps(UnconnectedCheckoutForm, expectedProps);
     expect(propsError).toBeUndefined();
   });
 
   describe('CheckoutForm card input', () => {
     test('sets cardInvalid on change', () => {
-      const wrapper = setup({ ...defProps });
+      const wrapper = setup({ ...dummyProps });
       const cardElement = wrapper.find('CardElement');
       cardElement.simulate('change', { error: 'test error' });
       expect(wrapper.state().cardInvalid).toBe('test error');
@@ -98,7 +98,7 @@ describe('CheckoutForm', () => {
     let wrapper;
     let instance;
     beforeEach(() => {
-      wrapper = setup({ ...defProps });
+      wrapper = setup({ ...dummyProps });
       instance = wrapper.instance();
     });
     test('handleInput sets input`s value to the state', () => {
@@ -163,7 +163,7 @@ describe('CheckoutForm', () => {
       console.log = jest.fn();
       const mockIsSuccess = jest.fn();
       wrapper.setState({ ...state });
-      wrapper.setProps({ ...defProps, isSuccess: mockIsSuccess });
+      wrapper.setProps({ ...dummyProps, isSuccess: mockIsSuccess });
       await instance.handleSubmit({ preventDefault: () => {} });
       expect(wrapper.state()).toEqual(initialState);
       expect(mockIsSuccess.mock.calls.length).toBe(1);
