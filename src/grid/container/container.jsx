@@ -1,14 +1,15 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 // Styles
-import './container.sass'
+import './container.sass';
 
 const Container = ({ children, fluid, className, ...otherProps }) => {
   const classes = classNames({
-    'container': !fluid,
+    container: !fluid,
     'container-fluid': fluid,
-    [className]: className
+    [className]: className,
   });
 
   return (
@@ -20,7 +21,7 @@ const Container = ({ children, fluid, className, ...otherProps }) => {
 
 Container.defaultProps = {
   fluid: false,
-  className: ''
+  className: '',
 };
 
 Container.propTypes = {
