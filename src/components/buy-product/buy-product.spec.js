@@ -9,8 +9,8 @@ const dummyProps = {
   name: 'test name',
   inCart: false,
   className: 'test-class',
-  onCartClick: () => { },
-  onButtonClick: () => { },
+  onCartClick: () => {},
+  onButtonClick: () => {},
 };
 
 const setup = (props = {}) => shallow(<BuyProduct {...props} />);

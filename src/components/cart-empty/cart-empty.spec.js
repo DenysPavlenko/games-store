@@ -1,25 +1,24 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { shallow } from 'enzyme';
-import CartEmpty from './cart-empty';
 import { checkProps } from 'test-utils/index';
+import CartEmpty from './cart-empty';
 
-const props = {
+const dummyProps = {
   inverted: false,
   className: 'test-class',
 };
 
-const setup = (props = {}) => {
-  return shallow(<CartEmpty {...props} />)
-};
+const setup = (props = {}) => shallow(<CartEmpty {...props} />);
 
 describe('CartEmpty', () => {
   test('renders without errors', () => {
-    const wrapper = setup({ ...props });
+    const wrapper = setup({ ...dummyProps });
     const component = wrapper.find('.cart-empty');
     expect(component.length).toBe(1);
   });
   test('does not throw warning with expected props', () => {
-    const expectedProps = { ...props };
+    const expectedProps = { ...dummyProps };
     const propsError = checkProps(CartEmpty, expectedProps);
     expect(propsError).toBeUndefined();
   });
