@@ -52,6 +52,10 @@ describe('button', () => {
     const component = wrapper.find('.button-google-sign-in-icon-wrap');
     expect(component.length).toBe(1);
   });
+  test('defaultProp onClick returns undefined on click', () => {
+    const { onClick } = Button.defaultProps;
+    expect(onClick()).toBeUndefined();
+  });
   test('does not throw warning with expected props', () => {
     const expectedProps = { ...defProps };
     const propsError = checkProps(Button, expectedProps);
