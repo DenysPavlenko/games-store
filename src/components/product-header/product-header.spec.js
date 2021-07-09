@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
 import { mount } from 'enzyme';
+import React from 'react';
 import { checkProps } from 'test-utils/index';
 import ProductHeader from './product-header';
 
@@ -8,7 +8,7 @@ const testImage = 'https://image.jpg';
 const testVideo = 'https://video.mp4';
 
 const dummyProps = {
-  previews: [],
+  previews: [testImage, testVideo],
   className: 'test-class',
 };
 

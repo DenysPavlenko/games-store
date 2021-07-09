@@ -5,6 +5,7 @@ import rootReducer from './root-reducer';
 // import logger from 'redux-logger';
 
 export const middlewares = [thunkMiddleware];
+/* istanbul ignore else */
 if (process.env.NODE_ENV === 'development') {
   // middlewares.push(logger);
 }

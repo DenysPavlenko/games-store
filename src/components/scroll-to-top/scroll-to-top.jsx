@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 
 export class ScrollToTop extends Component {
   componentDidUpdate(prevProps) {
-    /* istanbul ignore else */
     const { location } = this.props;
+    /* istanbul ignore else */
     if (location.pathname !== prevProps.location.pathname) {
       window.scrollTo(0, 0);
     }

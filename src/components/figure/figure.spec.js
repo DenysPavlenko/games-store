@@ -8,6 +8,7 @@ const dummyProps = {
   image: 'http://example.com',
   className: 'test-class',
 };
+
 const setup = (props = {}) => shallow(<Figure {...props} />);
 
 describe('Figure', () => {

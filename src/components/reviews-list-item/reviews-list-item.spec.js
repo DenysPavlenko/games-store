@@ -7,6 +7,7 @@ import ReviewsListItem from './reviews-list-item';
 const dummyProps = {
   title: 'test title',
   name: 'test-name',
+  review: 'test review',
   rating: '5',
 };
 

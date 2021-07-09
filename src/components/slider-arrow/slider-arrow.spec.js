@@ -18,6 +18,10 @@ describe('SliderArrow', () => {
     const wrapper = setup({ ...dummyProps });
     expect(wrapper).not.toBeNull();
   });
+  test('defaultProp onClick returns undefined on click', () => {
+    const { onClick } = SliderArrow.defaultProps;
+    expect(onClick()).toBeUndefined();
+  });
   test('does not throw warning with expected props', () => {
     const expectedProps = { ...dummyProps };
     const propsError = checkProps(SliderArrow, expectedProps);
