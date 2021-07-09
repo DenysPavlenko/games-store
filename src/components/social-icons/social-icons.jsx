@@ -12,8 +12,9 @@ const SocialIcons = ({ socials, className }) => {
 
   return (
     <div className={classes}>
-      {socials.map(({ link, Icon }) => (
-        <a key={link} href={link} className="social-icons-icon">
+      {socials.map(({ link, Icon }, idx) => (
+        // eslint-disable-next-line react/no-array-index-key
+        <a key={idx} href={link} className="social-icons-icon">
           <Icon />
         </a>
       ))}
