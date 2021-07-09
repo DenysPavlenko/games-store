@@ -22,7 +22,7 @@ const Col = (props) => {
     let order;
     if (typeof propValue === 'object') {
       ({ span, offset, order } = propValue);
-    } else if (propValue) {
+    } else {
       span = propValue;
     }
     const infix = brkPoint !== 'col' ? `-${brkPoint}` : '';
